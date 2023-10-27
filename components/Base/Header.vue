@@ -1,0 +1,222 @@
+<template>
+  <div class="sticky top-0 z-50">
+    <div
+      class="flex justify-between items-center h-[70px] lg:px-0 px-10 bg-Gray-b1"
+    >
+      <!-- logo -->
+
+      <div class="w-full flex">
+        <NuxtLink to="/" class="icon flex gap-2 items-center"
+          ><i class="isax isax-shop text-Primary text-3xl"></i>
+          <h1 class="text-Gray-b5 font-bold text-xl italic">
+            CultChain
+          </h1></NuxtLink
+        >
+        <el-menu
+          class="el-menu-demo bg-transparent w-full border-none justify-start relative top-1 lg:flex hidden"
+          mode="horizontal"
+        >
+          <template v-for="(item, index) in navigations">
+            <el-menu-item
+              v-if="!item.children.length"
+              :index="converToString(index + 1)"
+              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+            >
+              <nuxt-link :to="item.route">{{ item.text }}</nuxt-link>
+            </el-menu-item>
+            <el-sub-menu
+              v-if="item.children.length"
+              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+              :index="converToString(index + 1)"
+            >
+              <template #title
+                ><span
+                  class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+                  >{{ item.text }}</span
+                ></template
+              >
+              <el-menu-item
+                v-for="(subMenu, i) in item.children"
+                :key="i"
+                :index="index + 1 + '-' + i + 1"
+              >
+                <nuxt-link :to="subMenu.route">{{
+                  subMenu.text
+                }}</nuxt-link></el-menu-item
+              >
+            </el-sub-menu>
+          </template>
+        </el-menu>
+      </div>
+
+      <!-- desktop navigation  -->
+
+      <div
+        class="navigation lg:flex lg:items-center items-end gap-4 lg:min-w-fit w-full lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-black bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
+      >
+        <div class="relative w-full">
+          <i class="isax isax-search-normal absolute left-2 top-1 text-white text-2xl"/>
+          <i class="isax isax-shuffle5 absolute right-2 top-1 text-white text-2xl"/>
+          <input v-model="search" class="w-full h-10 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 bg-opacity-70" />
+        </div>
+        <el-button
+          class="border-0 px-0 glass  min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105"
+          v-if="!account"
+        >
+          <i class="isax isax-empty-wallet text-2xl text-white"></i>
+        </el-button>
+        <el-button
+          icon
+          class="border-0 px-2 glass  h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105 "
+          v-if="account"
+        >
+          {{ shortenAddress(account) }}
+        </el-button>
+        <NuxtLink
+          to="/profile"
+          icon
+          class="border-0 px-0 glass  min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl flex items-center justify-center hover:scale-105"
+        >
+          <i class="isax isax-user text-2xl text-white"></i>
+        </NuxtLink>
+      </div>
+
+      <!-- mobile toggle navigation -->
+
+      <span class="inline lg:hidden" @click="drawer = !drawer">
+        <i class="isax isax-menu-1 text-3xl text-white lg:hidden static"></i>
+      </span>
+
+      <!-- mobile navigation  -->
+
+      <section class="lg:hidden absolute" :class="!drawer && 'hidden'">
+        <ClientOnly
+          ><el-drawer
+            v-model="drawer"
+            :direction="direction"
+            size="100%"
+            class="navigation-drawer"
+          >
+            <template #header>
+              <div class="icon flex gap-2 items-center">
+                <i class="isax isax-shop text-Primary text-2xl"></i>
+                <h1 class="text-Gray-b5 font-bold text-xl italic">CultChain</h1>
+              </div>
+            </template>
+            <template #default>
+              <el-menu
+                class="el-menu-responsive bg-transparent w-full border-none justify-end"
+              >
+                <template v-for="(item, index) in navigations">
+                  <el-menu-item
+                    v-if="!item.children.length"
+                    :index="converToString(index + 1)"
+                    class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+                  >
+                    <nuxt-link :to="item.route">{{ item.text }}</nuxt-link>
+                  </el-menu-item>
+                  <el-sub-menu
+                    v-if="item.children.length"
+                    class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+                    :index="converToString(index + 1)"
+                  >
+                    <template #title
+                      ><span
+                        class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5"
+                        >{{ item.text }}</span
+                      ></template
+                    >
+                    <el-menu-item
+                      v-for="(subMenu, i) in item.children"
+                      :key="i"
+                      :index="index + 1 + '-' + i + 1"
+                    >
+                      <nuxt-link :to="subMenu.route">{{
+                        subMenu.text
+                      }}</nuxt-link></el-menu-item
+                    >
+                  </el-sub-menu>
+                </template>
+              </el-menu>
+            </template>
+          </el-drawer></ClientOnly
+        >
+      </section>
+    </div>
+
+    <div
+      class="network-alert"
+      v-if="isMounted && !isNetworkValid"
+      :key="counter"
+    >
+      <span variant="info" class="text"
+        >You're viewing data from the diffrenet network, please switch your
+        network to
+        <a
+          class="cursor-pointer text-interactive-primary hover:text-interactive-primary-hover disabled:pointer-events-none disabled:opacity-40 underline text-blue-700"
+          href="javascript:void(0)"
+          @click="switchNetwork"
+          >(Mumbai)</a
+        ></span
+      >
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from "vue";
+import { useCryptoStore } from "~/store/crypto";
+import { storeToRefs } from "pinia";
+import { shortenAddress } from "@/utils/shortenAddress";
+
+//state
+
+const cryptoStore = useCryptoStore();
+const { switchNetwork } = useCryptoStore();
+const { account, isNetworkValid } = storeToRefs(cryptoStore);
+const drawer = ref(false);
+const direction = ref("rtl");
+const isNavShown = ref(false);
+const counter = ref(1);
+const search = ref("");
+const navigations = [
+  {
+    route: "/DAO-validator-requests",
+    text: "DAO Validator Requests",
+    children: [],
+  },
+  {
+    route: "/validater-decisions",
+    text: "Validaters Decision",
+    children: [],
+  },
+  {
+    route: "/events",
+    text: "Events",
+    children: [],
+  },
+];
+const isMounted = ref(false);
+
+//methods
+
+const converToString = (e) => {
+  if (process.client) {
+    return typeof String(e);
+  }
+};
+
+//mounted
+
+onMounted(() => {
+  isMounted.value = true;
+});
+
+//watch
+
+watch(isNetworkValid, (newVal, oldVal) => {
+  if (newVal) {
+    counter.value++;
+  }
+});
+</script>

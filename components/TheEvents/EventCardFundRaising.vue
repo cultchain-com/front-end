@@ -1,0 +1,69 @@
+<template>
+  <NuxtLink
+    :to="'/event-fund-raisings/' + state.eventId"
+    class="bg-Gray-b2 rounded-xl flex flex-col hover:shadow-xl"
+  >
+    <div class="overflow-hidden w-full h-[200px] bg-Gray-b5 rounded-t-xl">
+      <img
+        :src="state.image ? state.image : '/no-image.png'"
+        class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105"
+      />
+    </div>
+    <section class="p-5 pt-2">
+      <div class="flex flex-col justify-between gap-1">
+        <div class="flex justify-between">
+          <h5 class="lg:text-base text-md font-medium text-Gray-b5 line-clamp-1 text-start">
+            {{ state.name }}
+          </h5>
+          <span class="text-xs text-Gray-b4 text-end flex items-center">{{
+            convertDate(state.endDate)
+          }}</span>
+        </div>
+        <img
+          src="/trending-collections/mrfox-avatar.png"
+          class="h-10 w-10 rounded-full"
+        />
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <div class="flex flex-col gap-1 items-center">
+          <p class="text-xs text-Gray-b3">Target Amount</p>
+          <p class="md:text-sm text-xs text-Gray-b5">
+            {{ state.targetAmount / Math.pow(10, 18) }} ETH
+          </p>
+        </div>
+        <div class="flex flex-col gap-1 items-center">
+          <p class="text-xs text-Gray-b3">Collected Amount</p>
+          <p class="md:text-sm text-xs text-Gray-b5">
+            {{ state.collectedAmount / Math.pow(10, 18) }} ETH
+          </p>
+        </div>
+      </div>
+    </section>
+  </NuxtLink>
+</template>
+
+<script setup>
+//props
+
+const props = defineProps({
+  state: {
+    default: {
+      name: "",
+      description: "",
+      endDate: "",
+      image: "",
+      collectedAmount: "",
+      targetAmount: "",
+    },
+  },
+});
+const { state } = props;
+
+//methods
+
+const convertDate = (item) => {
+  const timestamp = parseInt(item) * 1000; // multiply by 1000 to convert from seconds to milliseconds
+  const date = new Date(timestamp).toLocaleDateString("en-GB");
+  return date;
+};
+</script>
