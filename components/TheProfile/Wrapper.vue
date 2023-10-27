@@ -103,7 +103,7 @@
               v-if="!isDonationHistoryLoading && !userDonationList.length"
               class="col-span-3 h-[395px]"
             >
-              <img class="mx-auto" src="/empty.png" />
+              <img class="mx-auto no-data-img" src="/empty.png" />
               <h2 class="mx-2xl text-white font-medium text-center">
                 No Data Found !
               </h2>
@@ -127,7 +127,7 @@
               v-if="!isValidationHistoryLoading && !userValidationList.length"
               class="col-span-3 h-[395px]"
             >
-              <img class="mx-auto" src="/empty.png" />
+              <img class="mx-auto no-data-img" src="/empty.png" />
               <h2 class="mx-2xl text-white font-medium text-center">
                 No Data Found !
               </h2>
@@ -152,7 +152,7 @@
               v-if="!isEventHistoryLoading && !userEventList.length"
               class="col-span-3 h-[395px]"
             >
-              <img class="mx-auto" src="/empty.png" />
+              <img class="mx-auto no-data-img" src="/empty.png" />
               <h2 class="mx-2xl text-white font-medium text-center">
                 No Data Found !
               </h2>
@@ -250,12 +250,12 @@ const setUserEventLis = async () => {
 //mounted
 
 onMounted(() => {
-  if(account.value){
+  if (account.value) {
     setUserDonationList();
     setUserValidationList();
     setUserEventLis();
   }
-})
+});
 
 //watch
 
@@ -267,3 +267,8 @@ watch(account, (newVal, oldVal) => {
   }
 });
 </script>
+<style lang="scss" scoped>
+.no-data-img {
+  height: inherit;
+}
+</style>
