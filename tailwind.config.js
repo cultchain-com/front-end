@@ -26,6 +26,13 @@ module.exports = {
           b4: "#CCCCCC",
           b5: "#FFFFFF",
         },
+        LightGray: {
+          b1: "#FFFFFF",
+          b2: "#CCCCCC",
+          b3: "#858584",
+          b4: "#3B3B3B",
+          b5: "#2B2B2B",
+        },
       },
       boxShadow: {
         sm: "0px 0px 19px rgba(0, 0, 0, 0.03);",
