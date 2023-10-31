@@ -55,27 +55,49 @@
         class="navigation lg:flex lg:items-center items-end gap-4 lg:min-w-fit w-full lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-black bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
       >
         <div class="relative w-full">
-          <i class="isax isax-search-normal absolute left-2 top-1 text-white text-2xl"/>
-          <i class="isax isax-shuffle5 absolute right-2 top-1 text-white text-2xl"/>
-          <input v-model="search" class="w-full h-10 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 bg-opacity-70" />
+          <i
+            class="isax isax-search-normal absolute left-2 top-1 text-white text-2xl"
+          />
+          <i
+            class="isax isax-shuffle5 absolute right-2 top-1 text-white text-2xl"
+          />
+          <input
+            v-model="search"
+            placeholder="Search"
+            class="w-full h-10 placeholder:text-Gray-b5 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 bg-opacity-70"
+          />
         </div>
         <el-button
-          class="border-0 px-0 glass  min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105"
+          class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105"
           v-if="!account"
         >
           <i class="isax isax-empty-wallet text-2xl text-white"></i>
         </el-button>
         <el-button
           icon
-          class="border-0 px-2 glass  h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105 "
+          class="border-0 px-2 glass h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105"
           v-if="account"
         >
           {{ shortenAddress(account) }}
         </el-button>
+        <el-button
+          icon
+          class="border-0 px-2 glass mx-0 h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl hover:scale-105"
+          @click="isDarkMode = !isDarkMode"
+        >
+          <input
+            id="toggle"
+            class="toggle"
+            v-model="isDarkMode"
+            type="checkbox"
+          />
+          <Icon name="sun" v-if="isDarkMode" />
+          <Icon name="moon" v-if="!isDarkMode" />
+        </el-button>
         <NuxtLink
           to="/profile"
           icon
-          class="border-0 px-0 glass  min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl flex items-center justify-center hover:scale-105"
+          class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 bg-opacity-70 text-white rounded-xl flex items-center justify-center hover:scale-105"
         >
           <i class="isax isax-user text-2xl text-white"></i>
         </NuxtLink>
@@ -168,6 +190,7 @@ import { ref, computed } from "vue";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { shortenAddress } from "@/utils/shortenAddress";
+import Icon from "@/components/TheIcon/Icon.vue";
 
 //state
 
@@ -197,6 +220,7 @@ const navigations = [
   },
 ];
 const isMounted = ref(false);
+const isDarkMode = ref(true);
 
 //methods
 
@@ -220,3 +244,45 @@ watch(isNetworkValid, (newVal, oldVal) => {
   }
 });
 </script>
+
+<style lang="scss" scoped>
+// magic
+.toggle {
+  --size: 25px;
+
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+
+  transition: all 500ms;
+}
+
+.background {
+  --bg: hsl(240, 100%, 10%);
+  background: var(--bg);
+  position: fixed;
+  transition: background 500ms;
+}
+
+.toggle {
+  z-index: 1;
+  &:checked {
+    & ~ .background {
+      --bg: white;
+    }
+    & ~ .title {
+      --color: hsl(40, 100%, 50%);
+    }
+  }
+}
+
+.title {
+  --color: hsl(240, 100%, 95%);
+  color: var(--color);
+  z-index: 1;
+  cursor: pointer;
+  display: block;
+  padding: 0.5rem 0 0;
+  transition: color 500ms;
+}
+</style>
