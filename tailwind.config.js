@@ -29,7 +29,7 @@ module.exports = {
         LightGray: {
           b1: "#FFFFFF",
           b2: "#CCCCCC",
-          b3: "#858584",
+          b3: "#cbcbcb",
           b4: "#3B3B3B",
           b5: "#2B2B2B",
         },
@@ -40,4 +40,5 @@ module.exports = {
     },
   },
   plugins: [],
+  darkMode: "class",
 };

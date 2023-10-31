@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-Gray-b2 p-5 rounded-xl">
+  <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl">
     <ul class="flex flex-col gap-6">
-      <h5 class="text-white text-xl font-semibold">Supporters</h5>
+      <h5 class="text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold">
+        Supporters
+      </h5>
       <li
         v-for="(item, index) in props.state"
         :key="index"
@@ -17,19 +19,23 @@
               class="lg:text-base text-sm text-Primary font-semibold flex justify-between items-center w-full"
             >
               {{ item[1] / Math.pow(10, 18) }} ETH
-              <span class="text-xs text-Gray-b4">{{
+              <span class="text-xs text-Gray-b4 dark:text-LightGray-b4">{{
                 convertDate(item[3])
               }}</span>
             </h4>
             <client-only>
               <h4
-                class="lg:text-sm text-xs text-Gray-b5 flex items-center gap-2"
+                class="lg:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
                 <el-tooltip :content="item[0]" placement="top">
                   <span>{{ shortenAddress(item[0]) }}</span>
                 </el-tooltip>
                 <el-tooltip
-                  :content="supporterArrayForCheckCopied[index].value ? 'Copied' : 'Copy'"
+                  :content="
+                    supporterArrayForCheckCopied[index].value
+                      ? 'Copied'
+                      : 'Copy'
+                  "
                   placement="top"
                 >
                   <i

@@ -1,13 +1,15 @@
 <template>
   <div
-    class="max-w-[491px] w-full bg-Gray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
+    class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
     :key="counter"
   >
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Add Cover Photo</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Add Cover Photo</label
+      >
       <div class="flex flex-col gap-2">
         <div
-          class="h-[200px] rounded-xl bg-Gray-b1 border-2 border-dashed border-Gray-b4 cursor-pointer flex items-center justify-center text-white overflow-hidden"
+          class="h-[200px] rounded-xl bg-Gray-b1 dark:bg-LightGray-b1 border-2 border-dashed border-Gray-b4 dark:border-LightGray-b4 cursor-pointer flex items-center justify-center text-Gray-b5 dark:text-LightGray-b5 overflow-hidden"
           @click="chooseImg"
           id="img-preview"
         >
@@ -30,13 +32,13 @@
     </div>
     <div class="flex gap-2">
       <button
-        class="border-white border-2 w-fit px-8 h-10 rounded-xl text-white md:text-base text-sm"
+        class="border-Gray-b5 dark:border-LightGray-b5 border-2 w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="emit('prevStep')"
       >
         Prev
       </button>
       <button
-        class="bg-Primary border-2 border-Primary w-fit px-8 h-10 rounded-xl text-white md:text-base text-sm"
+        class="bg-Primary border-2 border-Primary w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="checkValidation"
       >
         Next

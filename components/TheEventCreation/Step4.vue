@@ -1,48 +1,56 @@
 <template>
   <div
-    class="max-w-[491px] w-full bg-Gray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
+    class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
   >
     <el-collapse v-if="state.mileStones.length">
       <el-collapse-item v-for="(item, index) in state.mileStones" :key="index">
         <template #title>
           <div class="flex justify-between items-center w-full">
-            <h6 class="text-Gray-b5 md:text-base text-sm">
+            <h6
+              class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
+            >
               #{{ index + 1 }} {{ item.name }} - {{ item.amount }} ETH
             </h6>
-            <p class="text-Gray-b4 md:text-sm text-xs">
+            <p class="text-Gray-b4 dark:text-LightGray-b4 md:text-sm text-xs">
               {{ convertDate(item.endDate) }}
             </p>
           </div>
         </template>
-        <div class="text-Gray-b4 md:text-sm text-xs">
+        <div class="text-Gray-b4 dark:text-LightGray-b4 md:text-sm text-xs">
           {{ item.description }}
         </div>
       </el-collapse-item>
     </el-collapse>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Target Amount </label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Target Amount
+      </label>
       <div class="relative">
         <i
-          class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5"
+          class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
         />
         <input
-          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 bg-Gray-b1"
+          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
           v-model="localState.amount"
         />
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Name</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Name</label
+      >
       <div class="relative">
         <input
-          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 bg-Gray-b1"
+          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="localState.name"
         />
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">End Date</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >End Date</label
+      >
       <el-date-picker
         v-model="localState.endDate"
         type="date"
@@ -52,10 +60,12 @@
       />
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Description</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Description</label
+      >
       <textarea
         v-model="localState.description"
-        class="rounded-lg outline-none text-Gray-b5 bg-Gray-b1 p-5 text-sm h-[200px]"
+        class="rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-5 text-sm h-[200px]"
       ></textarea>
     </div>
     <div>

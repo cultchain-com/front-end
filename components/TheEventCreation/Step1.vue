@@ -1,15 +1,17 @@
 <template>
   <div
-    class="max-w-[491px] w-full bg-Gray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
+    class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
   >
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Target Amount </label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Target Amount
+      </label>
       <div class="relative">
         <i
-          class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5"
+          class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
         />
         <input
-          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 bg-Gray-b1"
+          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
           v-model="state.amount"
           @mouseover="onMouseOver"
@@ -18,10 +20,12 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Event Name</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Event Name</label
+      >
       <div class="relative">
         <input
-          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 bg-Gray-b1"
+          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="state.name"
           @mouseover="onMouseOver"
           @mouseleave="onMouseLeave"
@@ -29,7 +33,9 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">Category</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >Category</label
+      >
 
       <div class="w-full">
         <el-select v-model="state.category" class="select w-full">
@@ -43,7 +49,9 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-white">End Date</label>
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+        >End Date</label
+      >
       <div>
         <el-date-picker
           v-model="state.endDate"
@@ -56,7 +64,7 @@
     </div>
     <div>
       <button
-        class="bg-Primary w-fit px-8 h-10 rounded-xl text-white md:text-base text-sm"
+        class="bg-Primary w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="checkValidation"
       >
         Next

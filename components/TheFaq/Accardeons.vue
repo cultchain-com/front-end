@@ -5,9 +5,11 @@
       :key="index"
       :title="item.title"
       :name="item.name"
-      class="border-0 bg-Gray-b2 rounded-xl px-2"
+      class="border-0 bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl px-2"
     >
-      <div class="text-Gray-b4">{{ item.description }}</div>
+      <div class="text-Gray-b4 dark:text-LightGray-b4">
+        {{ item.description }}
+      </div>
     </el-collapse-item>
   </el-collapse>
 </template>
@@ -43,5 +45,5 @@ const faqList = ref([
       "Decision making: giving advices about operations is acceptable, but do not make decisions for the users;",
   },
 ]);
-const activeNames = ref(['1'])
+const activeNames = ref(["1"]);
 </script>

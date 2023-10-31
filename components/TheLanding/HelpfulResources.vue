@@ -2,11 +2,13 @@
   <main class="flex flex-col gap-8 py-[80px]">
     <h6 class="lg:text-xl text-base text-Primary text-center">LEARN</h6>
     <h1
-      class="lg:text-3xl text-xl text-Gray-b5 font-bold text-center lg:leading-[40px] leading-10"
+      class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center lg:leading-[40px] leading-10"
     >
       Helpful Resources
     </h1>
-    <p class="text-Gray-b5 text-sm leading-8 text-center">
+    <p
+      class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center"
+    >
       Feel Free to investigate useful resources provided by our team to learn
       more about this new market.
     </p>
@@ -14,7 +16,7 @@
       <li
         v-for="(item, index) in cardOptions"
         :key="index"
-        class="bg-Gray-b2 rounded-xl hover:scale-95"
+        class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl hover:scale-95"
       >
         <img
           :src="item.image"
@@ -27,8 +29,12 @@
             <a href="javascript:void(0)" class="text-Primary">{{
               item.type
             }}</a>
-            <p class="text-Gray-b5 text-lg">{{ item.title }}</p>
-            <p class="text-sm text-Gray-b5">{{ item.description }}</p>
+            <p class="text-Gray-b5 dark:text-LightGray-b5 text-lg">
+              {{ item.title }}
+            </p>
+            <p class="text-sm text-Gray-b5 dark:text-LightGray-b5">
+              {{ item.description }}
+            </p>
           </div>
           <div class="flex gap-3">
             <img
@@ -36,8 +42,10 @@
               class="rounded-full object-cover h-10 w-10"
             />
             <div class="flex flex-col">
-              <h6 class="text-sm text-Gray-b5">{{ item.author }}</h6>
-              <span class="text-Gray-b4 text-sm"
+              <h6 class="text-sm text-Gray-b5 dark:text-LightGray-b5">
+                {{ item.author }}
+              </h6>
+              <span class="text-Gray-b4 dark:text-LightGray-b4 text-sm"
                 >{{ item.date }} . {{ item.timeToRead }}</span
               >
             </div>

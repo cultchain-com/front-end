@@ -73,6 +73,6 @@ const props = defineProps({
 }
 .event-hero .carousel__next,
 .event-hero .carousel__prev {
-  @apply hover:bg-Gray-b4 rounded-lg text-white hover:text-Gray-b1;
+  @apply hover:bg-Gray-b4 dark:bg-LightGray-b4 rounded-lg text-Gray-b5 dark:text-LightGray-b5 hover:text-Gray-b1 dark:text-LightGray-b1;
 }
 </style>

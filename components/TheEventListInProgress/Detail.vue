@@ -7,7 +7,7 @@
 
     <section class="wrapper grid lg:grid-cols-3 grid-cols-1 md:gap-3 gap-y-3">
       <div
-        class="lg:h-[500px] bg-Gray-b2 md:h-[300px] h-[196px] max-w-full rounded-xl overflow-hidden col-span-2"
+        class="lg:h-[500px] bg-Gray-b2 dark:bg-LightGray-b2 md:h-[300px] h-[196px] max-w-full rounded-xl overflow-hidden col-span-2"
       >
         <img
           :src="localState.image"
@@ -15,7 +15,7 @@
         />
       </div>
       <div
-        class="flex items-center bg-Gray-b2 justify-between flex-col gap-4 p-5 rounded-xl"
+        class="flex items-center bg-Gray-b2 dark:bg-LightGray-b2 justify-between flex-col gap-4 p-5 rounded-xl"
       >
         <div class="flex items-center justify-center flex-col gap-4">
           <div
@@ -33,7 +33,7 @@
               ></div>
             </div>
 
-            <h6 class="text-Gray-b5 text-3xl z-20">
+            <h6 class="text-Gray-b5 dark:text-LightGray-b5 text-3xl z-20">
               {{
                 `%${
                   percentage?.toString() > 5
@@ -46,7 +46,7 @@
           <h1 class="text-Primary text-2xl">
             {{ state.eventDetails.collectedAmount / Math.pow(10, 18) }} ETH
           </h1>
-          <p class="text-center text-Gray-b4">
+          <p class="text-center text-Gray-b4 dark:text-LightGray-b4">
             raised of
             <span class="text-Primary font-semibold"
               >{{
@@ -56,7 +56,7 @@
             >
             target<br />
             by
-            <span class="text-Gray-b5 font-semibold"
+            <span class="text-Gray-b5 dark:text-LightGray-b5 font-semibold"
               >{{ donationsList.length }} supporters</span
             >
           </p>
@@ -64,12 +64,12 @@
         <div class="w-full flex gap-4 flex-col">
           <NuxtLink
             :to="'/donate/' + route.params.id"
-            class="py-4 bg-Primary border-Primary w-full rounded-xl text-lg text-white text-center"
+            class="py-4 bg-Primary border-Primary w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5 text-center"
           >
             Give Now
           </NuxtLink>
           <button
-            class="py-4 border-2 border-Gray-b4 w-full rounded-xl text-lg text-white"
+            class="py-4 border-2 border-Gray-b4 dark:border-LightGray-b4 w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5"
           >
             Share
           </button>
@@ -90,7 +90,9 @@
             class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >
             <client-only>
-              <p class="text-sm text-white flex items-center gap-2">
+              <p
+                class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
+              >
                 <el-tooltip
                   :content="state.eventDetails.creator"
                   placement="top"
@@ -113,7 +115,9 @@
                   />
                 </el-tooltip></p
             ></client-only>
-            <p class="text-2xl font-semibold text-white line-clamp-1">
+            <p
+              class="text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5 line-clamp-1"
+            >
               {{ state.eventDetails.name }}
             </p>
           </div>
@@ -121,10 +125,10 @@
         <div
           class="flex md:flex-col flex-row justify-between md:items-end gap-2 w-full"
         >
-          <span class="text-white text-sm">{{
+          <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
             convertDate(state.eventDetails.endDate)
           }}</span>
-          <span class="text-white text-sm">{{
+          <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
             state.eventDetails.category
           }}</span>
         </div>
@@ -135,13 +139,17 @@
 
     <div class="grid md:grid-cols-3 gap-3">
       <div
-        class="flex flex-col gap-2 md:col-span-2 bg-Gray-b2 p-5 rounded-xl justify-between"
+        class="flex flex-col gap-2 md:col-span-2 bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl justify-between"
       >
         <div class="max-h-[calc(100%-200px)] h-full overflow-y-auto">
           <div class="flex justify-between">
-            <h5 class="lg:text-3xl text-xl text-Gray-b5">Story</h5>
+            <h5 class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5">
+              Story
+            </h5>
           </div>
-          <p class="text-Gray-b4 lg:text-base text-sm mt-4 lg:leading-10">
+          <p
+            class="text-Gray-b4 dark:text-LightGray-b4 lg:text-base text-sm mt-4 lg:leading-10"
+          >
             {{ state.eventDetails.description }}
           </p>
         </div>
@@ -152,17 +160,18 @@
               v-for="(item, index) in state.milestones"
               :key="index"
               ><template #title>
-                <span class="text-Gray-b5 lg:text-base text-sm">{{
-                  item.name
-                }}</span></template
+                <span
+                  class="text-Gray-b5 dark:text-LightGray-b5 lg:text-base text-sm"
+                  >{{ item.name }}</span
+                ></template
               >
               <div
-                class="px-2 text-Gray-b4 lg:text-sm text-xs flex flex-col gap-2"
+                class="px-2 text-Gray-b4 dark:text-LightGray-b4 lg:text-sm text-xs flex flex-col gap-2"
               >
                 <p>{{ item.description }}</p>
-                <p class="text-Gray-b5 font-normal">
+                <p class="text-Gray-b5 dark:text-LightGray-b5 font-normal">
                   Tatget Amount :
-                  <span class="text-Gray-b5 font-bold"
+                  <span class="text-Gray-b5 dark:text-LightGray-b5 font-bold"
                     >{{ item.targetAmount / Math.pow(10, 18) }} ETH</span
                   >
                 </p>
@@ -181,7 +190,7 @@
               account.toLowerCase() == state.eventDetails.creator.toLowerCase()
             "
             ><button
-              class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-white flex gap-2 justify-center items-center"
+              class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 justify-center items-center"
             >
               <i class="isax isax-add-square text-2xl" />Add MileStone
             </button></NuxtLink

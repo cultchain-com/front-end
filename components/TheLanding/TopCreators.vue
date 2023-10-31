@@ -4,14 +4,20 @@
       class="head flex justify-between items-center lg:flex-row flex-col gap-2"
     >
       <div class="header">
-        <h1 class="text-Gray-b5 lg:text-3xl text-xl font-bold">Top Creators</h1>
-        <p class="text-Gray-b5 lg:text-base text-sm mt-3">
+        <h1
+          class="text-Gray-b5 dark:text-LightGray-b5 lg:text-3xl text-xl font-bold"
+        >
+          Top Creators
+        </h1>
+        <p
+          class="text-Gray-b5 dark:text-LightGray-b5 lg:text-base text-sm mt-3"
+        >
           Checkout Top Rated Creators On The Nft Marketplace
         </p>
       </div>
 
       <button
-        class="text-Gray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl border-Primary border-2 bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
+        class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl border-Primary border-2 bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
       >
         <Icon name="rocket-primary" />
         View Rankings

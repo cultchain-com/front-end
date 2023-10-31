@@ -18,14 +18,14 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="bg-Gray-b1">
+  <div class="bg-Gray-b1 dark:bg-LightGray-b1">
     <div class="lg:px-10">
       <Header />
       <main class="lg:px-[195px] px-4">
         <Wrapper />
       </main>
     </div>
-    <div class="bg-Gray-b2 lg:px-10 px-4">
+    <div class="bg-Gray-b2 dark:bg-LightGray-b2 lg:px-10 px-4">
       <main class="lg:px-[195px] px-4">
         <Footer />
       </main>

@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col gap-8 py-20">
-    <h1 class="lg:text-3xl text-xl text-Gray-b5 font-bold text-center">
+    <h1
+      class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
+    >
       Event List(Fund Raising)
     </h1>
     <div class="grid lg:grid-cols-3 md:grid-cols-2">

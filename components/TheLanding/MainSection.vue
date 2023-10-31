@@ -3,10 +3,14 @@
     <h6 class="lg:text-xl text-base text-Primary text-center">
       NFT MARKETPLACE
     </h6>
-    <h1 class="lg:text-3xl text-xl text-Gray-b5 font-bold text-center">
+    <h1
+      class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
+    >
       We Are Thankful of Donors
     </h1>
-    <p class="text-Gray-b5 text-sm leading-8 text-center">
+    <p
+      class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center"
+    >
       Donors and Vulenteers Are Great Part of Todays Culture, We Like to
       Incentivize Them in a Very Modern Way, in Blockhcian Way.
     </p>

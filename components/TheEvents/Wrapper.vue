@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col gap-8 py-20">
-    <h1 class="lg:text-xl text-base text-Gray-b5 font-bold text-start">
+    <h1
+      class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
+    >
       Fund Raising
     </h1>
     <Carousel
@@ -23,12 +25,12 @@
         <SkeletonCard v-for="item in 4" :key="item" />
       </div>
     </template>
-    
+
     <template v-if="!eventListFundRaising.length && isListLoaded">
-      <div
-        class="h-[100px] flex items-center justify-center"
-      >
-        <h2 class="mx-2xl text-white font-medium text-center">
+      <div class="h-[100px] flex items-center justify-center">
+        <h2
+          class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+        >
           No Data Found !
         </h2>
       </div>
@@ -36,8 +38,9 @@
 
     <!-- In Progress -->
 
-
-    <h1 class="lg:text-xl text-base text-Gray-b5 font-bold text-start">
+    <h1
+      class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
+    >
       In Progress
     </h1>
     <Carousel
@@ -61,10 +64,10 @@
       </div>
     </template>
     <template v-if="!eventListInProgress.length && isListLoaded">
-      <div
-        class="h-[100px] flex items-center justify-center"
-      >
-        <h2 class="mx-2xl text-white font-medium text-center">
+      <div class="h-[100px] flex items-center justify-center">
+        <h2
+          class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+        >
           No Data Found !
         </h2>
       </div>

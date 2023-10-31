@@ -1,7 +1,9 @@
 <template>
-  <div class="flex flex-col gap-6 bg-Gray-b2 p-5 rounded-xl mb-20 shadow-xl">
+  <div
+    class="flex flex-col gap-6 bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl mb-20 shadow-xl"
+  >
     <div class="form-item max-w-[600px] mx-auto w-full flex flex-col gap-2">
-      <label class="text-base text-Gray-b5">Title</label>
+      <label class="text-base text-Gray-b5 dark:text-LightGray-b5">Title</label>
       <el-input
         v-model="state.title"
         placeholder="Board Apes"
@@ -11,7 +13,9 @@
       </el-input>
     </div>
     <div class="form-item max-w-[600px] mx-auto w-full flex flex-col gap-2">
-      <label class="text-base text-Gray-b5">Description</label>
+      <label class="text-base text-Gray-b5 dark:text-LightGray-b5"
+        >Description</label
+      >
       <el-input
         v-model="state.description"
         placeholder="it's Collection of ..."
@@ -20,11 +24,19 @@
       >
         <template #prefix> <span>@</span> </template>
       </el-input>
-      <p class="text-sm text-Gray-b4">Brief description for your profile.</p>
+      <p class="text-sm text-Gray-b4 dark:text-LightGray-b4">
+        Brief description for your profile.
+      </p>
     </div>
     <div class="form-item max-w-[600px] mx-auto w-full flex flex-col gap-2">
-      <label class="text-base text-Gray-b5">Collection Type</label>
-      <el-select v-model="state.type" placeholder="Choose your Collection" class="select">
+      <label class="text-base text-Gray-b5 dark:text-LightGray-b5"
+        >Collection Type</label
+      >
+      <el-select
+        v-model="state.type"
+        placeholder="Choose your Collection"
+        class="select"
+      >
         <el-option
           v-for="item in typeOptions"
           :key="item.value"
@@ -34,7 +46,9 @@
       </el-select>
     </div>
     <div class="form-item max-w-[600px] mx-auto w-full flex flex-col gap-2">
-      <label class="text-base text-Gray-b5">Cover photo</label>
+      <label class="text-base text-Gray-b5 dark:text-LightGray-b5"
+        >Cover photo</label
+      >
       <el-upload
         class="upload-demo"
         drag
@@ -48,7 +62,9 @@
       </el-upload>
     </div>
     <div class="form-item max-w-[600px] mx-auto w-full flex flex-col gap-2">
-      <label class="text-base text-Gray-b5">Background photo</label>
+      <label class="text-base text-Gray-b5 dark:text-LightGray-b5"
+        >Background photo</label
+      >
       <el-upload
         drag
         action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"

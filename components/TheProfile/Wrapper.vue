@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-6 relative bg-Gray-b2 rounded-b-xl p-5">
+  <div class="mb-6 relative bg-Gray-b2 dark:bg-LightGray-b2 rounded-b-xl p-5">
     <section class="absolute -top-8">
       <img
         :src="state.avatar ? state.avatar : '/no-avatar.webp'"
@@ -9,22 +9,24 @@
     <section class="pt-8 flex justify-between items-center">
       <div class="flex items-center gap-2">
         <i
-          class="isax isax-user-square text-3xl text-white relative bottom-1"
+          class="isax isax-user-square text-3xl text-Gray-b5 dark:text-LightGray-b5 relative bottom-1"
         />
-        <p class="md:text-lg text-base text-white">{{ state.name }}</p>
+        <p class="md:text-lg text-base text-Gray-b5 dark:text-LightGray-b5">
+          {{ state.name }}
+        </p>
       </div>
       <div class="gap-2 items-center md:flex hidden">
         <NuxtLink to="/leader-board">
           <el-button
             icon
-            class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-white py-5 rounded-xl"
+            class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
           >
             Leader Board
           </el-button></NuxtLink
         >
         <el-button
           icon
-          class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-white py-5 rounded-xl"
+          class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
           v-if="!account"
           @click="connectWallet"
         >
@@ -32,7 +34,7 @@
         </el-button>
         <el-button
           icon
-          class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 ml-0 text-white py-5 rounded-xl"
+          class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 ml-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
         >
           Request Validator
         </el-button>
@@ -41,7 +43,9 @@
         <client-only
           ><el-dropdown trigger="click">
             <span class="el-dropdown-link">
-              <i class="isax isax-more text-2xl text-white" />
+              <i
+                class="isax isax-more text-2xl text-Gray-b5 dark:text-LightGray-b5"
+              />
             </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -58,29 +62,53 @@
     </section>
     <section class="pt-8 flex md:justify-evenly justify-between items-center">
       <div class="flex flex-col gap-1 items-center">
-        <p class="md:text-xl text-base text-white font-bold">
+        <p
+          class="md:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold"
+        >
           {{ state.donation }}$
         </p>
-        <p class="md:text-base text-sm text-white">Donations</p>
+        <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
+          Donations
+        </p>
       </div>
       <div class="flex flex-col gap-1 items-center">
-        <p class="md:text-xl text-base text-white font-bold">
+        <p
+          class="md:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold"
+        >
           {{ state.rewards }}
         </p>
-        <p class="md:text-base text-sm text-white">Rewards</p>
+        <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
+          Rewards
+        </p>
       </div>
       <div class="flex flex-col gap-1 items-center">
-        <p class="md:text-xl text-base text-white font-bold">
+        <p
+          class="md:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold"
+        >
           {{ state.participation }}
         </p>
-        <p class="md:text-base text-sm text-white">Participation</p>
+        <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
+          Participation
+        </p>
       </div>
     </section>
     <el-divider />
     <section>
-      <h1 class="text-white md:text-2xl text-lg italic mt-8">Bio</h1>
-      <p class="text-white md:text-base text-sm mt-2 px-2">{{ state.bio }}</p>
-      <h1 class="text-white md:text-2xl text-lg italic mt-12">Links</h1>
+      <h1
+        class="text-Gray-b5 dark:text-LightGray-b5 md:text-2xl text-lg italic mt-8"
+      >
+        Bio
+      </h1>
+      <p
+        class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm mt-2 px-2"
+      >
+        {{ state.bio }}
+      </p>
+      <h1
+        class="text-Gray-b5 dark:text-LightGray-b5 md:text-2xl text-lg italic mt-12"
+      >
+        Links
+      </h1>
       <div class="flex items-center gap-4 mt-2">
         <NuxtLink
           v-for="(item, index) in state.links"
@@ -104,7 +132,9 @@
               class="col-span-3 h-[395px]"
             >
               <img class="mx-auto no-data-img" src="/empty.png" />
-              <h2 class="mx-2xl text-white font-medium text-center">
+              <h2
+                class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+              >
                 No Data Found !
               </h2>
             </div>
@@ -128,7 +158,9 @@
               class="col-span-3 h-[395px]"
             >
               <img class="mx-auto no-data-img" src="/empty.png" />
-              <h2 class="mx-2xl text-white font-medium text-center">
+              <h2
+                class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+              >
                 No Data Found !
               </h2>
             </div>
@@ -153,7 +185,9 @@
               class="col-span-3 h-[395px]"
             >
               <img class="mx-auto no-data-img" src="/empty.png" />
-              <h2 class="mx-2xl text-white font-medium text-center">
+              <h2
+                class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+              >
                 No Data Found !
               </h2>
             </div>

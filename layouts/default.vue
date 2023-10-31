@@ -11,7 +11,7 @@
     </div>
     <div
       v-if="isLoading"
-      class="overlay min-h-screen w-[calc(100vw-10px)] bg-Gray-b2 bg-opacity-50 absolute left-0 top-0 overflow-hidden"
+      class="overlay min-h-screen w-[calc(100vw-10px)] bg-Gray-b2 dark:bg-LightGray-b2 bg-opacity-50 absolute left-0 top-0 overflow-hidden"
     >
       <div class="loader">
         <div class="blob"></div>

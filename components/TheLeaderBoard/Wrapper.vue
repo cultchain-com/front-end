@@ -1,11 +1,13 @@
 <template>
   <section class="mt-8 my-6 rounded-xl">
     <h1
-      class="lg:text-2xl text-lg text-Gray-b5 font-bold text-start lg:leading-[40px] leading-10"
+      class="lg:text-2xl text-lg text-Gray-b5 dark:text-LightGray-b5 font-bold text-start lg:leading-[40px] leading-10"
     >
       Leader Board
     </h1>
-    <p class="text-Gray-b5 text-sm leading-8 text-start mb-8">
+    <p
+      class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-start mb-8"
+    >
       Feel Free to investigate useful resources provided by our team to learn
       more about this new market.
     </p>

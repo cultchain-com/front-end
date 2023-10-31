@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-Gray-b2 p-5 rounded-xl">
+  <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl">
     <ul class="flex flex-col gap-6">
-      <h5 class="text-white text-xl font-semibold">Commitee Decision</h5>
+      <h5 class="text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold">
+        Commitee Decision
+      </h5>
       <li
         v-for="(item, index) in props.state"
         :key="index"
@@ -15,7 +17,7 @@
           <div class="flex flex-col gap-1">
             <client-only>
               <h4
-                class="lg:text-base text-sm text-Gray-b5 flex gap-2 items-center"
+                class="lg:text-base text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 items-center"
               >
                 <el-tooltip :content="item.address" placement="top">
                   <span>{{ shortenAddress(item.address) }}</span>
@@ -37,14 +39,18 @@
                 </el-tooltip>
               </h4>
             </client-only>
-            <h4 class="lg:text-sm text-xs text-Gray-b3 line-clamp-1">
+            <h4
+              class="lg:text-sm text-xs text-Gray-b3 dark:text-LightGray-b3 line-clamp-1"
+            >
               {{ item.feedback }}
             </h4>
           </div>
         </div>
         <div class="flex items-center gap-2">
           <template
-            v-if="props.state[index].address.toLowerCase() == account.toLowerCase()"
+            v-if="
+              props.state[index].address.toLowerCase() == account.toLowerCase()
+            "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
               Vote
@@ -64,13 +70,13 @@
         <template #footer>
           <span class="dialog-footer">
             <el-button
-              class="py-2 bg-transparent border-white font-normal border-2 px-4 rounded-md text-base text-white text-center"
+              class="py-2 bg-transparent border-Gray-b5 dark:border-LightGray-b5 font-normal border-2 px-4 rounded-md text-base text-Gray-b5 dark:text-LightGray-b5 text-center"
               @click="dialogVisible = false"
               >Cancel</el-button
             >
             <el-button
               type="primary"
-              class="py-2 bg-Primary border-Primary px-4 border-2 rounded-md text-base text-white text-center"
+              class="py-2 bg-Primary border-Primary px-4 border-2 rounded-md text-base text-Gray-b5 dark:text-LightGray-b5 text-center"
               @click="checkVoteValidation"
             >
               Vote

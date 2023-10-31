@@ -1,43 +1,53 @@
 <template>
-  <div class="grid lg:grid-cols-2 lg:gap-0 gap-10 bg-Gray-b2 p-5 rounded-xl my-6">
+  <div
+    class="grid lg:grid-cols-2 lg:gap-0 gap-10 bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl my-6"
+  >
     <div class="flex flex-col justify-between gap-4">
       <div class="flex flex-col gap-4">
-        <h1 class="text-Gray-b5 font-bold text-xl mb-6">Get In Touch</h1>
+        <h1 class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl mb-6">
+          Get In Touch
+        </h1>
         <div class="form-item flex flex-col gap-2">
-          <label class="text-sm text-Gray-b4 font-medium" for="name"
+          <label
+            class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
+            for="name"
             >Name</label
           >
           <input
             v-model="state.name"
             id="name"
-            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
+            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
-          <label class="text-sm text-Gray-b4 font-medium" for="email"
+          <label
+            class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
+            for="email"
             >Email</label
           >
           <input
             v-model="state.email"
             id="email"
-            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
+            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
-          <label class="text-sm text-Gray-b4 font-medium" for="message"
+          <label
+            class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
+            for="message"
             >Message</label
           >
           <textarea
             v-model="state.message"
             id="message"
-            class="lg:w-[calc(100%-20px)] w-full h-20 px-3 rounded-xl outline-none bg-Gray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
+            class="lg:w-[calc(100%-20px)] w-full h-20 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
           ></textarea>
         </div>
         <button
-          class="lg:w-[calc(100%-20px)] w-full bg-Primary h-10 mt-2 rounded-xl text-white font-semibold"
+          class="lg:w-[calc(100%-20px)] w-full bg-Primary h-10 mt-2 rounded-xl text-Gray-b5 dark:text-LightGray-b5 font-semibold"
         >
           Send Message
         </button>

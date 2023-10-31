@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="'/event-in-progress/' + state.eventId"
-    class="bg-Gray-b2 rounded-xl flex flex-col hover:shadow-xl"
+    class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl"
   >
     <div class="overflow-hidden w-full h-[200px]">
       <img
@@ -12,12 +12,15 @@
     <section class="p-5 pt-2">
       <div class="flex flex-col justify-between gap-2">
         <div class="flex justify-between">
-          <h5 class="lg:text-lg text-base text-Gray-b5 line-clamp-1">
+          <h5
+            class="lg:text-lg text-base text-Gray-b5 dark:text-LightGray-b5 line-clamp-1"
+          >
             {{ state.name }}
           </h5>
-          <span class="text-xs text-Gray-b4 text-end flex items-center">{{
-            convertDate(state.endDate)
-          }}</span>
+          <span
+            class="text-xs text-Gray-b4 dark:text-LightGray-b4 text-end flex items-center"
+            >{{ convertDate(state.endDate) }}</span
+          >
         </div>
         <img
           src="/trending-collections/mrfox-avatar.png"
@@ -26,14 +29,18 @@
       </div>
       <div class="flex justify-between items-center mt-4">
         <div class="flex flex-col gap-2 items-center">
-          <p class="md:text-sm text-xs text-Gray-b3">Target Amount</p>
-          <p class="md:text-base text-sm text-Gray-b5">
+          <p class="md:text-sm text-xs text-Gray-b3 dark:text-LightGray-b3">
+            Target Amount
+          </p>
+          <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
             {{ state.targetAmount / Math.pow(10, 18) }} ETH
           </p>
         </div>
         <div class="flex flex-col gap-2 items-center">
-          <p class="md:text-sm text-xs text-Gray-b3">Collected Amount</p>
-          <p class="md:text-base text-sm text-Gray-b5">
+          <p class="md:text-sm text-xs text-Gray-b3 dark:text-LightGray-b3">
+            Collected Amount
+          </p>
+          <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
             {{ state.collectedAmount / Math.pow(10, 18) }} ETH
           </p>
         </div>

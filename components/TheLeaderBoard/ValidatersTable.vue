@@ -10,7 +10,12 @@
     </thead>
     <tbody>
       <tr v-for="(item, index) in dataList" :key="index">
-        <td data-label="*"><span class="h-5 w-5 rounded-full bg-Gray-b1 md:block md:mx-auto text-Gray-b3">{{ index+1 }}</span></td>
+        <td data-label="*">
+          <span
+            class="h-5 w-5 rounded-full bg-Gray-b1 dark:bg-LightGray-b1 md:block md:mx-auto text-Gray-b3 dark:text-LightGray-b3"
+            >{{ index + 1 }}</span
+          >
+        </td>
 
         <td data-label="Address">{{ item.Address }}</td>
         <td data-label="Total Commitees">{{ item.totalCommitees }}</td>

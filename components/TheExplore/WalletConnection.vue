@@ -10,12 +10,14 @@ const { account } = storeToRefs(cryptoStore);
 
 <template>
   <div
-    class="rounded-xl border-dashed border-2 border-Gray-b5 h-[170px] flex items-center justify-center my-20 flex-col gap-4"
+    class="rounded-xl border-dashed border-2 border-Gray-b5 dark:border-LightGray-b5 h-[170px] flex items-center justify-center my-20 flex-col gap-4"
   >
-    <p class="text-Gray-b5">You Need Chrome to be able to run this</p>
+    <p class="text-Gray-b5 dark:text-LightGray-b5">
+      You Need Chrome to be able to run this
+    </p>
     <button
       v-if="!account"
-      class="bg-Primary rounded-xl text-Gray-b5 p-4"
+      class="bg-Primary rounded-xl text-Gray-b5 dark:text-LightGray-b5 p-4"
       @click="connectWallet"
     >
       Connect Wallet

@@ -1,7 +1,11 @@
 <template>
   <div class="py-[80px]">
-    <h1 class="text-Gray-b5 lg:text-3xl text-xl font-bold">Trending Collection</h1>
-    <p class="text-Gray-b5 lg:text-base text-sm mt-3">
+    <h1
+      class="text-Gray-b5 dark:text-LightGray-b5 lg:text-3xl text-xl font-bold"
+    >
+      Trending Collection
+    </h1>
+    <p class="text-Gray-b5 dark:text-LightGray-b5 lg:text-base text-sm mt-3">
       Checkout Our Weekly Updated Trending Collection.
     </p>
     <section
