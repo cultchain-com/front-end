@@ -27,16 +27,8 @@ npm run dev
 
 ## Production
 
-Build the application for production:
+Install docker and docker-compose and any further requirements and Run:
 
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
+docker-compose up --build
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
