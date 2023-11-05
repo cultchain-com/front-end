@@ -19,7 +19,7 @@
 
         <td data-label="Address">
           <client-only>
-            <div class="flex gap-2 items-center">
+            <div class="flex gap-2 items-center justify-center">
               <el-tooltip :content="item.creator__wallet_address" placement="top">
                 <span>{{ shortenAddress(item.creator__wallet_address) }}</span>
               </el-tooltip>

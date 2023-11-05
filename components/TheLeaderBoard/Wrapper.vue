@@ -55,7 +55,7 @@ const loading = useLoading();
 
 onMounted(async () => {
   loading.isLoading = true;
-  donorsLeaderboard.value = await getDonorsLeaderboard(10);
+  donorsLeaderboard.value = await getDonorsLeaderboard();
   creatorsLeaderboard.value = await getCreatorsLeaderboard();
   // await getValidatersLeaderboard(10);
   loading.isLoading = false;

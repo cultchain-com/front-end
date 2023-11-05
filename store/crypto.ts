@@ -776,46 +776,23 @@ export const useCryptoStore = defineStore("user", () => {
     return donors;
   }
 
-  async function getDonorsLeaderboard(numOfTopDonors: number) {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        //get user from metamask
-
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
+  async function getDonorsLeaderboard() {
+    let donorLeaderboard;
+    await axios
+      .get(`${baseURL}/leaderboard/donors`)
+      .then((res) => {
+        console.log(res.data);
+        donorLeaderboard = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
         });
-        const ownerAccount = myAccounts[0];
-
-        // contract
-
-        const fundraisingContract = new ethers.Contract(
-          fundraisingAddress,
-          fundraisingABI,
-          signer
-        );
-
-        // call function
-
-        const leaderBoard = await fundraisingContract.getTopDonors(
-          numOfTopDonors
-        );
-        console.log("Top Donors:", leaderBoard);
-        return leaderBoard;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
+        console.log(err);
       });
-      console.log("leaderboard: ", error);
-    }
-    setLoader(false);
+    return donorLeaderboard;
   }
 
   async function getValidatersLeaderboard(numOfTopValidaters: number) {

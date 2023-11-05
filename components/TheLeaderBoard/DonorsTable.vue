@@ -19,9 +19,9 @@
 
         <td data-label="Address">
           <client-only>
-            <div class="flex gap-2 items-center">
-              <el-tooltip :content="item[0]" placement="top">
-                <span>{{ shortenAddress(item[0]) }}</span>
+            <div class="flex gap-2 items-center justify-center">
+              <el-tooltip :content="item.donor__wallet_address" placement="top">
+                <span>{{ shortenAddress(item.donor__wallet_address) }}</span>
               </el-tooltip>
               <el-tooltip
                 :content="
@@ -43,7 +43,7 @@
           ></client-only>
         </td>
         <td data-label="Total Donation">
-          {{ new Intl.NumberFormat().format(item[1] / Math.pow(10, 18)) }} ETH
+          {{ new Intl.NumberFormat().format(item.total_donated / Math.pow(10, 18)) }} ETH
         </td>
         <!-- <td data-label="Events">{{ item.events }}</td>
         <td data-label="Rewards">{{ item.rewards }}$</td> -->
@@ -91,7 +91,7 @@ const copyTextToClipboard = async (item, index) => {
     supporterArrayForCheckCopied.value.map((item) => {
       item.value = false;
     });
-    await navigator.clipboard.writeText(item[0]);
+    await navigator.clipboard.writeText(item.donor__wallet_address);
     supporterArrayForCheckCopied.value[index].value = true;
     setTimeout(() => {
       supporterArrayForCheckCopied.value[index].value = false;
