@@ -229,7 +229,7 @@ const {
   connectWallet,
   getDonorDonations,
   getUserPastDecisions,
-  listAllEvents,
+  userCreatedEvents,
 } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const state = ref({
@@ -274,10 +274,7 @@ const setUserValidationList = async () => {
 };
 const setUserEventLis = async () => {
   isEventHistoryLoading.value = true;
-  userEventList.value = await listAllEvents();
-  userEventList.value = userEventList.value.filter(
-    (event) => event.creator.toLowerCase() == account.value.toLowerCase()
-  );
+  userEventList.value = await userCreatedEvents();
   isEventHistoryLoading.value = false;
 };
 
