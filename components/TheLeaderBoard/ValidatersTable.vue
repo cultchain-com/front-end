@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in dataList" :key="index">
+      <tr v-for="(item, index) in props.state" :key="index">
         <td data-label="*">
           <span
             class="h-5 w-5 rounded-full bg-Gray-b1 dark:bg-LightGray-b1 md:block md:mx-auto text-Gray-b3 dark:text-LightGray-b3"
@@ -32,6 +32,14 @@
 
 <script setup>
 import { ref } from "vue";
+
+//props
+
+const props = defineProps({
+  state: {
+    default: [],
+  },
+});
 
 const dataList = ref([
   {
