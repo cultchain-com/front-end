@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="'/event-in-progress/' + state.eventId"
+    :to="'/event-in-progress/' + state.id"
     class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl w-full"
   >
     <div
@@ -21,7 +21,7 @@
           </h5>
           <span
             class="text-xs text-Gray-b4 dark:text-LightGray-b4 text-end flex items-center"
-            >{{ convertDate(state.endDate) }}</span
+            >{{ convertDate(state.end_date) }}</span
           >
         </div>
         <img
@@ -35,7 +35,7 @@
             Target Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{ state.targetAmount / Math.pow(10, 18) }} ETH
+            {{ state.target_amount / Math.pow(10, 18) }} ETH
           </p>
         </div>
         <div class="flex flex-col gap-1 items-center">
@@ -43,7 +43,7 @@
             Collected Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{ state.collectedAmount / Math.pow(10, 18) }} ETH
+            {{ state.collected_amount / Math.pow(10, 18) }} ETH
           </p>
         </div>
       </div>

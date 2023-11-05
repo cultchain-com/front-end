@@ -82,6 +82,7 @@ import SkeletonCard from "./SkeletonCard.vue";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
+import axios from "axios";
 
 //state
 
@@ -121,18 +122,32 @@ const emits = defineEmits(["events"]);
 onMounted(async () => {
   //   loading.isLoading = true;
   isListLoaded.value = false;
-  eventList.value = await listAllEvents();
+  await axios
+    .get("https://cultchain.com/api/indexer/events/")
+    .then((res) => {
+      console.log(res.data);
+      eventList.value = res.data;
+    })
+    .catch((err) => {
+      ElNotification({
+        title: "Error",
+        message: h("i", "error: " + err),
+        type: "error",
+      });
+      console.log(err);
+    });
   emits("events", eventList.value);
+  debugger;
   eventListFundRaising.value = eventList.value.filter((event) => {
     return (
-      event.status === "Approved" &&
-      +event.targetAmount.toString() > +event.collectedAmount.toString()
+      event.status === "APPROVED" &&
+      +event.target_amount > +event.collected_amount
     );
   });
-  eventListInProgress.value = eventList.value?.filter((event) => {
+  eventListInProgress.value = eventList.value.filter((event) => {
     return (
-      event.status === "Approved" &&
-      +event.targetAmount.toString() < +event.collectedAmount.toString()
+      event.status === "APPROVED" &&
+      +event.target_amount < +event.collected_amount
     );
   });
   isListLoaded.value = true;

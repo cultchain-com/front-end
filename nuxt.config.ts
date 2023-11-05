@@ -11,7 +11,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["@pinia/nuxt", "@element-plus/nuxt", "vue3-carousel-nuxt"],
+  modules: [
+    "@pinia/nuxt",
+    "@element-plus/nuxt",
+    "vue3-carousel-nuxt",
+  ],
 
   pinia: {
     autoImports: [

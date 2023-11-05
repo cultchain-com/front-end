@@ -15,7 +15,7 @@
           </h5>
           <span
             class="text-xs text-Gray-b1 dark:text-LightGray-b1 text-end flex items-center font-normal"
-            >{{ convertDate(state.endDate) }}</span
+            >{{ convertDate(state.end_date) }}</span
           >
         </div>
         <img
@@ -33,7 +33,7 @@
           <p
             class="md:text-base text-sm text-Gray-b1 dark:text-LightGray-b1 font-semibold"
           >
-            {{ state.targetAmount / Math.pow(10, 18) }} ETH
+            {{ state.target_amount / Math.pow(10, 18) }} ETH
           </p>
         </div>
         <div class="flex flex-col gap-2 items-start">
@@ -45,7 +45,7 @@
           <p
             class="md:text-base text-sm text-Gray-b1 dark:text-LightGray-b1 font-semibold"
           >
-            {{ state.collectedAmount / Math.pow(10, 18) }} ETH
+            {{ state.collected_amount / Math.pow(10, 18) }} ETH
           </p>
         </div>
       </div>

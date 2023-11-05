@@ -2,6 +2,7 @@
 
 import { h } from "vue";
 import { ElNotification } from "element-plus";
+import { useNuxtApp } from "#app";
 
 //pinia
 
@@ -1046,64 +1047,82 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function listAllEvents() {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
+    // try {
+    //   setLoader(true);
+    //   const { ethereum } = window;
+    //   if (ethereum) {
+    //     const provider = new ethers.providers.Web3Provider(ethereum);
+    //     const signer = provider.getSigner();
 
-        //get user from metamask
+    //     //get user from metamask
 
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+    //     const myAccounts = await ethereum.request({
+    //       method: "eth_requestAccounts",
+    //     });
+    //     console.log("Connected: ", myAccounts[0]);
+    //     account.value = myAccounts[0];
 
-        // contract
+    //     // contract
 
-        const charityEventsContract = new ethers.Contract(
-          charityEventsAddress,
-          charityEventsABI,
-          signer
-        );
+    //     const charityEventsContract = new ethers.Contract(
+    //       charityEventsAddress,
+    //       charityEventsABI,
+    //       signer
+    //     );
 
-        // call function
+    //     // call function
 
-        const eventList = await charityEventsContract.listAllEvents();
-        const processedEvents = [];
-        let x = eventList.map((item: any) => {
-          return item.toString();
-        });
+    //     const eventList = await charityEventsContract.listAllEvents();
+    //     const processedEvents = [];
+    //     let x = eventList.map((item: any) => {
+    //       return item.toString();
+    //     });
 
-        for (let eventId of eventList) {
-          const { eventDetails, milestones } = await getEventDetail(
-            eventId,
-            charityEventsContract
-          );
+    //     for (let eventId of eventList) {
+    //       const { eventDetails, milestones } = await getEventDetail(
+    //         eventId,
+    //         charityEventsContract
+    //       );
 
-          processedEvents.push({
-            eventId,
-            ...eventDetails,
-            milestones,
-          });
-        }
-        console.log(
-          "Processed Events:",
-          JSON.stringify(processedEvents, null, 2)
-        );
-        return processedEvents;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
-      });
-      console.error("Error get event list:", error);
-    }
-    setLoader(false);
+    //       processedEvents.push({
+    //         eventId,
+    //         ...eventDetails,
+    //         milestones,
+    //       });
+    //     }
+    //     console.log(
+    //       "Processed Events:",
+    //       JSON.stringify(processedEvents, null, 2)
+    //     );
+    //     return processedEvents;
+    //   }
+    // } catch (error) {
+    //   ElNotification({
+    //     title: "Error",
+    //     message: h("i", "error: " + error),
+    //     type: "error",
+    //   });
+    //   console.error("Error get event list:", error);
+    // }
+    // setLoader(false);
+    // setLoader(true);
+    // let eventList;
+    // axios
+    //   .get("events/")
+    //   .then((response) => {
+    //     console.log(response);
+    //     eventList = response;
+    //   })
+    //   .catch((err) => {
+    //     ElNotification({
+    //       title: "Error",
+    //       message: h("i", "error: " + err),
+    //       type: "error",
+    //     });
+    //     console.log(err);
+    //   });
+    // setLoader(false);
+    // return eventList;
   }
 
   async function getCommitteeDecision(committeeId: any) {
