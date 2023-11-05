@@ -1153,45 +1153,22 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function getDonorDonations(userAddress: string) {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        //get user from metamask
-
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
+    let donations;
+    await axios
+      .get(`${baseURL}/wallets/${userAddress}/donations`)
+      .then((res) => {
+        console.log(res.data);
+        donations = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
         });
-        const ownerAccount = myAccounts[0];
-
-        // contract
-
-        const fundraisingContract = new ethers.Contract(
-          fundraisingAddress,
-          fundraisingABI,
-          signer
-        );
-
-        // call function
-
-        const donorDonationList = await fundraisingContract.getDonorDonations(
-          userAddress
-        );
-        console.log("Donor Donations:", donorDonationList);
-        return donorDonationList;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
+        console.log(err);
       });
-      console.log("Donor Donations:", error);
-    }
-    setLoader(false);
+    return donations;
   }
 
   (async () => {

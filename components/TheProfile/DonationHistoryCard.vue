@@ -1,6 +1,5 @@
 <template>
-  <NuxtLink
-    :to="'/event-in-progress/' + state[2]"
+  <div
     class="bg-Gray-b1 dark:bg-LightGray-b1 rounded-xl flex flex-col hover:shadow-xl"
   >
     <div class="overflow-hidden w-full h-[200px] rounded-xl rounded-b-none">
@@ -15,11 +14,11 @@
           <h5
             class="lg:text-lg text-base text-Gray-b5 dark:text-LightGray-b5 line-clamp-1"
           >
-            {{ state[4] }}
+            {{ state.message }}
           </h5>
           <span
             class="text-xs text-Gray-b4 dark:text-LightGray-b4 text-end flex items-center"
-            >{{ convertDate(state[3]) }}</span
+            >{{ convertDate(state.timestamp) }}</span
           >
         </div>
         <img
@@ -33,12 +32,12 @@
             Amount
           </p>
           <p class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
-            {{ state[1] / Math.pow(10, 18) }} ETH
+            {{ state.amount / Math.pow(10, 18) }} ETH
           </p>
         </div>
       </div>
     </section>
-  </NuxtLink>
+  </div>
 </template>
 
 <script setup>
