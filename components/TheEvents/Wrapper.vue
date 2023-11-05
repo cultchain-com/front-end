@@ -122,20 +122,7 @@ const emits = defineEmits(["events"]);
 onMounted(async () => {
   //   loading.isLoading = true;
   isListLoaded.value = false;
-  await axios
-    .get("https://cultchain.com/api/indexer/events/")
-    .then((res) => {
-      console.log(res.data);
-      eventList.value = res.data;
-    })
-    .catch((err) => {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + err),
-        type: "error",
-      });
-      console.log(err);
-    });
+  eventList.value = await listAllEvents();
   emits("events", eventList.value);
   debugger;
   eventListFundRaising.value = eventList.value.filter((event) => {
