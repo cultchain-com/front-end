@@ -1,7 +1,7 @@
 <template>
   <div
     class="p-5 my-20 rounded-xl flex flex-col gap-3"
-    v-if="state.eventDetails"
+    v-if="state"
   >
     <!-- hero section -->
 
@@ -44,20 +44,20 @@
             </h6>
           </div>
           <h1 class="text-Primary text-2xl">
-            {{ state.eventDetails.collectedAmount / Math.pow(10, 18) }} ETH
+            {{ state.collected_amount / Math.pow(10, 18) }} ETH
           </h1>
           <p class="text-center text-Gray-b4 dark:text-LightGray-b4">
             raised of
             <span class="text-Primary font-semibold"
               >{{
-                state.eventDetails.targetAmount / Math.pow(10, 18)
+                state.target_amount / Math.pow(10, 18)
               }}
               ETH</span
             >
             target<br />
             by
             <span class="text-Gray-b5 dark:text-LightGray-b5 font-semibold"
-              >{{ donationsList.length }} supporters</span
+              >{{  }} supporters</span
             >
           </p>
         </div>
@@ -94,31 +94,31 @@
                 class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
                 <el-tooltip
-                  :content="state.eventDetails.creator"
+                  :content="state.creator"
                   placement="top"
                 >
-                  <span>{{ shortenAddress(state.eventDetails.creator) }}</span>
+                  <span>{{ shortenAddress(state.creator) }}</span>
                 </el-tooltip>
                 <el-tooltip
-                  :content="state.eventDetails.isCopied ? 'Copied' : 'Copy'"
+                  :content="state.isCopied ? 'Copied' : 'Copy'"
                   placement="top"
                 >
                   <i
                     class="isax isax-copy text-2xl"
-                    v-if="!state.eventDetails.isCopied"
-                    @click="copyTextToClipboard(state.eventDetails)"
+                    v-if="!state.isCopied"
+                    @click="copyTextToClipboard(state)"
                   />
                   <i
                     class="isax isax-copy-success text-2xl text-green-800"
-                    v-if="state.eventDetails.isCopied"
-                    @click="copyTextToClipboard(state.eventDetails)"
+                    v-if="state.isCopied"
+                    @click="copyTextToClipboard(state)"
                   />
                 </el-tooltip></p
             ></client-only>
             <p
               class="text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5"
             >
-              {{ state.eventDetails.name }}
+              {{ state.name }}
             </p>
           </div>
         </div>
@@ -126,10 +126,10 @@
           class="flex md:flex-col flex-row justify-between md:items-end gap-2 w-full"
         >
           <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
-            convertDate(state.eventDetails.endDate)
+            convertDate(state.end_date)
           }}</span>
           <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
-            state.eventDetails.category
+            state.category
           }}</span>
         </div>
       </div>
@@ -150,7 +150,7 @@
           <p
             class="text-Gray-b4 dark:text-LightGray-b4 lg:text-base text-sm mt-4 lg:leading-10"
           >
-            {{ state.eventDetails.description }}
+            {{ state.description }}
           </p>
         </div>
         <div class="max-h-[200px] h-full flex flex-col">
@@ -171,7 +171,7 @@
                 <p class="text-Gray-b5 dark:text-LightGray-b5 font-semibold">
                   Tatget Amount :
                   <span class="text-Gray-b5 dark:text-LightGray-b5 font-bold"
-                    >{{ item.targetAmount / Math.pow(10, 18) }} ETH</span
+                    >{{ item.target_amount / Math.pow(10, 18) }} ETH</span
                   >
                 </p>
               </div></el-collapse-item
@@ -185,7 +185,7 @@
               createEventStore.state.eventId = route.params.id;
               createEventStore.state.mileStones = state.milestones;
             "
-            v-if="account == state.eventDetails.creator"
+            v-if="account == state.creator"
             ><button
               class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 justify-center items-center"
             >
@@ -197,7 +197,7 @@
       <div class="flex flex-col gap-3 col-span-1">
         <CommiteeDecisionSection
           :state="commiteeDecisionsList"
-          :committeeId="state?.eventDetails.committeeId"
+          :committeeId="state?.committee_id"
         />
         <SupportersSection :state="donationsList" />
       </div>
@@ -301,8 +301,8 @@ const commiteeDecisionsList = ref(null);
 const percentage = computed(() => {
   if (process.client) {
     return (
-      (state.value.eventDetails?.collectedAmount /
-        state.value.eventDetails?.targetAmount) *
+      (state.value?.collected_amount /
+        state.value?.target_amount) *
       100
     );
   }
@@ -315,7 +315,7 @@ onMounted(async () => {
   state.value = await getEventDetail(route.params.id);
   donationsList.value = await getEventDonationList(route.params.id);
   commiteeDecisionsList.value = await getCommitteeDecision(
-    state.value.eventDetails.committeeId
+    state.value.committee_id
   );
   createCommitteeDecisionList();
   loading.isLoading = false;
