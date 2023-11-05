@@ -94,8 +94,13 @@ const { state } = props;
 //methods
 
 const convertDate = (item) => {
-  const timestamp = parseInt(item) * 1000; // multiply by 1000 to convert from seconds to milliseconds
-  const date = new Date(timestamp).toLocaleDateString("en-GB");
-  return date;
+  let date = new Date(item);
+
+  let year = date.getFullYear();
+  let month = ("0" + (date.getMonth() + 1)).slice(-2); // add leading zero if needed
+  let day = ("0" + date.getDate()).slice(-2); // add leading zero if needed
+
+  let dateString = year + "-" + month + "-" + day; // format as date string
+  return dateString;
 };
 </script>
