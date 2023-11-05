@@ -230,6 +230,7 @@ const {
   getDonorDonations,
   getUserPastDecisions,
   userCreatedEvents,
+  userProfile,
 } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const state = ref({
@@ -255,6 +256,7 @@ const state = ref({
   ],
   account: "",
 });
+const profile = ref(null);
 const activeTab = ref("donations-history");
 const userDonationList = ref([]);
 const userValidationList = ref([]);
@@ -277,11 +279,15 @@ const setUserEventLis = async () => {
   userEventList.value = await userCreatedEvents();
   isEventHistoryLoading.value = false;
 };
+const setProfile = async (userAddress) => {
+  profile.value = await userProfile(userAddress);
+};
 
 //mounted
 
 onMounted(() => {
   if (account.value) {
+    setProfile(account.value);
     setUserDonationList();
     setUserValidationList();
     setUserEventLis();
@@ -292,6 +298,7 @@ onMounted(() => {
 
 watch(account, (newVal, oldVal) => {
   if (newVal) {
+    setProfile(newVal);
     setUserDonationList();
     setUserValidationList();
     setUserEventLis();

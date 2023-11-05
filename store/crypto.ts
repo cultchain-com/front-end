@@ -1055,6 +1055,25 @@ export const useCryptoStore = defineStore("user", () => {
     return events;
   }
 
+  async function userProfile(userAddress: string) {
+    let profile;
+    await axios
+      .get(`${baseURL}/wallets/${userAddress}`)
+      .then((res) => {
+        console.log("userProfile", res.data);
+        profile = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return profile;
+  }
+
   (async () => {
     if (process.client) {
       await checkNetwork();
@@ -1089,5 +1108,6 @@ export const useCryptoStore = defineStore("user", () => {
     switchNetwork,
     getRecordDecision,
     userCreatedEvents,
+    userProfile,
   };
 });
