@@ -988,57 +988,22 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function getCommitteeDecision(committeeId: any) {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        //get user from metamask
-
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
+    let decisions;
+    await axios
+      .get(`${baseURL}/committees/${committeeId}`)
+      .then((res) => {
+        console.log(res.data);
+        decisions = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
-
-        // contract
-
-        const randomizedCommitteeContract = new ethers.Contract(
-          randomizedCommitteeAddress,
-          randomizedCommitteeABI,
-          signer
-        );
-
-        // call function
-
-        const decisionDetails = await randomizedCommitteeContract
-          .connect(account.value)
-          .getCommitteeDecision(committeeId);
-
-        const committeeDecision = {
-          isCompleted: decisionDetails.isCompleted,
-          validatorAddresses: decisionDetails.validatorAddresses,
-          validatorVotes: decisionDetails.validatorVotes,
-          validatorFeedbacks: decisionDetails.validatorFeedbacks,
-          totalValidators: decisionDetails.totalValidators,
-          finalDecision: decisionDetails.finalDecision,
-          concatenatedFeedback: decisionDetails.concatenatedFeedback,
-        };
-
-        console.log("Committee Decision Details:", committeeDecision);
-        return committeeDecision;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
+        console.log(err);
       });
-      console.error("Error get event list:", error);
-    }
-    setLoader(false);
+    return decisions;
   }
 
   async function getRecordDecision(

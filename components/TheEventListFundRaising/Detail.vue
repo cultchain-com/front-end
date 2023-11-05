@@ -57,7 +57,7 @@
             target<br />
             by
             <span class="text-Gray-b5 dark:text-LightGray-b5 font-semibold"
-              >{{  }} supporters</span
+              >{{ donationsList?.length }} supporters</span
             >
           </p>
         </div>
@@ -317,7 +317,6 @@ onMounted(async () => {
   commiteeDecisionsList.value = await getCommitteeDecision(
     state.value.committee_id
   );
-  createCommitteeDecisionList();
   loading.isLoading = false;
 });
 
@@ -332,21 +331,6 @@ const convertDate = (item) => {
 
   let dateString = year + "-" + month + "-" + day; // format as date string
   return dateString;
-};
-const createCommitteeDecisionList = () => {
-  let array = [];
-  for (
-    let index = 0;
-    index < commiteeDecisionsList.value.totalValidators;
-    index++
-  ) {
-    array.push({
-      address: commiteeDecisionsList.value.validatorAddresses[index],
-      vote: commiteeDecisionsList.value.validatorVotes[index],
-      feedback: commiteeDecisionsList.value.validatorFeedbacks[index],
-    });
-  }
-  commiteeDecisionsList.value = array;
 };
 const copyTextToClipboard = async (item) => {
   try {

@@ -5,7 +5,7 @@
         Commitee Decision
       </h5>
       <li
-        v-for="(item, index) in props.state"
+        v-for="(item, index) in props.state?.members"
         :key="index"
         class="flex w-full justify-between items-center"
       >
@@ -19,8 +19,11 @@
               <h4
                 class="lg:text-base text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 items-center"
               >
-                <el-tooltip :content="item.address" placement="top">
-                  <span>{{ shortenAddress(item.address) }}</span>
+                <el-tooltip
+                  :content="item.member_wallet_address"
+                  placement="top"
+                >
+                  <span>{{ shortenAddress(item.member_wallet_address) }}</span>
                 </el-tooltip>
                 <el-tooltip
                   :content="item.isCopied ? 'Copied' : 'Copy'"
@@ -49,7 +52,8 @@
         <div class="flex items-center gap-2">
           <template
             v-if="
-              props.state[index].address.toLowerCase() == account.toLowerCase()
+              props.state?.members[index].member_wallet_address.toLowerCase() ==
+              account.toLowerCase()
             "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
@@ -57,8 +61,9 @@
             </button>
           </template>
           <i
+            v-if="item.has_voted"
             :class="`text-xl isax isax-${
-              item.vote ? 'like-1 text-green-800' : 'dislike text-red-800'
+              item.decision ? 'like-1 text-green-800' : 'dislike text-red-800'
             }`"
           />
         </div>
@@ -99,7 +104,7 @@ import { useVote } from "@/store/vote";
 import { useLoading } from "@/store/loading";
 
 const props = defineProps({
-  state: [],
+  state: null,
   committeeId: {
     default: null,
   },
@@ -116,8 +121,8 @@ const { account } = storeToRefs(cryptoStore);
 
 const copyTextToClipboard = async (item) => {
   try {
-    await navigator.clipboard.writeText(item.address);
-    props.state.map((item) => {
+    await navigator.clipboard.writeText(item.member_wallet_address);
+    props.state.members.map((item) => {
       item.isCopied = false;
     });
     item.isCopied = true;

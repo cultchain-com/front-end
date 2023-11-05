@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="p-5 my-20 rounded-xl flex flex-col gap-3"
-    v-if="state"
-  >
+  <div class="p-5 my-20 rounded-xl flex flex-col gap-3" v-if="state">
     <!-- hero section -->
 
     <section class="wrapper grid lg:grid-cols-3 grid-cols-1 md:gap-3 gap-y-3">
@@ -49,15 +46,12 @@
           <p class="text-center text-Gray-b4 dark:text-LightGray-b4">
             raised of
             <span class="text-Primary font-semibold"
-              >{{
-                state.target_amount / Math.pow(10, 18)
-              }}
-              ETH</span
+              >{{ state.target_amount / Math.pow(10, 18) }} ETH</span
             >
             target<br />
             by
             <span class="text-Gray-b5 dark:text-LightGray-b5 font-semibold"
-              >{{  }} supporters</span
+              >{{ donationsList?.length }} supporters</span
             >
           </p>
         </div>
@@ -93,10 +87,7 @@
               <p
                 class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
-                <el-tooltip
-                  :content="state.creator"
-                  placement="top"
-                >
+                <el-tooltip :content="state.creator" placement="top">
                   <span>{{ shortenAddress(state.creator) }}</span>
                 </el-tooltip>
                 <el-tooltip
@@ -300,11 +291,7 @@ const commiteeDecisionsList = ref(null);
 
 const percentage = computed(() => {
   if (process.client) {
-    return (
-      (state.value?.collected_amount /
-        state.value?.target_amount) *
-      100
-    );
+    return (state.value?.collected_amount / state.value?.target_amount) * 100;
   }
 });
 
@@ -317,7 +304,6 @@ onMounted(async () => {
   commiteeDecisionsList.value = await getCommitteeDecision(
     state.value.committee_id
   );
-  createCommitteeDecisionList();
   loading.isLoading = false;
 });
 
@@ -333,21 +319,7 @@ const convertDate = (item) => {
   let dateString = year + "-" + month + "-" + day; // format as date string
   return dateString;
 };
-const createCommitteeDecisionList = () => {
-  let array = [];
-  for (
-    let index = 0;
-    index < commiteeDecisionsList.value.totalValidators;
-    index++
-  ) {
-    array.push({
-      address: commiteeDecisionsList.value.validatorAddresses[index],
-      vote: commiteeDecisionsList.value.validatorVotes[index],
-      feedback: commiteeDecisionsList.value.validatorFeedbacks[index],
-    });
-  }
-  commiteeDecisionsList.value = array;
-};
+
 const copyTextToClipboard = async (item) => {
   try {
     await navigator.clipboard.writeText(item.creator);
