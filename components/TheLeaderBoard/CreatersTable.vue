@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in state" :key="index">
+      <tr v-for="(item, index) in props.state" :key="index">
         <td data-label="*">
           <span
             class="h-5 w-5 rounded-full bg-Gray-b1 dark:bg-LightGray-b1 md:block md:mx-auto text-Gray-b3 dark:text-LightGray-b3"
@@ -20,8 +20,8 @@
         <td data-label="Address">
           <client-only>
             <div class="flex gap-2 items-center">
-              <el-tooltip :content="item[0]" placement="top">
-                <span>{{ shortenAddress(item[0]) }}</span>
+              <el-tooltip :content="item.creator__wallet_address" placement="top">
+                <span>{{ shortenAddress(item.creator__wallet_address) }}</span>
               </el-tooltip>
               <el-tooltip
                 :content="
@@ -43,14 +43,9 @@
           ></client-only>
         </td>
         <td data-label="Raised">
-          {{ new Intl.NumberFormat().format(item[1] / Math.pow(10, 18)) }} ETH
+          {{ new Intl.NumberFormat().format(item.total_money_raised / Math.pow(10, 18)) }} ETH
         </td>
-        <td data-label="Total Created Events">{{ item[2] }}</td>
-        <!-- <td data-label="Rewards">{{ item.rewards }}</td> -->
-        <!-- <el-divider
-          class="block md:none"
-          v-if="index !== dataList.length - 1"
-        /> -->
+        <td data-label="Total Created Events">{{ item.number_of_created_events }}</td>
       </tr>
     </tbody>
   </table>
@@ -105,7 +100,7 @@ const copyTextToClipboard = async (item, index) => {
     supporterArrayForCheckCopied.value.map((item) => {
       item.value = false;
     });
-    await navigator.clipboard.writeText(item[0]);
+    await navigator.clipboard.writeText(item.creator__wallet_address);
     supporterArrayForCheckCopied.value[index].value = true;
     setTimeout(() => {
       supporterArrayForCheckCopied.value[index].value = false;

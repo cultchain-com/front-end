@@ -860,46 +860,23 @@ export const useCryptoStore = defineStore("user", () => {
     setLoader(false);
   }
 
-  async function getCreatorsLeaderboard(numOfTopCreators: number) {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        //get user from metamask
-
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
+  async function getCreatorsLeaderboard() {
+    let creatorsLeaderboard;
+    await axios
+      .get(`${baseURL}/leaderboard/creators`)
+      .then((res) => {
+        console.log(res.data);
+        creatorsLeaderboard = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
         });
-        const ownerAccount = myAccounts[0];
-
-        // contract
-
-        const charityEventsContract = new ethers.Contract(
-          charityEventsAddress,
-          charityEventsABI,
-          signer
-        );
-
-        // call function
-
-        const leaderBoard = await charityEventsContract.getTopCreators(
-          numOfTopCreators
-        );
-        console.log("leaderBoard:", leaderBoard);
-        return leaderBoard;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
+        console.log(err);
       });
-      console.log("leaderBoard:", error);
-    }
-    setLoader(false);
+    return creatorsLeaderboard;
   }
 
   async function listAllEvents() {
