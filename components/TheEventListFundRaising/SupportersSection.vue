@@ -27,7 +27,10 @@
               <h4
                 class="lg:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
-                <el-tooltip :content="item.donor_wallet_address" placement="top">
+                <el-tooltip
+                  :content="item.donor_wallet_address"
+                  placement="top"
+                >
                   <span>{{ shortenAddress(item.donor_wallet_address) }}</span>
                 </el-tooltip>
                 <el-tooltip
@@ -64,7 +67,9 @@ import { shortenAddress } from "@/utils/shortenAddress";
 //props
 
 const props = defineProps({
-  state: [],
+  state: {
+    default: null,
+  },
 });
 const { state } = props;
 const supporterArrayForCheckCopied = ref([]);
@@ -86,7 +91,7 @@ const copyTextToClipboard = async (item, index) => {
     supporterArrayForCheckCopied.value.map((item) => {
       item.value = false;
     });
-    await navigator.clipboard.writeText(item[0]);
+    await navigator.clipboard.writeText(item.donor_wallet_address);
     supporterArrayForCheckCopied.value[index].value = true;
     setTimeout(() => {
       supporterArrayForCheckCopied.value[index].value = false;
