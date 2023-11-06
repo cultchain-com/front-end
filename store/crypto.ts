@@ -852,6 +852,25 @@ export const useCryptoStore = defineStore("user", () => {
     return eventList;
   }
 
+  async function searchedEvents(searchSTR: string) {
+    let eventList;
+    await axios
+      .get(`${baseURL}/search/?query=${searchSTR}`)
+      .then((res) => {
+        console.log(res.data);
+        eventList = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return eventList;
+  }
+
   async function getCommitteeDecision(committeeId: any) {
     let decisions;
     await axios
@@ -1109,5 +1128,6 @@ export const useCryptoStore = defineStore("user", () => {
     getRecordDecision,
     userCreatedEvents,
     userProfile,
+    searchedEvents,
   };
 });
