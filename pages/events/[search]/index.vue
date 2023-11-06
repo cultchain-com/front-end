@@ -1,6 +1,6 @@
 <script setup>
 import Header from "@/components/Base/Header.vue";
-import Wrapper from "@/components/TheEvents/Wrapper.vue";
+import Wrapper from "@/components/TheEvents/search/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
 
 //state

@@ -76,9 +76,9 @@
 </template>
 
 <script setup>
-import EventCardFundRaising from "./EventCardFundRaising.vue";
-import EventCardInProgress from "./EventCardInProgress.vue";
-import SkeletonCard from "./SkeletonCard.vue";
+import EventCardFundRaising from "../EventCardFundRaising.vue";
+import EventCardInProgress from "../EventCardInProgress.vue";
+import SkeletonCard from "../SkeletonCard.vue";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
@@ -95,6 +95,24 @@ const eventListFundRaising = ref([]);
 const eventListInProgress = ref([]);
 const isListLoaded = ref(false);
 const route = useRoute();
+const carouselOptions = {
+  itemsToShow: 4,
+  transition: "300",
+  breakpoints: {
+    320: {
+      itemsToShow: 1,
+      snapAlign: "center",
+    },
+    768: {
+      itemsToShow: 2,
+      snapAlign: "center",
+    },
+    1440: {
+      itemsToShow: 4,
+      snapAlign: "start",
+    },
+  },
+};
 
 // emit
 
@@ -106,13 +124,13 @@ onMounted(async () => {
   //   loading.isLoading = true;
   isListLoaded.value = false;
   eventList.value = await searchedEvents(route.params.search);
-  eventListFundRaising.value = eventList.value.filter((event) => {
+  eventListFundRaising.value = eventList.value.events.filter((event) => {
     return (
       event.status === "APPROVED" &&
       +event.target_amount > +event.collected_amount
     );
   });
-  eventListInProgress.value = eventList.value.filter((event) => {
+  eventListInProgress.value = eventList.value.events.filter((event) => {
     return (
       event.status === "APPROVED" &&
       +event.target_amount < +event.collected_amount
