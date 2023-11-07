@@ -14,20 +14,20 @@
     <el-tabs v-model="activeTab" class="profile-tabs">
       <el-tab-pane label="Donors" name="donations-history">
         <div class="border-0 mb-6 rounded-xl">
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!donorsLeaderboard.length">donors leaderboard is empty</h2>
-          <DonorsTable :state="donorsLeaderboard" v-if="donorsLeaderboard.length" />
+          <h2 class="text-Gray-b5 text-center py-10" v-if="!donorsLeaderboard?.length">donors leaderboard is empty</h2>
+          <DonorsTable :state="donorsLeaderboard" v-if="donorsLeaderboard?.length" />
         </div>
       </el-tab-pane>
       <el-tab-pane label="Validaters" name="validations-history">
         <div class="border-0 mb-6 rounded-xl">
-          <ValidatersTable :state="validatorsLeaderboard" v-if="validatorsLeaderboard.length" />
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!validatorsLeaderboard.length">validators leaderboard is empty</h2>
+          <ValidatersTable :state="validatorsLeaderboard" v-if="validatorsLeaderboard?.length" />
+          <h2 class="text-Gray-b5 text-center py-10" v-if="!validatorsLeaderboard?.length">validators leaderboard is empty</h2>
         </div>
       </el-tab-pane>
       <el-tab-pane label="Creaters" name="created-events">
         <div class="border-0 mb-6 rounded-xl">
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!creatorsLeaderboard.length">creators leaderboard is empty</h2>
-          <CreatersTable :state="creatorsLeaderboard" v-if="creatorsLeaderboard.length" /></div
+          <h2 class="text-Gray-b5 text-center py-10" v-if="!creatorsLeaderboard?.length">creators leaderboard is empty</h2>
+          <CreatersTable :state="creatorsLeaderboard" v-if="creatorsLeaderboard?.length" /></div
       ></el-tab-pane>
     </el-tabs>
   </section>

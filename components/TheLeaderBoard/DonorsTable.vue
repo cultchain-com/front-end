@@ -25,18 +25,18 @@
               </el-tooltip>
               <el-tooltip
                 :content="
-                  supporterArrayForCheckCopied[index].value ? 'Copied' : 'Copy'
+                  item.value ? 'Copied' : 'Copy'
                 "
                 placement="top"
               >
                 <i
                   class="isax isax-copy text-2xl"
-                  v-if="!supporterArrayForCheckCopied[index].value"
+                  v-if="!item.value"
                   @click="copyTextToClipboard(item, index)"
                 />
                 <i
                   class="isax isax-copy-success text-2xl text-green-800"
-                  v-if="supporterArrayForCheckCopied[index].value"
+                  v-if="item.value"
                   @click="copyTextToClipboard(item, index)"
                 />
               </el-tooltip></div
@@ -84,33 +84,20 @@ const columns = [
   //   text: "Reward",
   // },
 ];
-const supporterArrayForCheckCopied = ref([]);
 
 const copyTextToClipboard = async (item, index) => {
   try {
-    supporterArrayForCheckCopied.value.map((item) => {
+    props.state.map((item) => {
       item.value = false;
     });
     await navigator.clipboard.writeText(item.donor__wallet_address);
-    supporterArrayForCheckCopied.value[index].value = true;
+    item.value = true;
     setTimeout(() => {
-      supporterArrayForCheckCopied.value[index].value = false;
+      item.value = false;
     }, 5000);
     console.log("Copying to clipboard was successful!");
   } catch (err) {
     console.error("Failed to copy text: ", err);
   }
 };
-
-watch(props, (newVal, oldVal) => {
-  if (newVal) {
-    let array = [];
-    for (let i = 0; i < props.state.length; i++) {
-      supporterArrayForCheckCopied.value.push({
-        key: i,
-        value: false,
-      });
-    }
-  }
-});
 </script>
