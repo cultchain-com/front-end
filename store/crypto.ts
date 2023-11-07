@@ -1112,6 +1112,25 @@ export const useCryptoStore = defineStore("user", () => {
     return faqList;
   }
 
+  async function getPosts() {
+    let postList;
+    await axios
+      .get(`${baseURL}blog/posts/`)
+      .then((res) => {
+        console.log(res.data, "postList");
+        postList = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return postList;
+  }
+
   (async () => {
     if (process.client) {
       await checkNetwork();
@@ -1149,5 +1168,6 @@ export const useCryptoStore = defineStore("user", () => {
     userProfile,
     searchedEvents,
     getFaq,
+    getPosts,
   };
 });

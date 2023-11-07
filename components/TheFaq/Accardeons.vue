@@ -21,7 +21,6 @@ import { useCryptoStore } from "~/store/crypto";
 //state
 
 const { getFaq } = useCryptoStore();
-
 const faqList = ref([
   {
     title: "Consistency",
