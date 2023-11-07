@@ -92,8 +92,12 @@ const createEventHandler = async () => {
     endDate,
     category
   );
-  localState.value.mileStone.eventId = eventId;
-  router.push("/event-creation/" + eventId);
+  if (!eventId) {
+    router.push("/events");
+  } else {
+    localState.value.mileStone.eventId = eventId;
+    router.push("/event-creation/" + eventId);
+  }
 };
 const addMileStoneHandler = async () => {
   const { eventId, milestoneName, description, targetAmount, endDate } =
