@@ -1096,7 +1096,7 @@ export const useCryptoStore = defineStore("user", () => {
   (async () => {
     if (process.client) {
       await checkNetwork();
-      await connectWallet();
+      // await connectWallet();
     }
   })();
 
