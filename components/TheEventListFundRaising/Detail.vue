@@ -94,10 +94,10 @@
                 class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
                 <el-tooltip
-                  :content="state.creator"
+                  :content="state.creator_wallet_address"
                   placement="top"
                 >
-                  <span>{{ shortenAddress(state.creator) }}</span>
+                  <span>{{ shortenAddress(state.creator_wallet_address) }}</span>
                 </el-tooltip>
                 <el-tooltip
                   :content="state.isCopied ? 'Copied' : 'Copy'"
@@ -334,7 +334,7 @@ const convertDate = (item) => {
 };
 const copyTextToClipboard = async (item) => {
   try {
-    await navigator.clipboard.writeText(item.creator);
+    await navigator.clipboard.writeText(item.creator_wallet_address);
     item.isCopied = true;
     console.log("Copying to clipboard was successful!");
     setTimeout(() => {
