@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid lg:grid-cols-2 lg:gap-0 gap-10 bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl my-6"
+    class="grid lg:grid-cols-2 items-center lg:gap-0 gap-10 bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl my-6"
   >
     <div class="flex flex-col justify-between gap-4">
       <div class="flex flex-col gap-4">
@@ -29,6 +29,32 @@
           <input
             v-model="state.email"
             id="email"
+            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-item flex flex-col gap-2">
+          <label
+            class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
+            for="subject"
+            >Subject</label
+          >
+          <input
+            v-model="state.subject"
+            id="name"
+            class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-item flex flex-col gap-2">
+          <label
+            class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
+            for="phone_number"
+            >Phone Number</label
+          >
+          <input
+            v-model="state.phoneNumber"
+            id="phone_number"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
           />
@@ -82,7 +108,13 @@ import { ref } from "vue";
 
 //state
 
-const state = ref({ name: "", email: "", message: "" });
+const state = ref({
+  name: "",
+  email: "",
+  subject: "",
+  phoneNumber: "",
+  message: "",
+});
 const links = [
   {
     icon: "facebook",
