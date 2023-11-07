@@ -12,8 +12,9 @@
             class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
           >
             CultChain
-          </h1></NuxtLink
-        >
+          </h1>
+          <div class="h-[60%] w-1 bg-Gray-b3 rounded-xl"></div>
+        </NuxtLink>
         <el-menu
           class="el-menu-demo bg-transparent xl:min-w-full border-none justify-start relative top-1 lg:flex hidden"
           mode="horizontal"
@@ -22,18 +23,22 @@
             <el-menu-item
               v-if="!item.children.length"
               :index="converToString(index + 1)"
-              class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
             >
-              <nuxt-link :to="item.route">{{ item.text }}</nuxt-link>
+              <nuxt-link
+                :to="item.route"
+                class="dark:text-LightGray-b5 text-Gray-b4"
+                >{{ item.text }}</nuxt-link
+              >
             </el-menu-item>
             <el-sub-menu
               v-if="item.children.length"
-              class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
               :index="converToString(index + 1)"
             >
               <template #title
                 ><span
-                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                  class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
                   >{{ item.text }}</span
                 ></template
               >
