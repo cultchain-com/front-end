@@ -5,7 +5,7 @@
     >
       <!-- logo -->
 
-      <div class="w-full flex">
+      <div class="flex">
         <NuxtLink to="/" class="icon flex gap-2 items-center"
           ><i class="isax isax-shop text-Primary text-3xl"></i>
           <h1
@@ -15,7 +15,7 @@
           </h1></NuxtLink
         >
         <el-menu
-          class="el-menu-demo bg-transparent w-full border-none justify-start relative top-1 lg:flex hidden"
+          class="el-menu-demo bg-transparent xl:min-w-full border-none justify-start relative top-1 lg:flex hidden"
           mode="horizontal"
         >
           <template v-for="(item, index) in navigations">
@@ -54,65 +54,71 @@
       <!-- desktop navigation  -->
 
       <div
-        class="navigation lg:flex lg:items-center items-end gap-4 lg:min-w-fit w-full lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
+        class="navigation lg:flex lg:items-center justify-between items-end gap-4 lg:min-w-fit w-full lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
       >
-        <div class="relative w-full">
-          <button @click="searchHandler">
-            <i
-              class="isax isax-search-normal absolute left-2 top-1 text-Gray-b5 dark:text-LightGray-b5 text-2xl"
-            />
-          </button>
-          <button @click="searchHandler">
-            <i
-              class="isax isax-shuffle5 absolute right-2 top-1 text-Gray-b5 dark:text-LightGray-b5 text-2xl"
-            />
-          </button>
+        <div class="w-full ">
+          <div class="relative max-w-[400px] mx-auto">
+            <button @click="searchHandler">
+              <i
+                class="isax isax-search-normal absolute left-2 top-1 text-Gray-b5 dark:text-LightGray-b5 text-2xl"
+              />
+            </button>
+            <button @click="searchHandler">
+              <i
+                class="isax isax-shuffle5 absolute right-2 top-1 text-Gray-b5 dark:text-LightGray-b5 text-2xl"
+              />
+            </button>
 
-          <input
-            v-model="search"
-            @keyup.enter="searchHandler"
-            placeholder="Search"
-            class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
-          />
+            <input
+              v-model="search"
+              @keyup.enter="searchHandler"
+              placeholder="Search"
+              class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
+            />
+          </div>
         </div>
-        <el-button
-          class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
-          v-if="!account"
+        <div
+          class="lg:flex lg:items-center items-end min-w-fit gap-4 lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
         >
-          <i
-            class="isax isax-empty-wallet text-2xl text-Gray-b5 dark:text-LightGray-b5"
-          ></i>
-        </el-button>
-        <el-button
-          icon
-          class="border-0 px-2 glass h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
-          v-if="account"
-        >
-          {{ shortenAddress(account) }}
-        </el-button>
-        <NuxtLink
-          to="/profile"
-          icon
-          class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
-        >
-          <i
-            class="isax isax-user text-2xl text-Gray-b5 dark:text-LightGray-b5"
-          ></i>
-        </NuxtLink>
-        <el-button
-          icon
-          class="border-0 px-2 glass mx-0 h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
-          @click="toggleTheme"
-        >
-          <input
-            id="toggle"
-            class="toggle"
-            v-model="isDarkMode"
-            type="checkbox"
-          />
-          <Icon name="sun" v-if="isDarkMode" />
-          <Icon name="moon" v-if="!isDarkMode" />
-        </el-button>
+          <el-button
+            class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
+            v-if="!account"
+          >
+            <i
+              class="isax isax-empty-wallet text-2xl text-Gray-b5 dark:text-LightGray-b5"
+            ></i>
+          </el-button>
+          <el-button
+            icon
+            class="border-0 px-2 glass h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
+            v-if="account"
+          >
+            {{ shortenAddress(account) }}
+          </el-button>
+          <NuxtLink
+            to="/profile"
+            icon
+            class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+          >
+            <i
+              class="isax isax-user text-2xl text-Gray-b5 dark:text-LightGray-b5"
+            ></i>
+          </NuxtLink>
+          <el-button
+            icon
+            class="border-0 px-2 glass mx-0 h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
+            @click="toggleTheme"
+          >
+            <input
+              id="toggle"
+              class="toggle"
+              v-model="isDarkMode"
+              type="checkbox"
+            />
+            <Icon name="sun" v-if="isDarkMode" />
+            <Icon name="moon" v-if="!isDarkMode" />
+          </el-button>
+        </div>
       </div>
 
       <!-- mobile toggle navigation -->
