@@ -16,8 +16,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { useCryptoStore } from "~/store/crypto";
 
 //state
+
+const { getFaq } = useCryptoStore();
 
 const faqList = ref([
   {
@@ -46,4 +49,11 @@ const faqList = ref([
   },
 ]);
 const activeNames = ref(["1"]);
+
+//mounted
+
+onMounted(async () => {
+  await getFaq();
+  console.log("getFaq", getFaq());
+});
 </script>
