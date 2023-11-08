@@ -1074,12 +1074,12 @@ export const useCryptoStore = defineStore("user", () => {
     return events;
   }
 
-  async function userProfile(userAddress: string) {
+  async function getUserProfile(userAddress: string) {
     let profile;
     await axios
       .get(`${baseURL}indexer/wallets/${userAddress}`)
       .then((res) => {
-        console.log("userProfile", res.data);
+        console.log("getUserProfile", res.data);
         profile = res.data;
       })
       .catch((err) => {
@@ -1196,7 +1196,7 @@ export const useCryptoStore = defineStore("user", () => {
     switchNetwork,
     getRecordDecision,
     userCreatedEvents,
-    userProfile,
+    getUserProfile,
     searchedEvents,
     getFaq,
     getPosts,

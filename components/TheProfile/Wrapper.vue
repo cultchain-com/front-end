@@ -230,7 +230,7 @@ const {
   getDonorDonations,
   getUserPastDecisions,
   userCreatedEvents,
-  userProfile,
+  getUserProfile,
 } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const state = ref({
@@ -280,7 +280,7 @@ const setUserEventLis = async () => {
   isEventHistoryLoading.value = false;
 };
 const setProfile = async (userAddress) => {
-  profile.value = await userProfile(userAddress);
+  profile.value = await getUserProfile(userAddress);
 };
 
 //mounted
