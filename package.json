@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.4",
+    "@nuxtjs/turnstile": "^0.6.3",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.3.3",
     "postcss": "^8.4.23",

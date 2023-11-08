@@ -1131,6 +1131,37 @@ export const useCryptoStore = defineStore("user", () => {
     return postList;
   }
 
+  async function sendMessage(
+    name: string,
+    email: string,
+    subject: string,
+    message: string,
+    phone_number: string
+  ) {
+    let response;
+    await axios
+      .post(`${baseURL}mics/contact/`, {
+        name,
+        email,
+        subject,
+        message,
+        phone_number,
+      })
+      .then((res) => {
+        console.log(res, "response");
+        response = res;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return response;
+  }
+
   (async () => {
     if (process.client) {
       await checkNetwork();
@@ -1169,5 +1200,6 @@ export const useCryptoStore = defineStore("user", () => {
     searchedEvents,
     getFaq,
     getPosts,
+    sendMessage,
   };
 });

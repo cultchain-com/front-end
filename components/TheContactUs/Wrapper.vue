@@ -72,10 +72,13 @@
             autocomplete="off"
           ></textarea>
         </div>
+
+        <NuxtTurnstile v-model="token" />
         <button
+          @click="sendMessagehandler"
           class="lg:w-[calc(100%-20px)] w-full bg-Primary h-10 mt-2 rounded-xl text-Gray-b5 dark:text-LightGray-b5 font-semibold"
         >
-          Send Message
+          {{ isLoading ? "Loading..." : "Send Message" }}
         </button>
       </div>
       <div
@@ -105,6 +108,9 @@
 <script setup>
 import Icon from "@/components/TheIcon/Icon.vue";
 import { ref } from "vue";
+import { h } from "vue";
+import { ElNotification } from "element-plus";
+import { useCryptoStore } from "~/store/crypto";
 
 //state
 
@@ -129,4 +135,68 @@ const links = [
     link: "",
   },
 ];
+const token = ref();
+const { sendMessage } = useCryptoStore();
+const isLoading = ref(false);
+
+//methods
+
+const sendMessagehandler = async () => {
+  if (!token.value) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: complete capthcha!!"),
+      type: "error",
+    });
+  } else if (!state.value.name) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: enter your name"),
+      type: "error",
+    });
+  } else if (!state.value.email) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: enter your email"),
+      type: "error",
+    });
+  } else if (!state.value.subject) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: enter subject"),
+      type: "error",
+    });
+  } else if (!state.value.message) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: enter your message"),
+      type: "error",
+    });
+  } else {
+    isLoading.value = true;
+    const reponse = await sendMessage(
+      state.value.name,
+      state.value.email,
+      state.value.subject,
+      state.value.message,
+      state.value.phoneNumber
+    );
+    isLoading.value = false;
+    if (reponse.data.id) {
+      ElNotification({
+        title: "Sucess",
+        message: h("i", "success: your message send!"),
+        type: "success",
+      });
+      resetForm();
+    }
+  }
+};
+const resetForm = () => {
+  state.value.name = "";
+  state.value.email = "";
+  state.value.subject = "";
+  state.value.message = "";
+  state.value.phoneNumber = "";
+};
 </script>

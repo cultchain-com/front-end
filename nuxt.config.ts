@@ -15,7 +15,19 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@element-plus/nuxt",
     "vue3-carousel-nuxt",
+    "@nuxtjs/turnstile",
   ],
+
+  turnstile: {
+    siteKey: "0x4AAAAAAAM0C-69dCKvEr7f",
+  },
+  runtimeConfig: {
+    turnstile: {
+      // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
+      // environment variable.
+      secretKey: "0x4AAAAAAAM0C6xq5pIXGpxx7uu_Uzr23Mw",
+    },
+  },
 
   pinia: {
     autoImports: [
