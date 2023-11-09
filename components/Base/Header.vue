@@ -86,9 +86,12 @@
           class="lg:flex lg:items-center items-end min-w-fit gap-4 lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
         >
           <el-button
-            class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
+            class="border-2 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
             v-if="!account"
             @click="connectWallet"
+            :class="
+              isConnectWalletFocused ? 'border-Primary' : 'border-transparent'
+            "
           >
             <i
               class="isax isax-empty-wallet text-2xl text-Gray-b5 dark:text-LightGray-b5"
@@ -102,9 +105,10 @@
             {{ shortenAddress(account) }}
           </el-button>
           <NuxtLink
-            to="/profile"
+            :to="account && '/profile'"
             icon
             class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+            @click="focusOnConnectWallet"
           >
             <i
               class="isax isax-user text-2xl text-Gray-b5 dark:text-LightGray-b5"
@@ -252,6 +256,7 @@ const navigations = [
 ];
 const isMounted = ref(false);
 const isDarkMode = ref(true);
+const isConnectWalletFocused = ref(false);
 
 //methods
 
@@ -272,6 +277,17 @@ const searchHandler = () => {
   if (search.value) {
     router.push(`/events/${search.value}`);
   }
+};
+const focusOnConnectWallet = async () => {
+  ElNotification({
+    title: "Prompt",
+    message: "please connect your wallet first!",
+    duration: 3000,
+  });
+  isConnectWalletFocused.value = true;
+  setTimeout(() => {
+    isConnectWalletFocused.value = false;
+  }, 10000);
 };
 
 //mounted
