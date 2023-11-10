@@ -279,15 +279,17 @@ const searchHandler = () => {
   }
 };
 const focusOnConnectWallet = async () => {
-  ElNotification({
-    title: "Prompt",
-    message: "please connect your wallet first!",
-    duration: 3000,
-  });
-  isConnectWalletFocused.value = true;
-  setTimeout(() => {
-    isConnectWalletFocused.value = false;
-  }, 10000);
+  if (!account.value) {
+    ElNotification({
+      title: "Prompt",
+      message: "please connect your wallet first!",
+      duration: 3000,
+    });
+    isConnectWalletFocused.value = true;
+    setTimeout(() => {
+      isConnectWalletFocused.value = false;
+    }, 10000);
+  }
 };
 
 //mounted
