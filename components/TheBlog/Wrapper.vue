@@ -14,6 +14,15 @@ import HeroCard from "./HeroCard";
 import BlogCard from "./BlogCard";
 
 import { usePosts } from "@/store/blogs";
+import { useCryptoStore } from "~/store/crypto";
 
 const { posts } = usePosts();
+const { getPosts } = useCryptoStore();
+
+//mounted
+
+onMounted(async () => {
+  await getPosts();
+  console.log("getPosts", getPosts());
+});
 </script>

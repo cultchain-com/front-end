@@ -41,7 +41,7 @@ export const useCryptoStore = defineStore("user", () => {
 
   // ENUMS
 
-  const baseURL = "https://cultchain.com/api/indexer";
+  const baseURL = "https://cultchain.com/api/";
 
   const CommitteeType: { [key: string]: any } = {
     0: "Event",
@@ -481,7 +481,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getUserPastDecisions(userAddress: string) {
     let decisions;
     await axios
-      .get(`${baseURL}/wallets/${userAddress}/committees`)
+      .get(`${baseURL}indexer/wallets/${userAddress}/committees`)
       .then((res) => {
         console.log(res.data);
         decisions = res.data;
@@ -500,7 +500,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getEventDetail(eventId: number, contract: any) {
     let event;
     await axios
-      .get(`${baseURL}/events/${eventId}`)
+      .get(`${baseURL}indexer/events/${eventId}`)
       .then((res) => {
         console.log(res.data);
         event = res.data;
@@ -760,7 +760,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getEventDonationList(eventId: number) {
     let donors;
     await axios
-      .get(`${baseURL}/events/${eventId}/donors`)
+      .get(`${baseURL}indexer/events/${eventId}/donors`)
       .then((res) => {
         console.log(res.data);
         donors = res.data;
@@ -779,7 +779,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getDonorsLeaderboard() {
     let donorLeaderboard;
     await axios
-      .get(`${baseURL}/leaderboard/donors`)
+      .get(`${baseURL}indexer/leaderboard/donors`)
       .then((res) => {
         console.log(res.data);
         donorLeaderboard = res.data;
@@ -798,7 +798,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getValidatersLeaderboard() {
     let validaterLeaderboard;
     await axios
-      .get(`${baseURL}/leaderboard/validators`)
+      .get(`${baseURL}indexer/leaderboard/validators`)
       .then((res) => {
         console.log(res.data);
         validaterLeaderboard = res.data;
@@ -817,7 +817,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getCreatorsLeaderboard() {
     let creatorsLeaderboard;
     await axios
-      .get(`${baseURL}/leaderboard/creators`)
+      .get(`${baseURL}indexer/leaderboard/creators`)
       .then((res) => {
         console.log(res.data);
         creatorsLeaderboard = res.data;
@@ -836,7 +836,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function listAllEvents() {
     let eventList;
     await axios
-      .get(`${baseURL}/events/`)
+      .get(`${baseURL}indexer/events/`)
       .then((res) => {
         console.log(res.data);
         eventList = res.data;
@@ -855,7 +855,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function searchedEvents(searchSTR: string) {
     let eventList;
     await axios
-      .get(`${baseURL}/search/?query=${searchSTR}`)
+      .get(`${baseURL}indexer/search/?query=${searchSTR}`)
       .then((res) => {
         console.log(res.data);
         eventList = res.data;
@@ -874,7 +874,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getCommitteeDecision(committeeId: any) {
     let decisions;
     await axios
-      .get(`${baseURL}/committees/${committeeId}`)
+      .get(`${baseURL}indexer/committees/${committeeId}`)
       .then((res) => {
         console.log(res.data);
         decisions = res.data;
@@ -1039,7 +1039,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function getDonorDonations(userAddress: string) {
     let donations;
     await axios
-      .get(`${baseURL}/wallets/${userAddress}/donations`)
+      .get(`${baseURL}indexer/wallets/${userAddress}/donations`)
       .then((res) => {
         console.log(res.data);
         donations = res.data;
@@ -1058,7 +1058,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function userCreatedEvents(userAddress: string) {
     let events;
     await axios
-      .get(`${baseURL}/wallets/${userAddress}/events`)
+      .get(`${baseURL}indexer/wallets/${userAddress}/events`)
       .then((res) => {
         console.log(res.data);
         events = res.data;
@@ -1074,12 +1074,12 @@ export const useCryptoStore = defineStore("user", () => {
     return events;
   }
 
-  async function userProfile(userAddress: string) {
+  async function getUserProfile(userAddress: string) {
     let profile;
     await axios
-      .get(`${baseURL}/wallets/${userAddress}`)
+      .get(`${baseURL}indexer/wallets/${userAddress}`)
       .then((res) => {
-        console.log("userProfile", res.data);
+        console.log("getUserProfile", res.data);
         profile = res.data;
       })
       .catch((err) => {
@@ -1089,8 +1089,98 @@ export const useCryptoStore = defineStore("user", () => {
           type: "error",
         });
         console.log(err);
+        profile = -1;
       });
     return profile;
+  }
+
+  async function updateUserProfile(userAddress: string, state: any) {
+    let profile;
+    await axios
+      .put(`${baseURL}indexer/wallets/${userAddress}`, state)
+      .then((res) => {
+        console.log("updateUserProfile", res.data);
+        profile = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+        profile = -1;
+      });
+    return profile;
+  }
+
+  async function getFaq() {
+    let faqList;
+    await axios
+      .get(`${baseURL}mics/faqs/`)
+      .then((res) => {
+        console.log(res.data, "faqList");
+        faqList = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return faqList;
+  }
+
+  async function getPosts() {
+    let postList;
+    await axios
+      .get(`${baseURL}blog/posts/`)
+      .then((res) => {
+        console.log(res.data, "postList");
+        postList = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return postList;
+  }
+
+  async function sendMessage(
+    name: string,
+    email: string,
+    subject: string,
+    message: string,
+    phone_number: string
+  ) {
+    let response;
+    await axios
+      .post(`${baseURL}mics/contact/`, {
+        name,
+        email,
+        subject,
+        message,
+        phone_number,
+      })
+      .then((res) => {
+        console.log(res, "response");
+        response = res;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+      });
+    return response;
   }
 
   (async () => {
@@ -1127,7 +1217,11 @@ export const useCryptoStore = defineStore("user", () => {
     switchNetwork,
     getRecordDecision,
     userCreatedEvents,
-    userProfile,
+    getUserProfile,
+    updateUserProfile,
     searchedEvents,
+    getFaq,
+    getPosts,
+    sendMessage,
   };
 });
