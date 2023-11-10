@@ -1089,6 +1089,27 @@ export const useCryptoStore = defineStore("user", () => {
           type: "error",
         });
         console.log(err);
+        profile = -1;
+      });
+    return profile;
+  }
+
+  async function updateUserProfile(userAddress: string, state: any) {
+    let profile;
+    await axios
+      .put(`${baseURL}indexer/wallets/${userAddress}`, state)
+      .then((res) => {
+        console.log("updateUserProfile", res.data);
+        profile = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
+        });
+        console.log(err);
+        profile = -1;
       });
     return profile;
   }
@@ -1197,6 +1218,7 @@ export const useCryptoStore = defineStore("user", () => {
     getRecordDecision,
     userCreatedEvents,
     getUserProfile,
+    updateUserProfile,
     searchedEvents,
     getFaq,
     getPosts,
