@@ -21,7 +21,7 @@ onMounted(() => {
   loading.isLoading = true;
   setTimeout(() => {
     loading.isLoading = false;
-  }, 3000);
+  }, 1000);
 });
 </script>
 <template>

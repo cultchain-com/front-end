@@ -12,51 +12,33 @@
       Feel Free to investigate useful resources provided by our team to learn
       more about this new market.
     </p>
-    <ul class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10">
-      <li
-        v-for="(item, index) in cardOptions"
-        :key="index"
-        class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl hover:scale-95"
-      >
-        <img
-          :src="item.image"
-          class="h-[192px] object-cover w-full rounded-t-xl"
-        />
-        <div
-          class="px-6 pb-6 content flex flex-col justify-between gap-4 mt-4 h-[calc(100%-208px)]"
-        >
-          <div class="flex flex-col gap-4">
-            <a href="javascript:void(0)" class="text-Primary">{{
-              item.type
-            }}</a>
-            <p class="text-Gray-b5 dark:text-LightGray-b5 text-lg">
-              {{ item.title }}
-            </p>
-            <p class="text-sm text-Gray-b5 dark:text-LightGray-b5">
-              {{ item.description }}
-            </p>
-          </div>
-          <div class="flex gap-3">
-            <img
-              :src="item.avatar"
-              class="rounded-full object-cover h-10 w-10"
-            />
-            <div class="flex flex-col">
-              <h6 class="text-sm text-Gray-b5 dark:text-LightGray-b5">
-                {{ item.author }}
-              </h6>
-              <span class="text-Gray-b4 dark:text-LightGray-b4 text-sm"
-                >{{ item.date }} . {{ item.timeToRead }}</span
-              >
-            </div>
-          </div>
-        </div>
-      </li>
+    <ul class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10">
+      <template v-if="!postList.length">
+        <SkeletonCard v-for="(item, index) in 3"
+      /></template>
+      <template v-for="(item, index) in postList" :key="index">
+        <BlogCard :state="item" />
+      </template>
     </ul>
   </main>
 </template>
 
 <script setup>
+import { useCryptoStore } from "~/store/crypto";
+import SkeletonCard from "./helpful-resources/SkeletonCard.vue";
+import BlogCard from './/helpful-resources/BlogCard.vue'
+
+const { getPosts } = useCryptoStore();
+const postList = ref([]);
+const isLoaded = ref(false);
+
+//mounted
+
+onMounted(async () => {
+  isLoaded.value = false;
+  postList.value = await getPosts();
+  isLoaded.value = true;
+});
 const cardOptions = [
   {
     image: "/helpful-resources/1.png",

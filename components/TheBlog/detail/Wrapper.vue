@@ -1,5 +1,5 @@
 <template>
-  <div v-html="post.body" class="text-Gray-b5 dark:text-LightGray-b5 py-20"></div>
+  <div v-html="post?.body" class="text-Gray-b5 dark:text-LightGray-b5 py-20"></div>
 </template>
 
 <script setup>
