@@ -9,6 +9,7 @@ import AwardWinningSupport from "@/components/TheLanding/AwardWinningSupport.vue
 import Footer from "@/components/Base/Footer.vue";
 import TrendingCollection from "@/components/TheLanding/TrendingCollection.vue";
 import TopCreators from "@/components/TheLanding/TopCreators.vue";
+import Roadmap from "@/components/TheLanding/Roadmap.vue";
 import { useLoading } from "@/store/loading";
 
 //state
@@ -35,6 +36,7 @@ onMounted(() => {
         <HelpfulResources />
         <!-- <TrendingCollection />
         <TopCreators /> -->
+        <Roadmap />
       </main>
     </div>
     <div
