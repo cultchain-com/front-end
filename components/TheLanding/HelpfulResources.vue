@@ -13,7 +13,7 @@
       more about this new market.
     </p>
     <ul class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10">
-      <template v-if="!postList.length">
+      <template v-if="!postList?.length">
         <SkeletonCard v-for="(item, index) in 3"
       /></template>
       <template v-for="(item, index) in postList" :key="index">
