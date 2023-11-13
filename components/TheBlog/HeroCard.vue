@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="`/blog/${props.state?.id}`"
     v-if="props.state"
     class="w-full h-[400px] bg-no-repeat bg-cover rounded-xl my-10 flex justify-start items-end"
     :style="'background-image:url(' + props.state.header_image + ')'"
@@ -34,7 +35,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>

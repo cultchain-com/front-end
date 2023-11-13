@@ -1,7 +1,21 @@
 <script setup>
 import Header from "@/components/Base/Header.vue";
-import Wrapper from "@/components/TheBlog/Wrapper.vue";
+import Wrapper from "@/components/TheBlog/detail/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
+import { useLoading } from "@/store/loading";
+
+//state
+
+const loading = useLoading();
+
+//mounted
+
+onMounted(() => {
+//   loading.isLoading = true;
+  setTimeout(() => {
+    loading.isLoading = false;
+  }, 3000);
+});
 </script>
 <template>
   <div

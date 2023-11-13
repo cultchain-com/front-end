@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="`/blog/${state?.id}`"
     class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl overflow-hidden flex flex-col card cursor-pointer"
   >
     <div class="h-[196px] overflow-hidden">
@@ -37,7 +38,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
