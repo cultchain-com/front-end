@@ -33,8 +33,8 @@ onMounted(() => {
         <MainSection />
         <CardBox />
         <HelpfulResources />
-        <TrendingCollection />
-        <TopCreators />
+        <!-- <TrendingCollection />
+        <TopCreators /> -->
       </main>
     </div>
     <div
