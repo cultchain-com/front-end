@@ -2,7 +2,7 @@
   <div class="lg:p-[60px] p-3 bg-Gray-b2 dark:bg-LightGray-b2 my-20 rounded-xl">
     <div class="grid lg:grid-cols-2">
       <img src="/support.png" class="object-cover rounded-xl" alt="" />
-      <div class="flex flex-col gap-4 p-4">
+      <div class="flex flex-col justify-between gap-4 p-4">
         <p class="lg:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
           AWARD WINNING SUPPORT
         </p>
