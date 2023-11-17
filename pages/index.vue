@@ -37,6 +37,14 @@ onMounted(() => {
         <!-- <TrendingCollection />
         <TopCreators /> -->
         <Roadmap />
+        <iframe
+          class="w-full rounded-xl h-[700px] mb-20"
+          src="https://www.youtube.com/embed/_LZ1Nmlkopg?si=4wCRA4eRkvWEzvH-"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </main>
     </div>
     <div
