@@ -11,7 +11,7 @@
       <div class="flex justify-between items-center">
         <span
           class="bg-Primary px-2 py-1 rounded-lg text-Gray-b5 dark:text-LightGray-b5 text-sm font-medium w-fit"
-          >category
+          >{{props.state.category}}
         </span>
 
         <span class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-normal">{{
@@ -30,7 +30,7 @@
             class="w-10 h-10 rounded-full object-cover"
           />
           <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-medium">
-            Name
+            {{props.state.author_name}}
           </p>
         </div>
       </div>
