@@ -148,8 +148,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -196,8 +196,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // call function
         const validatorRequestDetails =
@@ -229,8 +229,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -333,8 +333,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -483,8 +483,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -535,8 +535,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -605,7 +605,7 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        const ownerAccount = myAccounts[0];
+        const ownerAccount = ethers.utils.getAddress(myAccounts[0]);
         const etherValue = ethers.utils.parseEther(donationAmount.toString()); // Convert 1 ether to wei
 
         // contract
@@ -656,7 +656,7 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        const ownerAccount = myAccounts[0];
+        const ownerAccount = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -841,8 +841,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -897,8 +897,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -953,8 +953,8 @@ export const useCryptoStore = defineStore("user", () => {
       const myAccounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      console.log("Connected: ", myAccounts[0]);
-      account.value = myAccounts[0];
+      console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+      account.value = ethers.utils.getAddress(myAccounts[0]);
     } catch (error) {
       ElNotification({
         title: "Error",
