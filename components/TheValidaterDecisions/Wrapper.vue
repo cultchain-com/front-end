@@ -10,22 +10,22 @@
         Creation
       </h6>
       <div class="grid lg:grid-cols-3 md:grid-cols-2">
-        <CreationCard
+        <!-- <CreationCard
           v-for="(item, index) in creationList"
           :key="index"
           :state="item"
-        />
+        /> -->
       </div>
       <h6 class="lg:text-xl text-base mt-12 text-Primary text-start">
         Progress
       </h6>
 
       <div class="grid lg:grid-cols-3 md:grid-cols-2">
-        <ProgressCard
+        <!-- <ProgressCard
           v-for="(item, index) in progressList"
           :key="index"
           :state="item"
-        />
+        /> -->
       </div>
     </section>
   </div>
@@ -57,29 +57,5 @@ onMounted(async () => {
   pastDecisions.value = await getAllPastDecisions();
   console.log(pastDecisions.value, "past decisions");
   loading.isLoading = false;
-});
-
-//computed
-
-const creationList = computed(() => {
-  let list = pastDecisions.value;
-  return list?.filter((event) => {
-    return (
-      event.proposalDetail.status === "Approved" &&
-      +event.proposalDetail.targetAmount.toString() <
-        +event.proposalDetail.collectedAmount.toString()
-    );
-  });
-});
-
-const progressList = computed(() => {
-  let list = pastDecisions.value;
-  return list?.filter((event) => {
-    return (
-      event.proposalDetail.status === "Approved" &&
-      +event.proposalDetail.targetAmount.toString() >
-        +event.proposalDetail.collectedAmount.toString()
-    );
-  });
 });
 </script>
