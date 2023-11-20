@@ -18,7 +18,7 @@
           Technologies.
         </p>
         <a
-          href="https://cultchain.gitbook.io/whitepaper"
+          href="https://whitepaper.cultchain.com"
           target="_blank"
           class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl border-Primary border-2 bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
         >

@@ -148,8 +148,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -196,8 +196,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // call function
         const validatorRequestDetails =
@@ -229,8 +229,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -302,88 +302,22 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function getAllPastDecisions() {
-    try {
-      setLoader(true);
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        //get user from metamask
-
-        const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",
+    let decisions;
+    await axios
+      .get(`${baseURL}indexer/committees`)
+      .then((res) => {
+        console.log(res.data);
+        decisions = res.data;
+      })
+      .catch((err) => {
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + err),
+          type: "error",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
-
-        // contract
-
-        const randomizedCommitteeContract = new ethers.Contract(
-          randomizedCommitteeAddress,
-          randomizedCommitteeABI,
-          signer
-        );
-        const charityEventsContract = new ethers.Contract(
-          charityEventsAddress,
-          charityEventsABI,
-          signer
-        );
-
-        // call addValidator function
-
-        const pastDecisions =
-          await randomizedCommitteeContract.getAllPastDecisions();
-        const committeesDetail = await Promise.all(
-          pastDecisions.map(async (committeeId: number) => {
-            let committeeDetail = await randomizedCommitteeContract.committees(
-              committeeId
-            );
-
-            // Remove redundant numbered properties
-
-            let newArray = { ...committeeDetail };
-            delete newArray[0];
-            delete newArray[1];
-            delete newArray[2];
-            delete newArray[3];
-            delete newArray[4];
-            delete newArray[5];
-
-            if (CommitteeType[newArray.committeeType] === "Event") {
-              const { eventDetails } = await getEventDetail(
-                newArray.committeeTypeId,
-                charityEventsContract
-              );
-              newArray.proposalDetail = eventDetails;
-            } else if (
-              CommitteeType[committeeDetail.committeeType] === "Milestone"
-            ) {
-              const milestoneDetail = await getMilestoneDetail(
-                committeeDetail.committeeTypeId,
-                charityEventsContract
-              );
-              committeeDetail.proposalDetail = milestoneDetail;
-            }
-
-            newArray.committeeType = CommitteeType[newArray.committeeType];
-            console.log("newArray", newArray);
-
-            return newArray;
-          })
-        );
-        console.log("past Decisions: ", committeesDetail);
-        return committeesDetail;
-      }
-    } catch (error) {
-      ElNotification({
-        title: "Error",
-        message: h("i", "error: " + error),
-        type: "error",
+        console.log(err);
       });
-      console.error("Error past Decisions:", error);
-    }
-    setLoader(false);
+    return decisions;
   }
 
   async function getUserOngoingDecisions(userAddress: string) {
@@ -399,8 +333,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -549,8 +483,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -601,8 +535,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -671,7 +605,7 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        const ownerAccount = myAccounts[0];
+        const ownerAccount = ethers.utils.getAddress(myAccounts[0]);
         const etherValue = ethers.utils.parseEther(donationAmount.toString()); // Convert 1 ether to wei
 
         // contract
@@ -722,7 +656,7 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        const ownerAccount = myAccounts[0];
+        const ownerAccount = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -907,8 +841,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -963,8 +897,8 @@ export const useCryptoStore = defineStore("user", () => {
         const myAccounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected: ", myAccounts[0]);
-        account.value = myAccounts[0];
+        console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+        account.value = ethers.utils.getAddress(myAccounts[0]);
 
         // contract
 
@@ -1019,8 +953,8 @@ export const useCryptoStore = defineStore("user", () => {
       const myAccounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      console.log("Connected: ", myAccounts[0]);
-      account.value = myAccounts[0];
+      console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
+      account.value = ethers.utils.getAddress(myAccounts[0]);
     } catch (error) {
       ElNotification({
         title: "Error",

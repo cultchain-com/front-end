@@ -1,85 +1,104 @@
 <template>
   <div class="flex flex-col gap-8 py-20">
     <h1
-      class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
+      class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
     >
       Validaters Decision
     </h1>
-    <section class="flex flex-col mt-8 gap-4">
-      <h6 class="lg:text-xl text-base mt-12 text-Primary text-start">
-        Creation
-      </h6>
-      <div class="grid lg:grid-cols-3 md:grid-cols-2">
-        <CreationCard
-          v-for="(item, index) in creationList"
-          :key="index"
-          :state="item"
-        />
+    <Carousel
+      dir="ltr"
+      :modelValue="0"
+      :items-to-show="carouselOptions.itemsToShow"
+      :transition="carouselOptions.transition"
+      :breakpoints="carouselOptions.breakpoints"
+      v-if="validatersDecisions.length"
+    >
+      <Slide v-for="(item, index) in validatersDecisions" :key="index">
+        <CreationCard :state="item" />
+      </Slide>
+      <template #addons="{ slidesCount }">
+        <Navigation v-if="slidesCount > 3" />
+      </template>
+    </Carousel>
+    <template v-if="!validatersDecisions.length && !isListLoaded">
+      <div
+        class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
+      >
+        <SkeletonCard v-for="item in 4" :key="item" />
       </div>
-      <h6 class="lg:text-xl text-base mt-12 text-Primary text-start">
-        Progress
-      </h6>
+    </template>
 
-      <div class="grid lg:grid-cols-3 md:grid-cols-2">
-        <ProgressCard
-          v-for="(item, index) in progressList"
-          :key="index"
-          :state="item"
-        />
+    <template v-if="!validatersDecisions.length && isListLoaded">
+      <div class="h-[100px] flex items-center justify-center">
+        <h2
+          class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
+        >
+          No Data Found !
+        </h2>
       </div>
-    </section>
+    </template>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import Icon from "@/components/TheIcon/Icon.vue";
-import { useValidatorDecisions } from "@/store/validator-decisions";
 import CreationCard from "./CreationCard.vue";
-import ProgressCard from "./ProgressCard.vue";
+import SkeletonCard from "./SkeletonCard.vue";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
+import axios from "axios";
 
 //state
 
-const store = useValidatorDecisions();
 const cryptoStore = useCryptoStore();
 const { getAllPastDecisions } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
-const pastDecisions = ref([]);
 const loading = useLoading();
+const validatersDecisions = ref([]);
+const carouselOptions = {
+  itemsToShow: 4,
+  transition: 300,
+  breakpoints: {
+    320: {
+      itemsToShow: 1,
+      snapAlign: "center",
+    },
+    768: {
+      itemsToShow: 2,
+      snapAlign: "center",
+    },
+    1440: {
+      itemsToShow: 4,
+      snapAlign: "center",
+    },
+  },
+};
+const isListLoaded = ref(false);
+
+// emit
+
+const emits = defineEmits(["decisions"]);
 
 //mounted
 
 onMounted(async () => {
-  loading.isLoading = true;
-  pastDecisions.value = await getAllPastDecisions();
-  console.log(pastDecisions.value, "past decisions");
-  loading.isLoading = false;
-});
-
-//computed
-
-const creationList = computed(() => {
-  let list = pastDecisions.value;
-  return list?.filter((event) => {
-    return (
-      event.proposalDetail.status === "Approved" &&
-      +event.proposalDetail.targetAmount.toString() <
-        +event.proposalDetail.collectedAmount.toString()
-    );
-  });
-});
-
-const progressList = computed(() => {
-  let list = pastDecisions.value;
-  return list?.filter((event) => {
-    return (
-      event.proposalDetail.status === "Approved" &&
-      +event.proposalDetail.targetAmount.toString() >
-        +event.proposalDetail.collectedAmount.toString()
-    );
-  });
+  //   loading.isLoading = true;
+  isListLoaded.value = false;
+  validatersDecisions.value = await getAllPastDecisions();
+  emits("decisions", validatersDecisions.value);
+  console.log(validatersDecisions.value, "validatersDecisions");
+  isListLoaded.value = true;
+  //   loading.isLoading = false;
 });
 </script>
+<style lang="scss" scoped>
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+}
+</style>

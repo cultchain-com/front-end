@@ -16,14 +16,14 @@
             class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >
             <h2
-              class="text-Gray-b5 dark:text-LightGray-b5 text-lg font-semibold"
+              class="text-Gray-b5 dark:text-LightGray-b5 text-lg font-semibold line-clamp-1"
             >
               {{ post?.title }}
             </h2>
             <p
               class="text-sm font-semibold text-Gray-b5 dark:text-LightGray-b5"
             >
-              name
+              {{ post.author_name }}
             </p>
           </div>
         </div>
@@ -34,7 +34,7 @@
             convertDate(post?.updated_at)
           }}</span>
           <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm"
-            >category</span
+            >{{post.category}}</span
           >
         </div>
       </div>
