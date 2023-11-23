@@ -6,15 +6,22 @@
     <h1
       class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
     >
-      We Are Thankful of Donors
+      CultChain
     </h1>
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center"
     >
-      Donors and Vulenteers Are Great Part of Todays Culture, We Like to
-      Incentivize Them in a Very Modern Way, in Blockhcian Way.
+      Revolutionizing Charity with Blockchain & AI | From Cityscapes to Digital
+      Benevolence
     </p>
-    <img src="/screenshot.jpg" class="rounded-xl" alt="" />
+    <iframe
+      class="w-full h-[600px] rounded-xl"
+      src="https://www.youtube.com/embed/_LZ1Nmlkopg?si=5_QKlKN9zQGXZDmQ"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
   </main>
 </template>
 
