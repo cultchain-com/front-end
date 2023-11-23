@@ -1875,6 +1875,29 @@
         />
       </g>
     </svg>
+    <svg
+      height="10px"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      v-if="props.name === 'check'"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path
+          :stroke="props.color"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 5L8 15l-5-4"
+        ></path>
+      </g>
+    </svg>
   </div>
 </template>
 
@@ -1883,5 +1906,6 @@ const props = defineProps({
   name: {
     default: "",
   },
+  color: "",
 });
 </script>
