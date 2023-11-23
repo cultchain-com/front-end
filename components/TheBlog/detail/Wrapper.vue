@@ -11,7 +11,6 @@
     <section class="p-5 pt-2">
       <div class="flex justify-between items-start md:flex-row flex-col gap-6">
         <div class="flex gap-4 items-center md:flex-row flex-col w-full">
-          <img class="h-16 w-16 rounded-2xl" src="/no-avatar.webp" />
           <div
             class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >

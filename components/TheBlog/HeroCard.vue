@@ -25,10 +25,6 @@
 
       <div class="flex justify-between items-center">
         <div class="flex gap-2 items-center">
-          <img
-            :src="posts[0].author.avatar"
-            class="w-10 h-10 rounded-full object-cover"
-          />
           <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-medium">
             {{props.state.author_name}}
           </p>

@@ -28,10 +28,6 @@
       </h3>
       <div class="flex justify-between items-center">
         <div class="flex gap-1 items-center">
-          <img
-            src="/helpful-resources/avatar-1.png"
-            class="w-6 h-6 rounded-full object-cover"
-          />
           <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-medium">
             {{ state.author_name }}
           </p>
