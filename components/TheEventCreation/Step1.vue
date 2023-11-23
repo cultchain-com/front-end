@@ -11,11 +11,10 @@
           class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
         />
         <input
-          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
+          class="w-full py-2 pl-8 focus:border-Primary border-2 border-transparent rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
+          placeholder="Target Amount"
           v-model="state.amount"
-          @mouseover="onMouseOver"
-          @mouseleave="onMouseLeave"
         />
       </div>
     </div>
@@ -25,10 +24,9 @@
       >
       <div class="relative">
         <input
-          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
+          class="w-full py-2 px-2 rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="state.name"
-          @mouseover="onMouseOver"
-          @mouseleave="onMouseLeave"
+          placeholder="Event Name"
         />
       </div>
     </div>
@@ -38,7 +36,7 @@
       >
 
       <div class="w-full">
-        <el-select v-model="state.category" class="select w-full">
+        <el-select v-model="state.category" placeholder="Category" class="select w-full">
           <el-option
             v-for="item in props.CategoryList"
             :key="item.value"
@@ -57,8 +55,9 @@
           v-model="state.endDate"
           type="date"
           value-format="x"
-          class="w-full"
+          class="w-full focus:border-Primary border-2 border-transparent"
           format="YYYY/MM/DD"
+          placeholder="End Date"
         />
       </div>
     </div>
