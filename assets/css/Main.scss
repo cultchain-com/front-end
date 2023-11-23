@@ -220,10 +220,10 @@
 }
 .el-select.select .el-input.is-focus .el-input__wrapper,
 .el-select.select .el-input__wrapper.is-focus {
-  box-shadow: 0 0 0 1px #a259ff inset !important;
+  box-shadow: 0 0 0 2px #a259ff inset !important;
 }
 .is-focused {
-  box-shadow: 0 0 0 1px #a259ff inset !important;
+  box-shadow: 0 0 0 2px #a259ff inset !important;
 }
 table {
   @apply md:border-separate md:border-spacing-x-0 md:border-spacing-y-2;
@@ -482,4 +482,7 @@ th:last-child {
   &:after {
     @apply h-[11px] w-[11px] #{!important};
   }
+}
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px #a259ff inset !important;
 }
