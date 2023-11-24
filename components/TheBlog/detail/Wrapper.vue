@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 my-20 rounded-xl flex flex-col gap-3">
+  <div class="p-5 my-20 rounded-xl flex flex-col gap-3" v-if="post">
     <!-- image  -->
 
     <div class="max-h-[400px] overflow-hidden rounded-xl">
@@ -22,7 +22,7 @@
             <p
               class="text-sm font-semibold text-Gray-b5 dark:text-LightGray-b5"
             >
-              {{ post.author_name }}
+              {{ post?.author_name }}
             </p>
           </div>
         </div>
