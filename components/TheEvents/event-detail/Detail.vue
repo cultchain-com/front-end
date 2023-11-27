@@ -272,6 +272,8 @@ const copyTextToClipboard = async (item) => {
   }
 };
 const donationHandler = async () => {
+  // validation 
+  
   if (state.value.status != "APPROVED") {
     ElNotification({
       title: "Error",
