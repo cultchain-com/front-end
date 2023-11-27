@@ -476,7 +476,7 @@ const setUserValidationList = async () => {
 };
 const setUserEventLis = async () => {
   isEventHistoryLoading.value = true;
-  userEventList.value = await userCreatedEvents();
+  userEventList.value = await userCreatedEvents(account.value);
   isEventHistoryLoading.value = false;
 };
 const setProfile = async (userAddress) => {
