@@ -18,6 +18,7 @@
             id="name"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
+            placeholder="Name"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
@@ -31,6 +32,7 @@
             id="email"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
+            placeholder="Email"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
@@ -44,6 +46,7 @@
             id="name"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
+            placeholder="Subject"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
@@ -57,6 +60,7 @@
             id="phone_number"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
+            placeholder="Phone Number"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
@@ -70,6 +74,7 @@
             id="message"
             class="lg:w-[calc(100%-20px)] w-full h-20 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
+            placeholder="Message"
           ></textarea>
         </div>
 

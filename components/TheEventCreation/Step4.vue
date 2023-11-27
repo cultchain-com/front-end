@@ -33,6 +33,7 @@
           class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
           v-model="localState.amount"
+          autocomplete="off"
         />
       </div>
     </div>
@@ -44,6 +45,7 @@
         <input
           class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="localState.name"
+          autocomplete="off"
         />
       </div>
     </div>

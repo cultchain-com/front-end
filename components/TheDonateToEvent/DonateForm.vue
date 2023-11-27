@@ -21,6 +21,7 @@
           type="number"
           placeholder="Amount"
           v-model="state.amount"
+          autocomplete="off"
         />
       </div>
     </div>
