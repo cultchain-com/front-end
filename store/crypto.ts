@@ -169,7 +169,11 @@ export const useCryptoStore = defineStore("user", () => {
         );
         ElNotification({
           title: "Success",
-          message: h("i", "you'r request validator submitted, here is transaction hash: " + tx.hash),
+          message: h(
+            "i",
+            "you'r request validator submitted, here is transaction hash: " +
+              tx.hash
+          ),
           type: "success",
         });
       }
@@ -1098,11 +1102,19 @@ export const useCryptoStore = defineStore("user", () => {
         profile = res.data;
       })
       .catch((err) => {
-        ElNotification({
-          title: "Error",
-          message: h("i", "error: " + err),
-          type: "error",
-        });
+        if (err.response.status == 404) {
+          ElNotification({
+            title: "Error",
+            message: h("i", "error: you don't have activity!"),
+            type: "error",
+          });
+        } else {
+          ElNotification({
+            title: "Error",
+            message: h("i", "error: " + err),
+            type: "error",
+          });
+        }
         console.log(err);
         profile = -1;
       });

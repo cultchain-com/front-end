@@ -1,6 +1,6 @@
 <script setup>
 import Header from "@/components/Base/Header.vue";
-import Wrapper from "@/components/TheEventListFundRaising/Detail.vue";
+import Wrapper from "@/components/TheEvents/event-detail/Detail.vue";
 import Footer from "@/components/Base/Footer.vue";
 </script>
 

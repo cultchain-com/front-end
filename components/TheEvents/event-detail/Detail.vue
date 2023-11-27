@@ -7,7 +7,11 @@
         class="lg:h-[500px] bg-Gray-b2 dark:bg-LightGray-b2 md:h-[300px] h-[196px] max-w-full rounded-xl overflow-hidden col-span-2"
       >
         <img
-          :src="state.token_uri ?'https://ipfs.io/ipfs/'+state.token_uri+'/':localState.image"
+          :src="
+            state.token_uri
+              ? 'https://ipfs.io/ipfs/' + state.token_uri + '/'
+              : '/events/1.png'
+          "
           class="h-full w-full object-cover hover:scale-105"
         />
       </div>
@@ -56,12 +60,13 @@
           </p>
         </div>
         <div class="w-full flex gap-4 flex-col">
-          <NuxtLink
-            :to="'/donate/' + route.params.id"
+          <a
+            href="javascript:void(0)"
+            @click="donationHandler"
             class="py-4 bg-Primary border-Primary w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5 text-center"
           >
             Give Now
-          </NuxtLink>
+          </a>
           <button
             class="py-4 border-2 border-Gray-b4 dark:border-LightGray-b4 w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5"
           >
@@ -76,10 +81,7 @@
     <section class="p-5 pt-2">
       <div class="flex justify-between items-start md:flex-row flex-col gap-6">
         <div class="flex gap-4 items-center md:flex-row flex-col w-full">
-          <img
-            class="h-16 w-16 rounded-2xl"
-            :src="localState.avatar ? localState.avatar : '/no-avatar.webp'"
-          />
+          <img class="h-16 w-16 rounded-2xl" src="/no-avatar.webp" />
           <div
             class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >
@@ -87,8 +89,13 @@
               <p
                 class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
-                <el-tooltip :content="state.creator_wallet_address" placement="top">
-                  <span>{{ shortenAddress(state.creator_wallet_address) }}</span>
+                <el-tooltip
+                  :content="state.creator_wallet_address"
+                  placement="top"
+                >
+                  <span>{{
+                    shortenAddress(state.creator_wallet_address)
+                  }}</span>
                 </el-tooltip>
                 <el-tooltip
                   :content="state.isCopied ? 'Copied' : 'Copy'"
@@ -197,92 +204,25 @@
 </template>
 
 <script setup>
-import CommiteeDecisionSection from "../TheEventListFundRaising/CommiteeDecisionSection.vue";
-import SupportersSection from "../TheEventListFundRaising/SupportersSection.vue";
-import { useRoute } from "vue-router";
-import { useEventList } from "@/store/events-fund-raing";
+import CommiteeDecisionSection from "./CommiteeDecisionSection.vue";
+import SupportersSection from "./SupportersSection.vue";
+import { useRoute, useRouter } from "vue-router";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
 import { shortenAddress } from "@/utils/shortenAddress";
-import { useCreateEvent } from "@/store/create-event";
+import { h } from "vue";
+import { ElNotification } from "element-plus";
 
 //state
 
-const { activeStepp } = useCreateEvent();
 const cryptoStore = useCryptoStore();
 const { getEventDetail, getEventDonationList, getCommitteeDecision } =
   useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const loading = useLoading();
-const store = useEventList();
 const route = useRoute();
-const localState = ref({
-  id: 1,
-  title: "Event 1",
-  description:
-    "In the face of a devastating earthquake in Morocco, countless families are grappling with the aftermath. Homes have crumbled, livelihoods have been shattered, and communities are in dire need of assistance. In these moments of hardship, our faith calls us to extend a helping hand.Join forces with Human Appeal, an organisation dedicated to humanitarian causes, to raise funds for the Morocco earthquake emergency relief. With your dedication and our expertise, we aim to provide essential aid to those who have suffered.Our faith teaches us the significance of charity and assisting those in need. The Quran mentions in Surah Al-Baqarah (2:267): O you who have believed, spend from the good things which you have earned… Your contributions reflect the goodness within your heart.For £100 you can start to support immediate relief; food, water, medical & shelter.Your support can be the beacon of hope for those affected by this tragedy. By donating to my fundraising campaign, you can fulfill the teachings of our faith by helping to provide:",
-  date: "24/04/2023",
-  image: "/events/1.png",
-  bookAmount: 35600,
-  targetAmount: 70000,
-  creator: "Human Appeal",
-  category: "Charity ",
-  milestones: [
-    {
-      title: "MileStone #1",
-      description:
-        "Emergency Shelter: In times of crisis, it's our duty to provide shelter to those who have lost their homes, following the Islamic principles of compassion and solidarity.",
-      targetAmount: "400K",
-    },
-    {
-      title: "MileStone #2",
-      description:
-        "Food and Clean Water: Access to basic necessities is a fundamental right, and your donation can ensure that no one in need goes hungry or thirsty.",
-      targetAmount: "150K",
-    },
-    {
-      title: "MileStone #3",
-      description:
-        "Medical Care: Providing medical care to the injured is an act of mercy. Your support can help ease their pain and suffering.",
-      targetAmount: "300K",
-    },
-  ],
-});
-const commiteeDecisions = ref([
-  {
-    name: "Yahya Ibrahim",
-    vote: false,
-    avatar: "",
-  },
-  {
-    name: "Mariah Idrissi",
-    vote: true,
-    avatar: "",
-  },
-  {
-    name: "Humble Akh",
-    vote: true,
-    avatar: "",
-  },
-]);
-const supporters = ref([
-  {
-    name: "Anonymous",
-    amount: "£700",
-    avatar: "",
-  },
-  {
-    name: "l mckenna",
-    amount: "£100",
-    avatar: "",
-  },
-  {
-    name: "Anonymous",
-    amount: "£5",
-    avatar: "",
-  },
-]);
+const router = useRouter();
 const state = ref({ eventDetails: null });
 const donationsList = ref(null);
 const commiteeDecisionsList = ref(null);
@@ -319,7 +259,6 @@ const convertDate = (item) => {
   let dateString = year + "-" + month + "-" + day; // format as date string
   return dateString;
 };
-
 const copyTextToClipboard = async (item) => {
   try {
     await navigator.clipboard.writeText(item.creator_wallet_address);
@@ -330,6 +269,23 @@ const copyTextToClipboard = async (item) => {
     }, 5000);
   } catch (err) {
     console.error("Failed to copy text: ", err);
+  }
+};
+const donationHandler = async () => {
+  if (state.value.status != "APPROVED") {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: This Event is not approved!"),
+      type: "error",
+    });
+  } else if (state.value.collected_amount >= state.value.target_amount) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: Fund raising is over!"),
+      type: "error",
+    });
+  } else {
+    router.push(`/donate/${route.params.id}`);
   }
 };
 </script>

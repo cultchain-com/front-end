@@ -63,7 +63,7 @@
       </div>
       <!-- <div class=" mt-2 h-[50px] flex">
         <NuxtLink
-          :to="'/event-in-progress/' + state.eventId"
+          :to="'/events/' + state.eventId"
           class="border-Primary border-2 text-Primary font-semibold p-5 py-3 rounded-xl hover:bg-Primary hover:text-Gray-b5 dark:text-LightGray-b5 transition-all"
           >View Event</NuxtLink
         >
