@@ -9,7 +9,7 @@ import { useCryptoStore } from "~/store/crypto";
 //state
 
 const route = useRoute();
-const { getEventDetail, addMilestone } = useCryptoStore();
+const { getEventDetailEventCreation, addMilestone } = useCryptoStore();
 const loading = useLoading();
 const eventDetail = ref(null);
 
@@ -17,7 +17,7 @@ const eventDetail = ref(null);
 
 onMounted(async () => {
   loading.isLoading = true;
-  eventDetail.value = await getEventDetail(route.params.id);
+  eventDetail.value = await getEventDetailEventCreation(route.params.id);
   loading.isLoading = false;
 });
 

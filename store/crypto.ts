@@ -450,6 +450,84 @@ export const useCryptoStore = defineStore("user", () => {
     return event;
   }
 
+  async function getEventDetailEventCreation(eventId: number, contract: any) {
+    debugger;
+    try {
+      setLoader(true);
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+
+        //get user from metamask
+
+        const myAccounts = await ethereum.request({
+          method: "eth_requestAccounts",        
+        });
+          console.log("Connected: ", myAccounts[0]);
+          account.value = myAccounts[0];
+  
+          // contract
+  
+          const charityEventsContract = new ethers.Contract(
+            charityEventsAddress,
+            charityEventsABI,
+            signer
+          );
+          const rawEventDetails = await charityEventsContract.getEventDetails(
+            eventId
+          );
+  
+          const eventDetails = {
+            creator: rawEventDetails.creator,
+            name: rawEventDetails.name,
+            description: rawEventDetails.description,
+            targetAmount: rawEventDetails.targetAmount,
+            endDate: rawEventDetails.endDate,
+            collectedAmount: rawEventDetails.collectedAmount,
+            ratingSum: rawEventDetails.ratingSum,
+            ratingCount: rawEventDetails.ratingCount,
+            category: CategoryList[rawEventDetails.category],
+            status: EventMilestoneStatus[rawEventDetails.status],
+            committeeId: rawEventDetails.committeeId,
+          };
+  
+          const rawMilestones = await charityEventsContract.getMilestonesForEvent(
+            eventId
+          );
+  
+          const milestones = await Promise.all(
+            rawMilestones.map(async (milestone: any) => {
+              return {
+                creator: milestone.creator,
+                name: milestone.name,
+                description: milestone.description,
+                spendedAmount: milestone.spendedAmount,
+                targetAmount: milestone.targetAmount,
+                endDate: milestone.endDate,
+                ratingSum: milestone.ratingSum,
+                ratingCount: milestone.ratingCount,
+                committeeId: milestone.committeeId,
+                completed: milestone.completed,
+                status: EventMilestoneStatus[milestone.status],
+              };
+            })
+          );
+  
+          return { eventDetails, milestones };
+        }
+        setLoader(false);
+      } catch (error) {
+        setLoader(false);
+        ElNotification({
+          title: "Error",
+          message: h("i", "error: " + error),
+          type: "error",
+        });
+        console.log(error);
+      }
+  }
+
   async function getMilestoneDetail(
     eventId: number,
     charityEventsContract: any
@@ -524,6 +602,7 @@ export const useCryptoStore = defineStore("user", () => {
   ) {
     let eventId = null;
     try {
+      debugger;
       setLoader(true);
       const { ethereum } = window;
       if (ethereum) {
@@ -1139,6 +1218,7 @@ export const useCryptoStore = defineStore("user", () => {
     createEvent,
     addMilestone,
     getEventDetail,
+    getEventDetailEventCreation,
     getEventDonationList,
     getDonorsLeaderboard,
     getCreatorsLeaderboard,
