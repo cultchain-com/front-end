@@ -1,10 +1,15 @@
 <template>
-  <div
+  <NuxtLink
+    :to="'/events/' + props.state.id"
     class="bg-Gray-b1 dark:bg-LightGray-b1 rounded-xl flex flex-col hover:shadow-xl"
   >
     <div class="overflow-hidden w-full h-[200px] rounded-xl rounded-b-none">
       <img
-        :src="state.image ? state.image : '/no-image.png'"
+        :src="
+          props.state.token_uri
+            ? 'https://ipfs.io/ipfs/' + props.state.token_uri + '/'
+            : '/no-image.png'
+        "
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105 bg-Gray-b5 dark:bg-LightGray-b5 rounded-b-none"
       />
     </div>
@@ -45,7 +50,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
