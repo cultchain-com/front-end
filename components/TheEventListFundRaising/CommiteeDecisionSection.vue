@@ -52,8 +52,8 @@
         <div class="flex items-center gap-2">
           <template
             v-if="
-              props.state?.members[index].member_wallet_address.toLowerCase() ==
-              account.toLowerCase()
+              props.state?.members[index].member_wallet_address ==
+              account
             "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
