@@ -275,7 +275,7 @@ const toggleTheme = () => {
 };
 const searchHandler = () => {
   if (search.value) {
-    router.push(`/events/${search.value}`);
+    router.push(`/search/${search.value}`);
   }
 };
 const focusOnConnectWallet = async () => {
