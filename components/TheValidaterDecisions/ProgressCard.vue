@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="'/event-in-progress/' + state.proposalDetail.eventId"
+    :to="'/events/' + state.proposalDetail.eventId"
     class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl"
   >
     <div class="overflow-hidden w-full h-[200px]">

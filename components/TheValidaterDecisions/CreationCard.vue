@@ -13,8 +13,7 @@
     <section class="p-5 pt-2">
       <div class="flex flex-col justify-between gap-1">
         <div class="flex justify-between">
-          <NuxtLink
-            :to="'/event-fund-raisings/' + props.state.related_object.id"
+          <NuxtLink :to="'/events/' + props.state.related_object.id"
             ><h5
               class="lg:text-base text-md font-medium text-Gray-b5 dark:text-LightGray-b5 line-clamp-1 text-start"
             >

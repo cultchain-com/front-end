@@ -2,7 +2,9 @@
   <div
     class="rounded-xl flex flex-col justify-end hover:shadow-xl w-full min-h-[400px] bg-no-repeat bg-center bg-contain bg-Gray-b5 dark:bg-LightGray-b5"
     :style="`background-image:url(${
-      state.token_uri ? 'https://ipfs.io/ipfs/'+state.token_uri+'/': '/no-image.png'
+      state.token_uri
+        ? 'https://ipfs.io/ipfs/' + state.token_uri + '/'
+        : '/no-image.png'
     })`"
   >
     <section class="p-5 pt-2 max-w-[300px]">
@@ -51,7 +53,7 @@
       </div>
       <!-- <div class=" mt-2 h-[50px] flex">
         <NuxtLink
-          :to="'/event-in-progress/' + state.eventId"
+          :to="'/events/' + state.eventId"
           class="border-Primary border-2 text-Primary font-semibold p-5 py-3 rounded-xl hover:bg-Primary hover:text-Gray-b5 dark:text-LightGray-b5 transition-all"
           >View Event</NuxtLink
         >

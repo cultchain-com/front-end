@@ -1,13 +1,17 @@
 <template>
   <NuxtLink
-    :to="'/event-in-progress/' + state.id"
+    :to="'/events/' + state.id"
     class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl w-full"
   >
     <div
       class="overflow-hidden w-full h-[200px] bg-Gray-b5 dark:bg-LightGray-b5 rounded-t-xl"
     >
       <img
-        :src="state.token_uri ? 'https://ipfs.io/ipfs/'+state.token_uri+'/' : '/no-image.png'"
+        :src="
+          state.token_uri
+            ? 'https://ipfs.io/ipfs/' + state.token_uri + '/'
+            : '/no-image.png'
+        "
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105"
       />
     </div>
