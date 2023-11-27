@@ -97,7 +97,7 @@ const isListLoaded = ref(false);
 const route = useRoute();
 const carouselOptions = {
   itemsToShow: 4,
-  transition: "300",
+  transition: 300,
   breakpoints: {
     320: {
       itemsToShow: 1,

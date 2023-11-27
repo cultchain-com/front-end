@@ -34,7 +34,7 @@ import SkeletonBanner from "./SkeletonBanner.vue";
 const eventList = ref([]);
 const carouselOptions = {
   itemsToShow: "1",
-  transition: "300",
+  transition: 300,
 };
 
 //props

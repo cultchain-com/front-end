@@ -95,7 +95,7 @@ const eventListFundRaising = ref([]);
 const eventListInProgress = ref([]);
 const carouselOptions = {
   itemsToShow: 4,
-  transition: "300",
+  transition: 300,
   breakpoints: {
     320: {
       itemsToShow: 1,
@@ -124,7 +124,6 @@ onMounted(async () => {
   isListLoaded.value = false;
   eventList.value = await listAllEvents();
   emits("events", eventList.value);
-  debugger;
   eventListFundRaising.value = eventList.value.filter((event) => {
     return (
       event.status === "APPROVED" &&
