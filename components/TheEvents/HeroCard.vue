@@ -2,7 +2,7 @@
   <div
     class="rounded-xl flex flex-col justify-end hover:shadow-xl w-full min-h-[400px] bg-no-repeat bg-center bg-contain bg-Gray-b5 dark:bg-LightGray-b5"
     :style="`background-image:url(${
-      state.image ? state.image : '/no-image.png'
+      state.token_uri ? 'https://ipfs.io/ipfs/'+state.token_uri+'/': '/no-image.png'
     })`"
   >
     <section class="p-5 pt-2 max-w-[300px]">

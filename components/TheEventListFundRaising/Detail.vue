@@ -10,7 +10,7 @@
         class="lg:h-[500px] bg-Gray-b2 dark:bg-LightGray-b2 md:h-[300px] h-[196px] max-w-full rounded-xl overflow-hidden col-span-2"
       >
         <img
-          :src="localState.image"
+          :src="state.token_uri ?'https://ipfs.io/ipfs/'+state.token_uri+'/':localState.image"
           class="h-full w-full object-cover hover:scale-105"
         />
       </div>
