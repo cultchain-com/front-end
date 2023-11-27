@@ -455,7 +455,6 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function getEventDetailEventCreation(eventId: number, contract: any) {
-    debugger;
     try {
       setLoader(true);
       const { ethereum } = window;
@@ -606,7 +605,6 @@ export const useCryptoStore = defineStore("user", () => {
   ) {
     let eventId = null;
     try {
-      debugger;
       setLoader(true);
       const { ethereum } = window;
       if (ethereum) {
