@@ -258,7 +258,7 @@ const convertDate = (item) => {
 
   let dateString = year + "-" + month + "-" + day; // format as date string
   return dateString;
-};
+}; 
 const copyTextToClipboard = async (item) => {
   try {
     await navigator.clipboard.writeText(item.creator_wallet_address);
