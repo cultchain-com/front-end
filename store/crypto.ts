@@ -161,13 +161,17 @@ export const useCryptoStore = defineStore("user", () => {
 
         // call addValidator function
 
-        const tx = await randomizedCommitteeContract
-          .connect(account.value)
-          .addValidator(validatorAddress);
-        console.log(
-          "Validator added successfully. Transaction hash:",
-          tx.transactionHash
+        const tx = await randomizedCommitteeContract.addValidator(
+          validatorAddress,
+          {
+            gasLimit: 100000,
+          }
         );
+        ElNotification({
+          title: "Success",
+          message: h("i", "you'r request validator submitted, here is transaction hash: " + tx.hash),
+          type: "success",
+        });
       }
     } catch (error) {
       ElNotification({
@@ -462,70 +466,70 @@ export const useCryptoStore = defineStore("user", () => {
         //get user from metamask
 
         const myAccounts = await ethereum.request({
-          method: "eth_requestAccounts",        
+          method: "eth_requestAccounts",
         });
-          console.log("Connected: ", myAccounts[0]);
-          account.value = myAccounts[0];
-  
-          // contract
-  
-          const charityEventsContract = new ethers.Contract(
-            charityEventsAddress,
-            charityEventsABI,
-            signer
-          );
-          const rawEventDetails = await charityEventsContract.getEventDetails(
-            eventId
-          );
-  
-          const eventDetails = {
-            creator: rawEventDetails.creator,
-            name: rawEventDetails.name,
-            description: rawEventDetails.description,
-            targetAmount: rawEventDetails.targetAmount,
-            endDate: rawEventDetails.endDate,
-            collectedAmount: rawEventDetails.collectedAmount,
-            ratingSum: rawEventDetails.ratingSum,
-            ratingCount: rawEventDetails.ratingCount,
-            category: CategoryList[rawEventDetails.category],
-            status: EventMilestoneStatus[rawEventDetails.status],
-            committeeId: rawEventDetails.committeeId,
-          };
-  
-          const rawMilestones = await charityEventsContract.getMilestonesForEvent(
-            eventId
-          );
-  
-          const milestones = await Promise.all(
-            rawMilestones.map(async (milestone: any) => {
-              return {
-                creator: milestone.creator,
-                name: milestone.name,
-                description: milestone.description,
-                spendedAmount: milestone.spendedAmount,
-                targetAmount: milestone.targetAmount,
-                endDate: milestone.endDate,
-                ratingSum: milestone.ratingSum,
-                ratingCount: milestone.ratingCount,
-                committeeId: milestone.committeeId,
-                completed: milestone.completed,
-                status: EventMilestoneStatus[milestone.status],
-              };
-            })
-          );
-  
-          return { eventDetails, milestones };
-        }
-        setLoader(false);
-      } catch (error) {
-        setLoader(false);
-        ElNotification({
-          title: "Error",
-          message: h("i", "error: " + error),
-          type: "error",
-        });
-        console.log(error);
+        console.log("Connected: ", myAccounts[0]);
+        account.value = myAccounts[0];
+
+        // contract
+
+        const charityEventsContract = new ethers.Contract(
+          charityEventsAddress,
+          charityEventsABI,
+          signer
+        );
+        const rawEventDetails = await charityEventsContract.getEventDetails(
+          eventId
+        );
+
+        const eventDetails = {
+          creator: rawEventDetails.creator,
+          name: rawEventDetails.name,
+          description: rawEventDetails.description,
+          targetAmount: rawEventDetails.targetAmount,
+          endDate: rawEventDetails.endDate,
+          collectedAmount: rawEventDetails.collectedAmount,
+          ratingSum: rawEventDetails.ratingSum,
+          ratingCount: rawEventDetails.ratingCount,
+          category: CategoryList[rawEventDetails.category],
+          status: EventMilestoneStatus[rawEventDetails.status],
+          committeeId: rawEventDetails.committeeId,
+        };
+
+        const rawMilestones = await charityEventsContract.getMilestonesForEvent(
+          eventId
+        );
+
+        const milestones = await Promise.all(
+          rawMilestones.map(async (milestone: any) => {
+            return {
+              creator: milestone.creator,
+              name: milestone.name,
+              description: milestone.description,
+              spendedAmount: milestone.spendedAmount,
+              targetAmount: milestone.targetAmount,
+              endDate: milestone.endDate,
+              ratingSum: milestone.ratingSum,
+              ratingCount: milestone.ratingCount,
+              committeeId: milestone.committeeId,
+              completed: milestone.completed,
+              status: EventMilestoneStatus[milestone.status],
+            };
+          })
+        );
+
+        return { eventDetails, milestones };
       }
+      setLoader(false);
+    } catch (error) {
+      setLoader(false);
+      ElNotification({
+        title: "Error",
+        message: h("i", "error: " + error),
+        type: "error",
+      });
+      console.log(error);
+    }
   }
 
   async function getMilestoneDetail(
@@ -1237,5 +1241,6 @@ export const useCryptoStore = defineStore("user", () => {
     getFaq,
     getPosts,
     sendMessage,
+    addValidator,
   };
 });

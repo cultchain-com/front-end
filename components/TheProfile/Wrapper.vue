@@ -53,10 +53,12 @@
             Connect Wallet
           </el-button>
           <el-button
+            @click="addValidatorHandler"
             icon
             class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 ml-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
+            :disabled="isAddValidatorLoading"
           >
-            Request Validator
+            {{ isAddValidatorLoading ? "Loading..." : "Request Validator" }}
           </el-button>
         </div>
         <div class="md:hidden">
@@ -440,6 +442,7 @@ const {
   userCreatedEvents,
   getUserProfile,
   updateUserProfile,
+  addValidator,
 } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const state = ref(null);
@@ -457,6 +460,7 @@ const editModeState = ref({
   twitter_link: "",
 });
 const isLoading = ref(false);
+const isAddValidatorLoading = ref(false);
 
 // methods
 
@@ -500,10 +504,7 @@ const saveEditsHandler = async () => {
   profile.twitter_link = editModeState.value.twitter_link;
   profile.instagram_link = editModeState.value.instagram_link;
   profile.facebook_link = editModeState.value.facebook_link;
-  const response = await updateUserProfile(
-    account.value,
-    profile
-  );
+  const response = await updateUserProfile(account.value, profile);
   if (response !== -1) {
     state.value = profile;
     ElNotification({
@@ -525,6 +526,11 @@ const convertDate = (item) => {
 
   let dateString = year + "-" + month + "-" + day; // format as date string
   return dateString;
+};
+const addValidatorHandler = async () => {
+  isAddValidatorLoading.value = true;
+  await addValidator(account.value);
+  isAddValidatorLoading.value = false;
 };
 
 //mounted
