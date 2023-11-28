@@ -203,7 +203,7 @@
 
     <div
       class="network-alert"
-      v-if="isMounted && !isNetworkValid"
+      v-if="isMounted && !isNetworkValid && !$isSafari()"
       :key="counter"
     >
       <span variant="info" class="text"
@@ -215,6 +215,12 @@
           @click="switchNetwork"
           >(Mumbai)</a
         ></span
+      >
+    </div>
+    <div v-if="$isSafari()" class="network-alert">
+      <span variant="info" class="text"
+        >You are using Safari,for better experience please use google
+        Chrome</span
       >
     </div>
   </div>
@@ -239,11 +245,11 @@ const router = useRouter();
 const counter = ref(1);
 const search = ref("");
 const navigations = [
-  {
-    route: "/DAO-validator-requests",
-    text: "DAO Validator Requests",
-    children: [],
-  },
+  // {
+  //   route: "/DAO-validator-requests",
+  //   text: "DAO Validator Requests",
+  //   children: [],
+  // },
   {
     route: "/validater-decisions",
     text: "Validaters Decision",
@@ -258,6 +264,8 @@ const navigations = [
 const isMounted = ref(false);
 const isDarkMode = ref(true);
 const isConnectWalletFocused = ref(false);
+const userAgentString = ref(null);
+const safariAgent = ref(null);
 
 //methods
 
