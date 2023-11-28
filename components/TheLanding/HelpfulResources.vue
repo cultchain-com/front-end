@@ -16,7 +16,7 @@
       class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10"
     >
       <template v-if="!isLoaded">
-        <SkeletonCard v-for="(item, index) in 3"
+        <SkeletonCard v-for="(item, index) in 4"
       /></template>
       <template v-for="(item, index) in postList" :key="index">
         <BlogCard :state="item" />
