@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     "vue3-carousel-nuxt",
     "@nuxtjs/turnstile",
     "nuxt-simple-sitemap",
+    "nuxt-simple-robots",
   ],
   nitro: {
     prerender: {
