@@ -3,6 +3,7 @@
 import { h } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 //pinia
 
@@ -23,6 +24,7 @@ export const useCryptoStore = defineStore("user", () => {
   const loading = ref(false);
   const isNetworkValid = ref(false);
   const charityEventsContract = ref(null);
+  const router = useRouter();
 
   // abi
 
@@ -1040,13 +1042,18 @@ export const useCryptoStore = defineStore("user", () => {
       });
       console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
       account.value = ethers.utils.getAddress(myAccounts[0]);
-    } catch (error) {
+      return true;
+    } catch (error: any) {
+      if (error.code == 4001) {
+        router.push("/");
+      }
       ElNotification({
         title: "Error",
-        message: h("i", "error: " + error),
+        message: h("i", "error: " + error.message),
         type: "error",
       });
       console.log(error);
+      return false;
     }
   }
 

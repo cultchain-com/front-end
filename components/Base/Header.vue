@@ -105,16 +105,15 @@
           >
             {{ shortenAddress(account) }}
           </el-button>
-          <NuxtLink
-            :to="account && '/profile'"
+          <el-button
             icon
-            class="border-0 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
-            @click="focusOnConnectWallet"
+            class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+            @click="checkWalletConnection"
           >
             <i
               class="isax isax-user text-2xl text-Gray-b5 dark:text-LightGray-b5"
             ></i>
-          </NuxtLink>
+          </el-button>
           <el-button
             icon
             class="border-0 px-2 glass mx-0 h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
@@ -285,17 +284,12 @@ const searchHandler = () => {
     router.push(`/search/${search.value}`);
   }
 };
-const focusOnConnectWallet = async () => {
+const checkWalletConnection = async () => {
   if (!account.value) {
-    ElNotification({
-      title: "Prompt",
-      message: "please connect your wallet first!",
-      duration: 3000,
-    });
-    isConnectWalletFocused.value = true;
-    setTimeout(() => {
-      isConnectWalletFocused.value = false;
-    }, 10000);
+    let status = await connectWallet();
+    status ? router.push("/profile") : "";
+  } else {
+    router.push("/profile");
   }
 };
 
