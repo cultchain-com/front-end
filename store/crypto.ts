@@ -1217,10 +1217,20 @@ export const useCryptoStore = defineStore("user", () => {
     return response;
   }
 
+  async function isAccountConnected() {
+    const { ethereum } = window;
+    if (ethereum) {
+      const accounts = await ethereum.request({
+        method: "eth_accounts",
+      });
+      accounts.length > 0 ? (account.value = accounts[0]) : "";
+    }
+  }
+
   (async () => {
     if (process.client) {
       await checkNetwork();
-      // await connectWallet();
+      await isAccountConnected();
     }
   })();
 
