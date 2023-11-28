@@ -1231,9 +1231,23 @@ export const useCryptoStore = defineStore("user", () => {
   const handleAccountsChanged = (accounts: any) => {
     if (accounts.length == 0) {
       account.value = "";
-      debugger;
       if (route.fullPath == "/profile") {
         router.push("/");
+      }
+    }
+  };
+
+  const handleChainChanged = async () => {
+    debugger;
+    const { ethereum } = await window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const network = await provider.getNetwork();
+
+      if (network.chainId !== 80001) {
+        isNetworkValid.value = false;
+      } else {
+        isNetworkValid.value = true;
       }
     }
   };
@@ -1249,7 +1263,9 @@ export const useCryptoStore = defineStore("user", () => {
     const { ethereum } = window;
     if (ethereum) {
       ethereum.on("accountsChanged", handleAccountsChanged);
+      ethereum.on("chainChanged", handleChainChanged);
       handleAccountsChanged(await ethereum.request({ method: "eth_accounts" }));
+      handleChainChanged();
     }
   });
 
