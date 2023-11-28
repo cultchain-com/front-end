@@ -1,6 +1,6 @@
 //vue
 
-import { h } from "vue";
+import { h, onMounted, onUnmounted } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
 import { useRouter } from "vue-router";
@@ -1227,12 +1227,30 @@ export const useCryptoStore = defineStore("user", () => {
     }
   }
 
+  const handleAccountsChanged = (accounts: any) => {
+    if (accounts.length == 0) {
+      account.value = "";
+    }
+  };
+
   (async () => {
     if (process.client) {
       await checkNetwork();
       await isAccountConnected();
     }
   })();
+
+  onMounted(async () => {
+    const { ethereum } = window;
+    if (ethereum) {
+      ethereum.on("accountsChanged", handleAccountsChanged);
+      handleAccountsChanged(await ethereum.request({ method: "eth_accounts" }));
+    }
+  });
+
+  onUnmounted(async () => {
+    // await handleDisconnect();
+  });
 
   return {
     account,
@@ -1269,5 +1287,6 @@ export const useCryptoStore = defineStore("user", () => {
     getPosts,
     sendMessage,
     addValidator,
+    isAccountConnected,
   };
 });

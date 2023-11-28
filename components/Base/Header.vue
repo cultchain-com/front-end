@@ -236,7 +236,7 @@ import { useRouter } from "vue-router";
 //state
 
 const cryptoStore = useCryptoStore();
-const { switchNetwork, connectWallet } = useCryptoStore();
+const { switchNetwork, connectWallet, isAccountConnected } = useCryptoStore();
 const { account, isNetworkValid } = storeToRefs(cryptoStore);
 const drawer = ref(false);
 const direction = ref("rtl");
@@ -296,6 +296,7 @@ const checkWalletConnection = async () => {
 //mounted
 
 onMounted(() => {
+  isAccountConnected();
   isMounted.value = true;
 });
 
