@@ -320,4 +320,14 @@ const donationHandler = async () => {
     router.push(`/donate/${route.params.id}`);
   }
 };
+
+//watcher
+
+watch(state, (newValue) => {
+  useSeoMeta({
+    title: () => newValue?.name,
+    ogTitle: () => newValue?.name,
+    // and other stuff
+  });
+});
 </script>

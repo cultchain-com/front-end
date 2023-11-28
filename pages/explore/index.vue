@@ -16,6 +16,17 @@ onMounted(() => {
     loading.isLoading = false;
   }, 3000);
 });
+
+//meta
+
+useHead({
+  title: "Explore",
+  meta: [
+    {
+      name: "Explore",
+    },
+  ],
+});
 </script>
 <template>
   <div

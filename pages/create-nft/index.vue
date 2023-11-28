@@ -16,6 +16,18 @@ onMounted(() => {
     loading.isLoading = false;
   }, 3000);
 });
+
+//meta
+
+useHead({
+  title: "Create NFT",
+  meta: [
+    {
+      name: "Create NFT",
+      content: "How you can Create NFT in CultChain",
+    },
+  ],
+});
 </script>
 <template>
   <div

@@ -16,6 +16,19 @@ onMounted(() => {
     loading.isLoading = false;
   }, 3000);
 });
+
+//meta
+
+useHead({
+  title: "Create Event",
+  meta: [
+    {
+      name: "Create Event",
+      content:
+        "How you can Create Event in CultChain",
+    },
+  ],
+});
 </script>
 <template>
   <div class="bg-Gray-b1 dark:bg-LightGray-b1">
