@@ -1,22 +1,15 @@
 # Use an official Node runtime as the parent image
 FROM node:20
 
-# Set the working directory in the container to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-RUN npm cache clean --force
+RUN npm install
 
-# Install project dependencies
-RUN npm cache clean --force 
-RUN npm install --legacy-peer-deps
-
-# Copy the current directory contents into the container at /app
 COPY . .
 
-# Build the app for production
-RUN npm run build
+EXPOSE 3000
 
-# The build output will be in the /app/dist directory
+RUN npm run build
+CMD [ "npm", "run", "start" ]
