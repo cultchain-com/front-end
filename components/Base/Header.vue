@@ -264,8 +264,6 @@ const navigations = [
 const isMounted = ref(false);
 const isDarkMode = ref(true);
 const isConnectWalletFocused = ref(false);
-const userAgentString = ref(null);
-const safariAgent = ref(null);
 
 //methods
 
