@@ -1,5 +1,5 @@
 # Use an official Node runtime as the parent image
-FROM node:20
+FROM node:20-alpine
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm cache clean --force
 
 # Install project dependencies
-RUN npm install --legacy-peer-deps
+RUN npm cache clean --force && npm install --legacy-peer-deps
 
 # Copy the current directory contents into the container at /app
 COPY . .
