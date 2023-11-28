@@ -124,9 +124,24 @@
                 </el-tooltip></p
             ></client-only>
             <p
-              class="text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5"
+              class="text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5 flex gap-2"
             >
               {{ state.name }}
+              <span
+                class="text-sm font-semibold italic bg-opacity-20 px-2 rounded-3xl h-8 flex items-center justify-center"
+                :class="
+                  state.status === 'PENDING'
+                    ? 'text-orange-600 bg-orange-600'
+                    : state.status == 'APPROVED'
+                    ? 'text-green-600 bg-green-600'
+                    : state.status == 'REJECTED'
+                    ? 'text-red-600 bg-red-600'
+                    : state.status == 'NOTSTARTEDYET'
+                    ? 'text-blue-600 bg-blue-600'
+                    : ''
+                "
+                >{{ state.status }}</span
+              >
             </p>
           </div>
         </div>
