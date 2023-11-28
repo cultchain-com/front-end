@@ -1,8 +1,9 @@
 //vue
 
-import { h } from "vue";
+import { h, onMounted, onUnmounted } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
+import { useRouter, useRoute } from "vue-router";
 
 //pinia
 
@@ -23,6 +24,8 @@ export const useCryptoStore = defineStore("user", () => {
   const loading = ref(false);
   const isNetworkValid = ref(false);
   const charityEventsContract = ref(null);
+  const router = useRouter();
+  const route = useRoute();
 
   // abi
 
@@ -1040,13 +1043,18 @@ export const useCryptoStore = defineStore("user", () => {
       });
       console.log("Connected: ", ethers.utils.getAddress(myAccounts[0]));
       account.value = ethers.utils.getAddress(myAccounts[0]);
-    } catch (error) {
+      return true;
+    } catch (error: any) {
+      if (error.code == 4001) {
+        router.push("/");
+      }
       ElNotification({
         title: "Error",
-        message: h("i", "error: " + error),
+        message: h("i", "error: " + error.message),
         type: "error",
       });
       console.log(error);
+      return false;
     }
   }
 
@@ -1210,12 +1218,60 @@ export const useCryptoStore = defineStore("user", () => {
     return response;
   }
 
+  async function isAccountConnected() {
+    const { ethereum } = window;
+    if (ethereum) {
+      const accounts = await ethereum.request({
+        method: "eth_accounts",
+      });
+      accounts.length > 0 ? (account.value = accounts[0]) : "";
+    }
+  }
+
+  const handleAccountsChanged = (accounts: any) => {
+    if (accounts.length == 0) {
+      account.value = "";
+      if (route.fullPath == "/profile") {
+        router.push("/");
+      }
+    }
+  };
+
+  const handleChainChanged = async () => {
+    debugger;
+    const { ethereum } = await window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const network = await provider.getNetwork();
+
+      if (network.chainId !== 80001) {
+        isNetworkValid.value = false;
+      } else {
+        isNetworkValid.value = true;
+      }
+    }
+  };
+
   (async () => {
     if (process.client) {
       await checkNetwork();
-      // await connectWallet();
+      await isAccountConnected();
     }
   })();
+
+  onMounted(async () => {
+    const { ethereum } = window;
+    if (ethereum) {
+      ethereum.on("accountsChanged", handleAccountsChanged);
+      ethereum.on("chainChanged", handleChainChanged);
+      handleAccountsChanged(await ethereum.request({ method: "eth_accounts" }));
+      handleChainChanged();
+    }
+  });
+
+  onUnmounted(async () => {
+    // await handleDisconnect();
+  });
 
   return {
     account,
@@ -1252,5 +1308,6 @@ export const useCryptoStore = defineStore("user", () => {
     getPosts,
     sendMessage,
     addValidator,
+    isAccountConnected,
   };
 });

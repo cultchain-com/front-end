@@ -164,6 +164,7 @@
                 placeholder="Name ..."
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.name"
+                autocomplete="off"
               />
             </div>
           </div>
@@ -177,6 +178,7 @@
                 placeholder="Bio ..."
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.bio"
+                autocomplete="off"
               />
             </div>
           </div>
@@ -190,6 +192,7 @@
                 placeholder="https://www.facebook.com/your_facebook_id"
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.facebook_link"
+                autocomplete="off"
               />
             </div>
           </div>
@@ -203,6 +206,7 @@
                 placeholder="https://www.twitter.com/your_twitter_id"
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.twitter_link"
+                autocomplete="off"
               />
             </div>
           </div>
@@ -216,6 +220,7 @@
                 placeholder="https://www.instagram.com/your_instagram_id"
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.instagram_link"
+                autocomplete="off"
               />
             </div>
           </div>
@@ -537,23 +542,10 @@ const addValidatorHandler = async () => {
 
 onMounted(async () => {
   await connectWallet();
-  if (account.value) {
-    setProfile(account.value);
-    setUserDonationList();
-    setUserValidationList();
-    setUserEventLis();
-  }
-});
-
-//watch
-
-watch(account, (newVal, oldVal) => {
-  if (newVal) {
-    setProfile(newVal);
-    setUserDonationList();
-    setUserValidationList();
-    setUserEventLis();
-  }
+  setProfile(account.value);
+  setUserDonationList();
+  setUserValidationList();
+  setUserEventLis();
 });
 </script>
 <style lang="scss" scoped>

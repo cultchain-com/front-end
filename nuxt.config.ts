@@ -45,7 +45,22 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "vue3-carousel-nuxt",
     "@nuxtjs/turnstile",
+    "nuxt-simple-sitemap",
+    "nuxt-simple-robots",
   ],
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "sitemap.xml"],
+      ignore: ["/tak", "/konfiguration", "/checkout"],
+    },
+  },
+  site: {
+    url: "https://cultchain.com/",
+  },
+  sitemap: {
+    sources: ["/api/sitemap"],
+  },
 
   turnstile: {
     siteKey: "0x4AAAAAAAM0C-69dCKvEr7f",

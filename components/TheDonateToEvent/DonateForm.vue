@@ -5,7 +5,7 @@
     <label class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5 mb-6"
       >Donating to
       <b class="text-base underline underline-offset-8 text-Primary">{{
-        event?.eventDetails.name
+        event?.name
       }}</b>
     </label>
     <div class="form-item flex flex-col gap-1">
@@ -21,6 +21,7 @@
           type="number"
           placeholder="Amount"
           v-model="state.amount"
+          autocomplete="off"
         />
       </div>
     </div>
@@ -106,5 +107,15 @@ onMounted(async () => {
   loading.isLoading = true;
   event.value = await getEventDetail(route.params.id);
   loading.isLoading = false;
+});
+
+//watcher
+
+watch(event, (newValue) => {
+  useSeoMeta({
+    title: () => newValue?.name,
+    ogTitle: () => newValue?.name,
+    // and other stuff
+  });
 });
 </script>

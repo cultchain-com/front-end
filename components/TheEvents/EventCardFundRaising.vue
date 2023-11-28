@@ -39,7 +39,12 @@
             Target Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{ state.target_amount / Math.pow(10, 18) }} ETH
+            {{
+              new Intl.NumberFormat().format(
+                state.target_amount / Math.pow(10, 18)
+              )
+            }}
+            ETH
           </p>
         </div>
         <div class="flex flex-col gap-1 items-center">
@@ -47,7 +52,12 @@
             Collected Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{ state.collected_amount / Math.pow(10, 18) }} ETH
+            {{
+              new Intl.NumberFormat().format(
+                state.collected_amount / Math.pow(10, 18)
+              )
+            }}
+            ETH
           </p>
         </div>
       </div>

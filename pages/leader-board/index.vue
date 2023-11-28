@@ -2,6 +2,17 @@
 import Header from "@/components/Base/Header.vue";
 import Footer from "@/components/Base/Footer.vue";
 import Warpper from "@/components/TheLeaderBoard/Wrapper.vue";
+
+//meta
+
+useHead({
+  title: "Leader Board",
+  meta: [
+    {
+      name: "Leader Board",
+    },
+  ],
+});
 </script>
 
 <template>

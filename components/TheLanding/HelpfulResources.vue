@@ -12,21 +12,30 @@
       Feel Free to investigate useful resources provided by our team to learn
       more about this new market.
     </p>
-    <ul class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10">
-      <template v-if="!postList?.length">
-        <SkeletonCard v-for="(item, index) in 3"
+    <ul
+      class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10"
+    >
+      <template v-if="!isLoaded">
+        <SkeletonCard v-for="(item, index) in 4"
       /></template>
       <template v-for="(item, index) in postList" :key="index">
         <BlogCard :state="item" />
       </template>
     </ul>
+      <template v-if="isLoaded && !postList?.length">
+        <p
+          class="text-Gray-b5 dark:text-LightGray-b5 text-xl leading-8 text-center"
+        >
+          Nothing To Show!
+        </p>
+      </template>
   </main>
 </template>
 
 <script setup>
 import { useCryptoStore } from "~/store/crypto";
 import SkeletonCard from "./helpful-resources/SkeletonCard.vue";
-import BlogCard from './/helpful-resources/BlogCard.vue'
+import BlogCard from ".//helpful-resources/BlogCard.vue";
 
 const { getPosts } = useCryptoStore();
 const postList = ref([]);

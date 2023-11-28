@@ -2,10 +2,23 @@
 import Header from "@/components/Base/Header.vue";
 import Wrapper from "@/components/TheEvents/search/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
+import { useRoute } from "vue-router";
 
 //state
 
 const eventList = ref([]);
+const route = useRoute();
+
+//meta
+
+useHead({
+  title: route.params.search,
+  meta: [
+    {
+      name: route.params.search,
+    },
+  ],
+});
 </script>
 <template>
   <div

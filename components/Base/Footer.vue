@@ -51,6 +51,7 @@
           <input
             placeholder="Enter Your Email Here"
             class="w-full h-full p-3 rounded-xl outline-none"
+            autocomplete="off"
           />
           <button
             class="absolute right-0 top-0 h-[50px] px-4 bg-Primary rounded-r-xl text-Gray-b5 dark:text-LightGray-b5"

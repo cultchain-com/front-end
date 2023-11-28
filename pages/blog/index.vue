@@ -2,6 +2,19 @@
 import Header from "@/components/Base/Header.vue";
 import Wrapper from "@/components/TheBlog/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
+
+//meta
+
+useHead({
+  title: "Blogs",
+  meta: [
+    {
+      name: "Blogs",
+      content:
+        "There are some helpfull resources about cultchain",
+    },
+  ],
+});
 </script>
 <template>
   <div

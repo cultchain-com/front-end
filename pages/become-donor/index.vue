@@ -4,6 +4,19 @@ import Wrapper from "@/components/TheDonor/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
 import { useLoading } from "@/store/loading";
 
+//meta
+
+useHead({
+  title: "How to Become Donor",
+  meta: [
+    {
+      name: "Becoming Donor",
+      content:
+        "How you can be a donor in CultChain",
+    },
+  ],
+});
+
 //state
 
 const loading = useLoading();

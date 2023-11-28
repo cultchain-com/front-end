@@ -8,6 +8,18 @@ import Footer from "@/components/Base/Footer.vue";
 //state
 
 const eventList = ref([]);
+
+//meta
+
+useHead({
+  title: "Events",
+  meta: [
+    {
+      name: "Events",
+      content: "CultChain Events",
+    },
+  ],
+});
 </script>
 <template>
   <div

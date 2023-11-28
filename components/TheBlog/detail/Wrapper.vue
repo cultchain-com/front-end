@@ -32,9 +32,9 @@
           <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
             convertDate(post?.updated_at)
           }}</span>
-          <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm"
-            >{{post.category}}</span
-          >
+          <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">{{
+            post.category
+          }}</span>
         </div>
       </div>
     </section>
@@ -59,6 +59,8 @@ import { useRoute } from "vue-router";
 import { useCryptoStore } from "~/store/crypto";
 import { useLoading } from "@/store/loading";
 
+//state
+
 const loading = useLoading();
 const route = useRoute();
 const { getPosts } = useCryptoStore();
@@ -73,6 +75,16 @@ onMounted(async () => {
   postList.value.filter((post) => post.id == route.params.id);
   post.value = postList.value[0];
   loading.isLoading = false;
+});
+
+//watcher
+
+watch(post, (newValue) => {
+  useSeoMeta({
+    title: () => newValue?.title,
+    ogTitle: () => newValue?.title,
+    // and other stuff
+  });
 });
 
 //methods

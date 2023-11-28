@@ -16,6 +16,18 @@ onMounted(() => {
     loading.isLoading = false;
   }, 3000);
 });
+
+//meta
+
+useHead({
+  title: "Contact us",
+  meta: [
+    {
+      name: "Contact CultChain",
+      content: "How you can Contact CultChain",
+    },
+  ],
+});
 </script>
 <template>
   <div

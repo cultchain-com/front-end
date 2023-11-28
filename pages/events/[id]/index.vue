@@ -1,6 +1,6 @@
 <script setup>
 import Header from "@/components/Base/Header.vue";
-import Wrapper from "@/components/TheEvents/event-detail/Detail.vue";
+import Detail from "@/components/TheEvents/event-detail/Detail.vue";
 import Footer from "@/components/Base/Footer.vue";
 </script>
 
@@ -11,7 +11,7 @@ import Footer from "@/components/Base/Footer.vue";
     <div class="lg:px-10">
       <Header />
       <main class="lg:px-[195px] px-4">
-        <Wrapper />
+        <Detail />
       </main>
     </div>
     <div class="bg-Gray-b2 dark:bg-LightGray-b2 lg:px-10 px-4">

@@ -2,6 +2,18 @@
 import Header from "@/components/Base/Header.vue";
 import Wrapper from "@/components/TheDAOValidatorRequests/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
+
+//meta
+
+useHead({
+  title: "DAO validator request",
+  meta: [
+    {
+      name: "DAO validator request",
+      content: "DAO validator request in CultChain",
+    },
+  ],
+});
 </script>
 <template>
   <div

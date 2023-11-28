@@ -15,6 +15,7 @@
           type="number"
           placeholder="Target Amount"
           v-model="state.amount"
+          autocomplete="off"
         />
       </div>
     </div>
@@ -27,6 +28,7 @@
           class="w-full py-2 px-2 rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="state.name"
           placeholder="Event Name"
+          autocomplete="off"
         />
       </div>
     </div>

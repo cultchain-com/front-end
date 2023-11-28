@@ -35,6 +35,16 @@ const addMileStone = async (e) => {
   );
   loading.isLoading = false;
 };
+
+//watcher
+
+watch(eventDetail, (newValue) => {
+  useSeoMeta({
+    title: () => "Adding milestone to " + newValue?.eventDetails.name,
+    ogTitle: () => "Adding milestone to " + newValue?.eventDetails.name,
+    // and other stuff
+  });
+});
 </script>
 <template>
   <div class="bg-Gray-b1 dark:bg-LightGray-b1">

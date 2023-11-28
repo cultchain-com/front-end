@@ -7,6 +7,17 @@ import Footer from "@/components/Base/Footer.vue";
 //state
 
 const validatersDecisions = ref([]);
+
+//meta
+
+useHead({
+  title: "Validaters Decisions",
+  meta: [
+    {
+      name: "Validaters Decisions",
+    },
+  ],
+});
 </script>
 <template>
   <div

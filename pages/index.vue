@@ -24,6 +24,17 @@ onMounted(() => {
     loading.isLoading = false;
   }, 1000);
 });
+
+//meta
+
+useHead({
+  title: "CultChain",
+  meta: [
+    {
+      name: "CultChain",
+    },
+  ],
+});
 </script>
 <template>
   <div class="bg-Gray-b1 dark:bg-LightGray-b1">
