@@ -1,11 +1,9 @@
-version: '3'
+version: '3.3'
 
 services:
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  cultchain-frontend:
+    build: .
+    container_name: cultchain-frontend
+    restart: unless-stopped
     ports:
-      - "3000:3000"
-    command: npx nuxt start
-    mem_limit: 4g
+      - 3000:3000
