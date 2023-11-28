@@ -542,23 +542,10 @@ const addValidatorHandler = async () => {
 
 onMounted(async () => {
   await connectWallet();
-  if (account.value) {
-    setProfile(account.value);
-    setUserDonationList();
-    setUserValidationList();
-    setUserEventLis();
-  }
-});
-
-//watch
-
-watch(account, (newVal, oldVal) => {
-  if (newVal) {
-    setProfile(newVal);
-    setUserDonationList();
-    setUserValidationList();
-    setUserEventLis();
-  }
+  setProfile(account.value);
+  setUserDonationList();
+  setUserValidationList();
+  setUserEventLis();
 });
 </script>
 <style lang="scss" scoped>

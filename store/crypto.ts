@@ -3,7 +3,7 @@
 import { h, onMounted, onUnmounted } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 //pinia
 
@@ -25,6 +25,7 @@ export const useCryptoStore = defineStore("user", () => {
   const isNetworkValid = ref(false);
   const charityEventsContract = ref(null);
   const router = useRouter();
+  const route = useRoute();
 
   // abi
 
@@ -1230,6 +1231,10 @@ export const useCryptoStore = defineStore("user", () => {
   const handleAccountsChanged = (accounts: any) => {
     if (accounts.length == 0) {
       account.value = "";
+      debugger;
+      if (route.fullPath == "/profile") {
+        router.push("/");
+      }
     }
   };
 
