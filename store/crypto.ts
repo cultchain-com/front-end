@@ -1238,7 +1238,6 @@ export const useCryptoStore = defineStore("user", () => {
   };
 
   const handleChainChanged = async () => {
-    debugger;
     const { ethereum } = await window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
