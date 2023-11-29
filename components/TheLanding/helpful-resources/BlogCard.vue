@@ -5,6 +5,7 @@
   >
     <div class="h-[196px] overflow-hidden">
       <img
+        v-if="isLoaded"
         :src="state.header_image"
         class="w-full h-full object-cover main-image"
       />
@@ -14,7 +15,7 @@
       <div class="flex justify-between items-center">
         <span
           class="bg-Primary bg-opacity-25 text-Gray-b5 dark:text-LightGray-b5 px-2 py-1 rounded-lg text-xs font-medium w-fit"
-          >{{state.category}}
+          >{{ state.category }}
         </span>
         <span
           class="text-[10px] text-Gray-b4 dark:text-LightGray-b4 font-normal"
@@ -33,7 +34,7 @@
             class="w-6 h-6 rounded-full object-cover"
           />
           <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-medium">
-            {{state.author_name}}
+            {{ state.author_name }}
           </p>
         </div>
       </div>
@@ -49,6 +50,14 @@ const props = defineProps({
 });
 
 const { state } = props;
+const isLoaded = ref(false);
+
+
+onMounted(() => {
+  setTimeout(() => {
+    isLoaded.value = true;
+  }, 2000);
+});
 
 //methods
 
