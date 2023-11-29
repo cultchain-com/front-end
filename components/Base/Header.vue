@@ -7,7 +7,7 @@
 
       <div class="flex">
         <NuxtLink to="/" class="icon flex gap-2 items-center"
-          ><i class="isax isax-shop text-Primary text-3xl"></i>
+          ><img src="/logo.png" class="min-w-[40px] max-w-20 w-20 h-[40px]" />
           <h1
             class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
           >
