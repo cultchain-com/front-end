@@ -91,5 +91,9 @@ const navigations = [
     route: "/contact-us",
     text: "Contact Us",
   },
+  {
+    route: "/request-demo",
+    text: "Request Demo",
+  },
 ];
 </script>
