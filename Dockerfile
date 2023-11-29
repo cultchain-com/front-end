@@ -12,5 +12,8 @@ COPY . .
 
 EXPOSE 3000
 
+# Check memory usage
+RUN echo "Memory usage before build:" && free -h
+
 RUN npm run build
 CMD [ "npx", "nuxt", "start" ]
