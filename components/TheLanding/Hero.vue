@@ -13,11 +13,12 @@
         and Trust to Charities and NGOs.
       </p>
       <div class="flex bg-black bg-opacity-40 w-fit py-1 px-1 rounded-3xl">
-        <button
+        <NuxtLink
+          to="/request-demo"
           class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl bg-Primary bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-1"
         >
-          Our Mission
-        </button>
+          Request Demo
+        </NuxtLink>
         <a
           href="https://whitepaper.cultchain.com"
           target="_blank"

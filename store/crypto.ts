@@ -1045,9 +1045,6 @@ export const useCryptoStore = defineStore("user", () => {
       account.value = ethers.utils.getAddress(myAccounts[0]);
       return true;
     } catch (error: any) {
-      if (error.code == 4001) {
-        router.push("/");
-      }
       ElNotification({
         title: "Error",
         message: h("i", "error: " + error.message),

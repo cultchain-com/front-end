@@ -47,4 +47,16 @@ watch(loading, (value) => {
     isLoading.value = false;
   }
 });
+
+// schema
+
+useSchemaOrg([
+  defineOrganization({
+    name: "CultChain",
+  }),
+  defineWebSite({
+    name: "charity and nft marketplace cultchain.com",
+  }),
+  defineWebPage(),
+]);
 </script>

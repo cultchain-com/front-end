@@ -12,13 +12,12 @@
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
       </p>
-      <NuxtLink
-        @click="createEventStore.activeStepp = 1"
-        to="/event-creation"
+      <button
+        @click="checkWalletConnection"
         class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl bg-Primary bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
       >
         Create Event
-      </NuxtLink>
+      </button>
     </div>
     <div class="hero-logo">
       <img
@@ -31,9 +30,36 @@
 
 <script setup>
 import Icon from "@/components/TheIcon/Icon.vue";
+import { useCryptoStore } from "~/store/crypto";
 import { useCreateEvent } from "@/store/create-event";
+import { storeToRefs } from "pinia";
+import { ElNotification } from "element-plus";
+import { h } from "vue";
+import { useRouter } from "vue-router";
 
 //state
 
+const cryptoStore = useCryptoStore();
 const createEventStore = useCreateEvent();
+const { connectWallet } = useCryptoStore();
+const { account } = storeToRefs(cryptoStore);
+const router = useRouter();
+
+//methods
+
+const checkWalletConnection = async () => {
+  if (!account.value) {
+    let status = await connectWallet();
+    status
+      ? (router.push("/event-creation"), (createEventStore.activeStepp = 1))
+      : ElNotification({
+          title: "Error",
+          message: h("i", "You Don't have connected wallet!"),
+          type: "error",
+        });
+  } else {
+    router.push("/event-creation");
+    createEventStore.activeStepp = 1;
+  }
+};
 </script>

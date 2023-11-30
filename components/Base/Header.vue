@@ -87,12 +87,9 @@
           class="lg:flex lg:items-center items-end min-w-fit gap-4 lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
         >
           <el-button
-            class="border-2 px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
+            class="border-2 border-transparent px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
             v-if="!account"
             @click="connectWallet"
-            :class="
-              isConnectWalletFocused ? 'border-Primary' : 'border-transparent'
-            "
           >
             <i
               class="isax isax-empty-wallet text-2xl text-Gray-b5 dark:text-LightGray-b5"
