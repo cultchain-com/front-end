@@ -23,6 +23,7 @@
         <img
           src="/trending-collections/mrfox-avatar.png"
           class="h-10 w-10 rounded-full"
+          alt="avatar"
         />
       </div>
       <div class="flex justify-between items-center mt-4">

@@ -13,6 +13,7 @@
           <img
             class="h-12 w-12 rounded-full"
             :src="item.avatar ? item.avatar : '/no-avatar.webp'"
+            alt="avatar"
           />
           <div class="flex flex-col gap-1">
             <client-only>

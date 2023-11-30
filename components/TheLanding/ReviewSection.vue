@@ -3,7 +3,8 @@
     <img
       src="/review.png"
       class="h-[440px] w-[350px] object-cover rounded-xl relative bottom-5"
-      alt=""
+      alt="Cultchain is a brand new effort to solve conventional charities problems
+        with Cutting Edge Technologies which bring Trust and Transparency."
     />
     <div class="flex flex-col gap-6 p-5 lg:w-[calc(100%-350px)] h-full">
       <i

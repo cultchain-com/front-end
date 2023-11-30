@@ -8,6 +8,7 @@
         v-if="isLoaded"
         :src="state.header_image"
         class="w-full h-full object-cover main-image"
+        :alt="state.title"
       />
     </div>
 
@@ -32,6 +33,7 @@
           <img
             src="/helpful-resources/avatar-1.png"
             class="w-6 h-6 rounded-full object-cover"
+            :alt="state.author_name"
           />
           <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 font-medium">
             {{ state.author_name }}
@@ -51,7 +53,6 @@ const props = defineProps({
 
 const { state } = props;
 const isLoaded = ref(false);
-
 
 onMounted(() => {
   setTimeout(() => {

@@ -23,7 +23,11 @@
         <div
           class="lg:h-[300px] lg:w-[300px] w-full rounded-xl overflow-hidden"
         >
-          <img src="/charity-1.png" class="h-full w-full object-cover" />
+          <img
+            src="/charity-1.png"
+            class="h-full w-full object-cover"
+            alt="become donor"
+          />
         </div>
       </section>
       <section class="flex gap-3 items-center lg:flex-row flex-col">
@@ -41,7 +45,11 @@
         <div
           class="lg:h-[300px] lg:w-[300px] w-full rounded-xl overflow-hidden"
         >
-          <img src="/charity-2.png" class="h-full w-full object-cover" />
+          <img
+            src="/charity-2.png"
+            class="h-full w-full object-cover"
+            alt="become donor"
+          />
         </div>
       </section>
       <section class="flex gap-3 justify-center lg:flex-row flex-col">

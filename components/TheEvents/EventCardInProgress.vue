@@ -13,6 +13,7 @@
             : '/no-image.png'
         "
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105"
+        :alt="state.name"
       />
     </div>
     <section class="p-5 pt-2">
@@ -31,6 +32,7 @@
         <img
           src="/trending-collections/mrfox-avatar.png"
           class="h-10 w-10 rounded-full"
+          alt="avatar"
         />
       </div>
       <div class="flex justify-between items-center mt-1">
@@ -39,7 +41,12 @@
             Target Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{ new Intl.NumberFormat().format(state.target_amount / Math.pow(10, 18)) }} ETH
+            {{
+              new Intl.NumberFormat().format(
+                state.target_amount / Math.pow(10, 18)
+              )
+            }}
+            ETH
           </p>
         </div>
         <div class="flex flex-col gap-1 items-center">
@@ -47,7 +54,12 @@
             Collected Amount
           </p>
           <p class="md:text-sm text-xs text-Gray-b5 dark:text-LightGray-b5">
-            {{new Intl.NumberFormat().format(state.collected_amount / Math.pow(10, 18))  }} ETH
+            {{
+              new Intl.NumberFormat().format(
+                state.collected_amount / Math.pow(10, 18)
+              )
+            }}
+            ETH
           </p>
         </div>
       </div>

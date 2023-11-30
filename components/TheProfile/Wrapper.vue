@@ -5,6 +5,7 @@
         <img
           :src="state.avatar ? state.avatar : '/no-avatar.webp'"
           class="object-cover h-16 w-16 rounded-xl"
+          :alt="state.name ? state.name : 'Unnamed'"
         />
       </section>
       <section class="pt-8 flex justify-between items-center">
@@ -253,7 +254,11 @@
                 v-if="!isDonationHistoryLoading && !userDonationList.length"
                 class="col-span-3 h-[395px]"
               >
-                <img class="mx-auto no-data-img" src="/empty.png" />
+                <img
+                  class="mx-auto no-data-img"
+                  src="/empty.png"
+                  alt="No Data Found !"
+                />
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
@@ -279,7 +284,11 @@
                 v-if="!isValidationHistoryLoading && !userValidationList.length"
                 class="col-span-3 h-[395px]"
               >
-                <img class="mx-auto no-data-img" src="/empty.png" />
+                <img
+                  class="mx-auto no-data-img"
+                  src="/empty.png"
+                  alt="No Data Found !"
+                />
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
@@ -306,7 +315,11 @@
                 v-if="!isEventHistoryLoading && !userEventList.length"
                 class="col-span-3 h-[395px]"
               >
-                <img class="mx-auto no-data-img" src="/empty.png" />
+                <img
+                  class="mx-auto no-data-img"
+                  src="/empty.png"
+                  alt="No Data Found !"
+                />
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
@@ -331,7 +344,11 @@
     </div>
     <div v-if="!state">
       <section class="absolute -top-8">
-        <img src="/no-avatar.webp" class="object-cover h-16 w-16 rounded-xl" />
+        <img
+          src="/no-avatar.webp"
+          class="object-cover h-16 w-16 rounded-xl"
+          alt="avatar"
+        />
       </section>
       <section class="pt-8 flex justify-between items-center">
         <div class="flex items-center gap-2">

@@ -6,6 +6,7 @@
     <div class="h-[196px] overflow-hidden">
       <img
         :src="state.header_image"
+        :alt="state.title"
         class="w-full h-full object-cover main-image"
       />
     </div>

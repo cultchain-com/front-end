@@ -12,9 +12,7 @@
         Your Collections can be Musics, Art Pics, Video, GIF, etc. Share it with
         your friends and community.
       </p>
-      <div
-        class="flex bg-black bg-opacity-40 w-fit py-1 px-1 rounded-3xl"
-      >
+      <div class="flex bg-black bg-opacity-40 w-fit py-1 px-1 rounded-3xl">
         <button
           class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl bg-Primary bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-1"
         >
@@ -29,7 +27,7 @@
       </div>
     </div>
     <div class="hero-logo">
-      <img src="/hero-gif.gif" class="max-h-[500px] mx-auto" />
+      <img src="/hero-gif.gif" class="max-h-[500px] mx-auto" alt="cultchain" />
     </div>
   </div>
 </template>

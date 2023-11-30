@@ -23,6 +23,7 @@
       <img
         src="/create-event-hero.png"
         class="max-h-[250px] object-cover mx-auto"
+        alt="create event"
       />
     </div>
   </div>

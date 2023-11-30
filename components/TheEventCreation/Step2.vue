@@ -61,10 +61,6 @@ const emit = defineEmits(["nextStep", "prevStep"]);
 //state
 
 const { state } = useCreateEvent();
-const localState = ref({
-  image: null,
-  imageLink: "",
-});
 const createEventStore = useCreateEvent();
 const { image } = storeToRefs(createEventStore);
 const counter = ref(1);

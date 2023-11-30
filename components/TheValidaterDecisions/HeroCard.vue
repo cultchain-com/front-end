@@ -22,6 +22,7 @@
           <img
             src="/trending-collections/mrfox-avatar.png"
             class="h-10 w-10 rounded-full"
+            alt="avatar"
           />
           <span
             class="rounded-xl px-2 text-sm text-Gray-b5 dark:text-LightGray-b5"

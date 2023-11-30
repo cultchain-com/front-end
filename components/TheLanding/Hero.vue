@@ -46,7 +46,7 @@
       </ul>
     </div>
     <div class="hero-logo">
-      <img src="/hero-gif.gif" v-if="isLoaded" class="max-h-[500px] mx-auto" />
+      <img src="/hero-gif.gif" v-if="isLoaded" class="max-h-[500px] mx-auto" alt="cultchain" />
     </div>
   </div>
 </template>

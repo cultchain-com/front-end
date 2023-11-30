@@ -19,7 +19,7 @@
           :key="index"
           class="text-center"
         >
-          <img :src="item.image" class="h-20 w-20 object-contain mx-auto" />
+          <img :src="item.image" class="h-20 w-20 object-contain mx-auto" :alt="item.description" />
           <p
             class="text-center h-[calc(100%-80px)] mt-4 flex items-center justify-center text-Gray-b4 dark:text-LightGray-b4 text-xs mb-6"
           >
