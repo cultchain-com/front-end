@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     "@nuxtjs/turnstile",
     "nuxt-simple-sitemap",
     "nuxt-simple-robots",
+    "nuxt-schema-org",
   ],
   nitro: {
     prerender: {
@@ -57,6 +58,7 @@ export default defineNuxtConfig({
   },
   site: {
     url: "https://cultchain.com/",
+    name: "CultChain",
   },
   sitemap: {
     sources: ["/api/sitemap"],
