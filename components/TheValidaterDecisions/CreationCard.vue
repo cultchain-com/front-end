@@ -6,7 +6,13 @@
       class="overflow-hidden w-full h-[200px] bg-Gray-b5 dark:bg-LightGray-b5 rounded-t-xl"
     >
       <img
-        :src="state.image ? state.image : '/no-image.png'"
+        :src="
+          props.state.related_object.token_uri
+            ? 'https://ipfs.io/ipfs/' +
+              props.state.related_object.token_uri +
+              '/'
+            : '/no-image.png'
+        "
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105"
         :alt="props.state.related_object.name"
       />
