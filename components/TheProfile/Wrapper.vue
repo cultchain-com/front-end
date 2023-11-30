@@ -24,7 +24,7 @@
                 class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-2"
               >
                 {{ shortenAddress(account) }}
-                <span class="text-sm text-Gray-b3 dark:text-LightGray-b3"
+                <span class="text-sm text-Gray-b3 dark:text-LightGray-b4"
                   >Joined {{ convertDate(state.date_joined) }}</span
                 >
               </p>

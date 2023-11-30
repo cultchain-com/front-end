@@ -44,7 +44,7 @@
               </h4>
             </client-only>
             <h4
-              class="lg:text-sm text-xs text-Gray-b3 dark:text-LightGray-b3 line-clamp-1"
+              class="lg:text-sm text-xs text-Gray-b3 dark:text-LightGray-b4 line-clamp-1"
             >
               {{ item.feedback }}
             </h4>
