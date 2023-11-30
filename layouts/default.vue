@@ -53,10 +53,17 @@ watch(loading, (value) => {
 useSchemaOrg([
   defineOrganization({
     name: "CultChain",
+    logo: "/logo.png",
   }),
   defineWebSite({
     name: "charity and nft marketplace cultchain.com",
   }),
   defineWebPage(),
+  {
+    "@type": "DefinedTerm",
+    name: "cultchain.com",
+    description:
+      "CultChain is an innovative blockchain platform designed to revolutionize charitable giving.",
+  },
 ]);
 </script>
