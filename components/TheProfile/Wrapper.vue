@@ -525,6 +525,7 @@ const saveEditsHandler = async () => {
   isLoading.value = true;
   let profile = JSON.parse(JSON.stringify(state.value));
   profile.name = editModeState.value.name;
+  profile.bio = editModeState.value.bio;
   profile.twitter_link = editModeState.value.twitter_link;
   profile.instagram_link = editModeState.value.instagram_link;
   profile.facebook_link = editModeState.value.facebook_link;

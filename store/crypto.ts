@@ -771,10 +771,10 @@ export const useCryptoStore = defineStore("user", () => {
     } catch (error) {
       ElNotification({
         title: "Error",
-        message: h("i", "error: " + error),
+        message: h("i", "error: " + error.message),
         type: "error",
       });
-      console.log("WIthdraw rejected:", error);
+      console.log("WIthdraw rejected:", error.message);
     }
     setLoader(false);
   }
@@ -1131,7 +1131,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function updateUserProfile(userAddress: string, state: any) {
     let profile;
     await axios
-      .put(`${baseURL}indexer/wallets/${userAddress}`, state)
+      .put(`${baseURL}indexer/wallets/${userAddress}`, state, {})
       .then((res) => {
         console.log("updateUserProfile", res.data);
         profile = res.data;

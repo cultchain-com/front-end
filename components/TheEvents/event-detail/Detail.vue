@@ -92,7 +92,11 @@
     <section class="p-5 pt-2">
       <div class="flex justify-between items-start md:flex-row flex-col gap-6">
         <div class="flex gap-4 items-center md:flex-row flex-col w-full">
-          <img class="h-16 w-16 rounded-2xl" src="/no-avatar.webp" alt="avatar"/>
+          <img
+            class="h-16 w-16 rounded-2xl"
+            src="/no-avatar.webp"
+            alt="avatar"
+          />
           <div
             class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >
@@ -177,8 +181,8 @@
             {{ state.description }}
           </p>
         </div>
-        <div class="max-h-[200px] h-full flex flex-col">
-          <el-collapse accordion class="flex flex-col h-full">
+        <div class="max-h-[200px] h-full overflow-y-auto flex flex-col gap-6">
+          <el-collapse accordion >
             <el-collapse-item
               v-for="(item, index) in state.milestones"
               :key="index"
@@ -214,7 +218,11 @@
               createEventStore.state.eventId = route.params.id;
               createEventStore.state.mileStones = state.milestones;
             "
-            v-if="account == state.creator"
+            v-if="
+              account &&
+              account?.toLowerCase() ==
+                state.creator_wallet_address?.toLowerCase()
+            "
             ><button
               class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 justify-center items-center"
             >
