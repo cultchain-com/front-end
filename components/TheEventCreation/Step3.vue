@@ -7,7 +7,7 @@
         >Describe Your Situation</label
       >
       <textarea
-        class="rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-5 text-sm h-[200px]"
+        class="rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-5 text-sm h-[200px]"
         placeholder="Describe Your Situation"
         v-model="state.description"
       ></textarea>

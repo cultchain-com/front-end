@@ -1019,6 +1019,7 @@ export const useCryptoStore = defineStore("user", () => {
           tx,
           tx.transactionHash
         );
+        return true;
       }
     } catch (error) {
       ElNotification({
@@ -1027,6 +1028,7 @@ export const useCryptoStore = defineStore("user", () => {
         type: "error",
       });
       console.error("Error add mile stone:", error);
+      return false;
     }
     setLoader(false);
   }
