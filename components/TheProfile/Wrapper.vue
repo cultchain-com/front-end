@@ -433,6 +433,7 @@ import { ref } from "vue";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { shortenAddress } from "@/utils/shortenAddress";
+import { useRouter } from "vue-router";
 
 //state
 
@@ -466,6 +467,7 @@ const editModeState = ref({
 });
 const isLoading = ref(false);
 const isAddValidatorLoading = ref(false);
+const router = useRouter();
 
 // methods
 
@@ -541,7 +543,10 @@ const addValidatorHandler = async () => {
 //mounted
 
 onMounted(async () => {
-  await connectWallet();
+  let status = await connectWallet();
+  if (!status) {
+    router.push("/");
+  }
   setProfile(account.value);
   setUserDonationList();
   setUserValidationList();
