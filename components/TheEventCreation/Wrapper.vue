@@ -51,6 +51,7 @@ const { activeStepp } = storeToRefs(createEventStore);
 const cryptoStore = useCryptoStore();
 const { createEvent, CategoryList, addMilestone, getEventDetail } =
   useCryptoStore();
+const { account } = storeToRefs(cryptoStore);
 const localState = ref({
   mileStone: {
     eventId: null,
@@ -114,6 +115,9 @@ const addMileStoneHandler = async () => {
 //mounted
 
 onMounted(() => {
+  if (!account.value) {
+    router.push("/events");
+  }
   categoryList.value = Object.entries(CategoryList).map(([key, value]) => ({
     value: key,
     label: value,
