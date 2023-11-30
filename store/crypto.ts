@@ -1,6 +1,6 @@
 //vue
 
-import { h, onMounted, onUnmounted } from "vue";
+import { h, onMounted } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
@@ -1263,10 +1263,6 @@ export const useCryptoStore = defineStore("user", () => {
       handleAccountsChanged(await ethereum.request({ method: "eth_accounts" }));
       handleChainChanged();
     }
-  });
-
-  onUnmounted(async () => {
-    // await handleDisconnect();
   });
 
   return {
