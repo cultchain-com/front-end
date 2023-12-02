@@ -9,7 +9,7 @@
       class="grid lg:grid-cols-3 md:grid-cols-2 gap-3 place-content-center p-5 pt-10"
     >
       <div v-if="!ongoingDecisions.length" class="col-span-3 h-[395px]">
-        <img class="mx-auto" src="/empty.png" />
+        <img class="mx-auto" src="/empty.png" alt="no data found!" />
         <h2
           class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
         >

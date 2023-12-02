@@ -2,7 +2,9 @@
   <div
     class="rounded-xl flex flex-col justify-end hover:shadow-xl w-full min-h-[400px] bg-no-repeat bg-center bg-contain bg-Gray-b5 dark:bg-LightGray-b5"
     :style="`background-image:url(${
-      state.image ? state.image : '/no-image.png'
+      state.related_object.token_uri
+        ? 'https://ipfs.io/ipfs/' + state.related_object.token_uri + '/'
+        : '/no-image.png'
     })`"
   >
     <section class="p-5 pt-2 max-w-[300px]">
@@ -22,6 +24,7 @@
           <img
             src="/trending-collections/mrfox-avatar.png"
             class="h-10 w-10 rounded-full"
+            alt="avatar"
           />
           <span
             class="rounded-xl px-2 text-sm text-Gray-b5 dark:text-LightGray-b5"

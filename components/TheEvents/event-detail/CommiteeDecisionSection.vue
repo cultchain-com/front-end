@@ -13,6 +13,7 @@
           <img
             class="h-12 w-12 rounded-full"
             :src="item.avatar ? item.avatar : '/no-avatar.webp'"
+            alt="avatar"
           />
           <div class="flex flex-col gap-1">
             <client-only>
@@ -43,7 +44,7 @@
               </h4>
             </client-only>
             <h4
-              class="lg:text-sm text-xs text-Gray-b3 dark:text-LightGray-b3 line-clamp-1"
+              class="lg:text-sm text-xs text-Gray-b3 dark:text-LightGray-b4 line-clamp-1"
             >
               {{ item.feedback }}
             </h4>

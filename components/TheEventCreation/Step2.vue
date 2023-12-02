@@ -15,8 +15,8 @@
         >
           <img
             class="w-full object-cover"
-            :src="image.imageLink"
-            v-if="image.imageLink"
+            :src="'https://ipfs.io/ipfs/' + state.coverPhoto + '/'"
+            v-if="state.coverPhoto"
           />
           <span v-if="!image.image">Upload Image</span>
         </div>
@@ -61,10 +61,6 @@ const emit = defineEmits(["nextStep", "prevStep"]);
 //state
 
 const { state } = useCreateEvent();
-const localState = ref({
-  image: null,
-  imageLink: "",
-});
 const createEventStore = useCreateEvent();
 const { image } = storeToRefs(createEventStore);
 const counter = ref(1);
@@ -108,18 +104,6 @@ const getImgData = async () => {
     });
     return false;
   }
-
-  if (files) {
-    image.value.imageLink = createImageLink(files);
-  }
-};
-
-const createImageLink = (files) => {
-  const fileReader = new FileReader();
-  fileReader.onload = function (e) {
-    image.value.imageLink = e.target.result;
-  };
-  fileReader.readAsDataURL(files);
 };
 
 // watch

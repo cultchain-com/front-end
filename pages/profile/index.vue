@@ -37,6 +37,7 @@ useHead({
       <img
         src="/wide-bg.jpg"
         class="transition duration-700 ease-in-out h-full object-cover w-full hover:scale-105"
+        alt="nature"
       />
     </div>
     <div class="lg:px-10">

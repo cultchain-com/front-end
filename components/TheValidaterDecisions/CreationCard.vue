@@ -6,8 +6,15 @@
       class="overflow-hidden w-full h-[200px] bg-Gray-b5 dark:bg-LightGray-b5 rounded-t-xl"
     >
       <img
-        :src="state.image ? state.image : '/no-image.png'"
+        :src="
+          props.state.related_object.token_uri
+            ? 'https://ipfs.io/ipfs/' +
+              props.state.related_object.token_uri +
+              '/'
+            : '/no-image.png'
+        "
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105"
+        :alt="props.state.related_object.name"
       />
     </div>
     <section class="p-5 pt-2">
@@ -30,6 +37,7 @@
           <img
             src="/trending-collections/mrfox-avatar.png"
             class="h-10 w-10 rounded-full"
+            alt="avatar"
           />
           <span
             class="rounded-xl px-2 text-sm text-Gray-b5 dark:text-LightGray-b5"

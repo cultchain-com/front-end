@@ -10,6 +10,7 @@
             : '/no-image.png'
         "
         class="w-full h-full object-contain ml-auto hover:scale-105 bg-Gray-b5 dark:bg-LightGray-b5 rounded-b-none"
+        :alt="state.related_object.name"
       />
     </div>
     <section class="p-5 pt-2">
@@ -29,8 +30,11 @@
           <img
             src="/trending-collections/mrfox-avatar.png"
             class="h-10 w-10 rounded-full"
+            alt="avatar"
           />
-          <span class="bg-Primary bg-opacity-20 text-Primary px-2 rounded-xl text-xs font-semibold">
+          <span
+            class="bg-Primary bg-opacity-20 text-Primary px-2 rounded-xl text-xs font-semibold"
+          >
             {{ state.related_object.status }}
           </span>
         </div>

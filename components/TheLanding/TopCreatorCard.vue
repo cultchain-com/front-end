@@ -5,7 +5,7 @@
     <img
       :src="state.avatar"
       class="h-[120px] w-[120px] rounded-full object-cover mx-auto"
-      alt=""
+      alt="Top Creaters"
     />
     <div class="info flex flex-col gap-3">
       <h1 class="text-lg text-Gray-b5 dark:text-LightGray-b5 font-bold">

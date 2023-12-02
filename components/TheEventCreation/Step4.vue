@@ -2,14 +2,24 @@
   <div
     class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
   >
-    <el-collapse v-if="state.mileStones.length">
-      <el-collapse-item v-for="(item, index) in state.mileStones" :key="index">
+    <h1 class="text-Gray-b5 dark:text-LightGray-b5 text-xl">MileStones</h1>
+    <el-collapse v-if="props.state?.milestones.length">
+      <el-collapse-item
+        v-for="(item, index) in props.state.milestones"
+        :key="index"
+      >
         <template #title>
           <div class="flex justify-between items-center w-full">
             <h6
               class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
             >
-              #{{ index + 1 }} {{ item.name }} - {{ item.amount }} ETH
+              #{{ index + 1 }} {{ item.name }} -
+              {{
+                new Intl.NumberFormat().format(
+                  item.targetAmount / Math.pow(10, 18)
+                )
+              }}
+              ETH
             </h6>
             <p class="text-Gray-b4 dark:text-LightGray-b4 md:text-sm text-xs">
               {{ convertDate(item.endDate) }}
@@ -30,7 +40,8 @@
           class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
         />
         <input
-          class="w-full py-2 pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
+          placeholder="Target Amount"
+          class="w-full py-2 focus:border-Primary border-2 border-transparent pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
           v-model="localState.amount"
           autocomplete="off"
@@ -43,7 +54,8 @@
       >
       <div class="relative">
         <input
-          class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
+          placeholder="Name"
+          class="w-full py-2 focus:border-Primary border-2 border-transparent px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="localState.name"
           autocomplete="off"
         />
@@ -59,6 +71,7 @@
         class="w-full"
         format="YYYY/MM/DD"
         value-format="x"
+        placeholder="End Date"
       />
     </div>
     <div class="form-item flex flex-col gap-1">
@@ -66,12 +79,16 @@
         >Description</label
       >
       <textarea
+        placeholder="description"
         v-model="localState.description"
-        class="rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-5 text-sm h-[200px]"
+        class="rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-2 h-[200px]"
       ></textarea>
     </div>
-    <div>
-      <button class="block w-fit ml-auto" @click="checkValidation">
+    <div class="flex items-center justify-end gap-6">
+      <NuxtLink class="bg-Primary px-3 py-2 rounded-xl text-Gray-b5" :to="'/events/' + route.params.id">
+        Visit Event
+      </NuxtLink>
+      <button class=" " @click="checkValidation">
         <i class="isax isax-arrow-right-1 text-4xl text-Primary" />
       </button>
     </div>
@@ -82,10 +99,17 @@
 import { ref, h } from "vue";
 import { ElNotification } from "element-plus";
 import { useCreateEvent } from "@/store/create-event";
+import { useRoute } from "vue-router";
 
 //emits
 
 const emit = defineEmits("addMileStone");
+
+//props
+
+const props = defineProps({
+  state: null,
+});
 
 //state
 
@@ -97,6 +121,7 @@ const localState = ref({
   endDate: "",
   mileStones: [],
 });
+const route = useRoute();
 
 //methods
 
@@ -151,8 +176,7 @@ const addMileStone = () => {
   clearState();
 };
 const convertDate = (item) => {
-  let date = new Date(item);
-
+  let date = new Date(item.toString());
   let year = date.getFullYear();
   let month = ("0" + (date.getMonth() + 1)).slice(-2); // add leading zero if needed
   let day = ("0" + date.getDate()).slice(-2); // add leading zero if needed

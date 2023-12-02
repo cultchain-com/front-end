@@ -26,13 +26,17 @@ onMounted(async () => {
 const addMileStone = async (e) => {
   console.log(e);
   loading.isLoading = true;
-  await addMilestone(
+  let status = await addMilestone(
     route.params.id,
     e.name,
     e.description,
     e.amount,
     e.endDate
   );
+  if (status) {
+    e.targetAmount = e.amount * Math.pow(10, 18);
+    eventDetail.value.milestones.push(e);
+  }
   loading.isLoading = false;
 };
 
@@ -66,7 +70,7 @@ watch(eventDetail, (newValue) => {
               <template #title>Step 4</template>
             </el-step>
           </el-steps>
-          <Step4 @addMileStone="addMileStone" />
+          <Step4 @addMileStone="addMileStone" :state="eventDetail" />
         </div>
       </main>
     </div>

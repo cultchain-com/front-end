@@ -1,6 +1,6 @@
 //vue
 
-import { h, onMounted, onUnmounted } from "vue";
+import { h, onMounted } from "vue";
 import { ElNotification } from "element-plus";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
@@ -771,10 +771,10 @@ export const useCryptoStore = defineStore("user", () => {
     } catch (error) {
       ElNotification({
         title: "Error",
-        message: h("i", "error: " + error),
+        message: h("i", "error: " + error.message),
         type: "error",
       });
-      console.log("WIthdraw rejected:", error);
+      console.log("WIthdraw rejected:", error.message);
     }
     setLoader(false);
   }
@@ -1019,6 +1019,7 @@ export const useCryptoStore = defineStore("user", () => {
           tx,
           tx.transactionHash
         );
+        return true;
       }
     } catch (error) {
       ElNotification({
@@ -1027,6 +1028,7 @@ export const useCryptoStore = defineStore("user", () => {
         type: "error",
       });
       console.error("Error add mile stone:", error);
+      return false;
     }
     setLoader(false);
   }
@@ -1129,7 +1131,7 @@ export const useCryptoStore = defineStore("user", () => {
   async function updateUserProfile(userAddress: string, state: any) {
     let profile;
     await axios
-      .put(`${baseURL}indexer/wallets/${userAddress}`, state)
+      .put(`${baseURL}indexer/wallets/${userAddress}`, state, {})
       .then((res) => {
         console.log("updateUserProfile", res.data);
         profile = res.data;
@@ -1263,10 +1265,6 @@ export const useCryptoStore = defineStore("user", () => {
       handleAccountsChanged(await ethereum.request({ method: "eth_accounts" }));
       handleChainChanged();
     }
-  });
-
-  onUnmounted(async () => {
-    // await handleDisconnect();
   });
 
   return {

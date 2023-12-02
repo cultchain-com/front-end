@@ -3,7 +3,11 @@
     <!-- image  -->
 
     <div class="max-h-[400px] overflow-hidden rounded-xl">
-      <img :src="post?.header_image" class="h-full hover:scale-105 w-full" />
+      <img
+        :src="post?.header_image"
+        class="h-full hover:scale-105 w-full"
+        :alt="post?.title"
+      />
     </div>
 
     <!-- description -->

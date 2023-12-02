@@ -7,6 +7,7 @@
       <img
         :src="state.image ? state.image : '/no-image.png'"
         class="w-full h-full rounded-xl object-contain ml-auto hover:scale-105 bg-Gray-b5 dark:bg-LightGray-b5 rounded-b-none"
+        :alt="state.proposalDetail.name"
       />
     </div>
     <section class="p-5 pt-2">

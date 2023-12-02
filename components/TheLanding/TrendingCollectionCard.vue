@@ -3,15 +3,18 @@
     <img
       :src="state.heroImage"
       class="h-[330px] rounded-xl hover:scale-95 object-cover"
+      alt="Trending Collection"
     />
     <ul class="flex gap-2">
       <img
         :src="state.image1"
         class="h-[100px] rounded-xl hover:scale-95 w-1/3 object-cover"
+        alt="Trending Collection"
       />
       <img
         :src="state.image2"
         class="h-[100px] rounded-xl hover:scale-95 w-1/3 object-cover"
+        alt="Trending Collection"
       />
       <span
         class="h-[100px] flex justify-center items-center text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold w-1/3 rounded-xl bg-Primary"
@@ -22,7 +25,7 @@
       {{ state.label }}
     </h1>
     <div class="author flex gap-2">
-      <img :src="state.authorAvatar" class="rounded-full h-6 w-6" />
+      <img :src="state.authorAvatar" class="rounded-full h-6 w-6" :alt="state.authorName"/>
       <span class="text-Gray-b5 dark:text-LightGray-b5 text-sm">
         {{ state.authorName }}
       </span>
