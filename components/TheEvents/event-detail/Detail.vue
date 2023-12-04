@@ -80,6 +80,7 @@
           </a>
           <button
             class="py-4 border-2 border-Gray-b4 dark:border-LightGray-b4 w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5"
+            @click="isShareModalVisible = true"
           >
             Share
           </button>
@@ -251,6 +252,29 @@
         <SupportersSection :state="donationsList" />
       </div>
     </div>
+    <ClientOnly>
+      <el-dialog
+        v-model="isShareModalVisible"
+        width="30%"
+        :before-close="handleClose"
+      >
+        <template #title
+          ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
+            Share
+          </h4></template
+        >
+        <div class="flex flex-row gap-2 justify-evenly mt-6 social-share">
+          <SocialShare
+            v-for="network in ['facebook', 'twitter', 'linkedin', 'email']"
+            :key="network"
+            :network="network"
+            :styled="true"
+            :label="false"
+            class="p-4 rounded-xl"
+          />
+        </div>
+      </el-dialog>
+    </ClientOnly>
   </div>
 </template>
 
@@ -278,6 +302,7 @@ const router = useRouter();
 const state = ref({ eventDetails: null });
 const donationsList = ref(null);
 const commiteeDecisionsList = ref(null);
+const isShareModalVisible = ref(false);
 
 //computed
 
@@ -354,6 +379,9 @@ const copyTextToClipboard = async (item) => {
     console.error("Failed to copy text: ", err);
   }
 };
+const handleClose = () => {
+  isShareModalVisible.value = false;
+};
 
 //watcher
 
@@ -365,3 +393,12 @@ watch(state, (newValue) => {
   });
 });
 </script>
+<style lang="scss">
+.social-share {
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}
+</style>
