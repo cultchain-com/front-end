@@ -48,7 +48,12 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "nuxt-simple-robots",
     "nuxt-schema-org",
+    "@stefanobartoletti/nuxt-social-share",
   ],
+  // optional configuration
+  socialShare: {
+    // module options
+  },
   nitro: {
     prerender: {
       crawlLinks: true,
