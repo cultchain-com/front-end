@@ -85,7 +85,10 @@
       ></textarea>
     </div>
     <div class="flex items-center justify-end gap-6">
-      <NuxtLink class="bg-Primary px-3 py-2 rounded-xl text-Gray-b5" :to="'/events/' + route.params.id">
+      <NuxtLink
+        class="bg-Primary px-3 py-2 rounded-xl text-Gray-b5"
+        :to="'/events/' + route.params.id"
+      >
         Visit Event
       </NuxtLink>
       <button class=" " @click="checkValidation">
@@ -103,12 +106,13 @@ import { useRoute } from "vue-router";
 
 //emits
 
-const emit = defineEmits("addMileStone");
+const emit = defineEmits("addMileStone", "clearFlag");
 
 //props
 
 const props = defineProps({
   state: null,
+  flag: false,
 });
 
 //state
@@ -122,6 +126,7 @@ const localState = ref({
   mileStones: [],
 });
 const route = useRoute();
+const mileStoneBackup = ref(null);
 
 //methods
 
@@ -171,17 +176,30 @@ const addMileStone = () => {
     endDate: localState.value.endDate,
   };
   emit("addMileStone", mileStone);
-  state.mileStones.push(mileStone);
-  localState.value.mileStones.push(mileStone);
-  clearState();
+  mileStoneBackup.value = mileStone;
 };
 const convertDate = (item) => {
-  let date = new Date(item.toString());
-  let year = date.getFullYear();
-  let month = ("0" + (date.getMonth() + 1)).slice(-2); // add leading zero if needed
-  let day = ("0" + date.getDate()).slice(-2); // add leading zero if needed
-
-  let dateString = year + "-" + month + "-" + day; // format as date string
-  return dateString;
+  var date = new Date(Number(+item.toString()));
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var formattedDate =
+    year +
+    "/" +
+    (month < 10 ? "0" + month : month) +
+    "/" +
+    (day < 10 ? "0" + day : day);
+  console.log(formattedDate);
+  return formattedDate;
 };
+
+//watch
+
+watch(props.flag, (newVal, oldVal) => {
+  if (newVal == "true") {
+    state.mileStones.push(mileStoneBackup.value);
+    clearState();
+    emit("clearFlag");
+  }
+});
 </script>

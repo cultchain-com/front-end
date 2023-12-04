@@ -87,6 +87,17 @@
       </div>
     </section>
 
+    <!-- withdraw -->
+
+    <template
+      v-if="
+        account == state.creator_wallet_address &&
+        state.collected_amount >= state.target_amount
+      "
+    >
+      <WithDraw />
+    </template>
+
     <!-- description -->
 
     <section class="p-5 pt-2">
@@ -182,7 +193,7 @@
           </p>
         </div>
         <div class="max-h-[200px] h-full overflow-y-auto flex flex-col gap-6">
-          <el-collapse accordion >
+          <el-collapse accordion>
             <el-collapse-item
               v-for="(item, index) in state.milestones"
               :key="index"
@@ -235,6 +246,7 @@
         <CommiteeDecisionSection
           :state="commiteeDecisionsList"
           :committeeId="state?.committee_id"
+          @handleVote="handleVote"
         />
         <SupportersSection :state="donationsList" />
       </div>
@@ -245,6 +257,7 @@
 <script setup>
 import CommiteeDecisionSection from "./CommiteeDecisionSection.vue";
 import SupportersSection from "./SupportersSection.vue";
+import WithDraw from "./WithDraw.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
@@ -288,7 +301,38 @@ onMounted(async () => {
 
 //methods
 
+const donationHandler = async () => {
+  // validation
+
+  if (state.value.status != "APPROVED") {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: This Event is not approved!"),
+      type: "error",
+    });
+  } else if (state.value.collected_amount >= state.value.target_amount) {
+    ElNotification({
+      title: "Error",
+      message: h("i", "error: Fund raising is over!"),
+      type: "error",
+    });
+  } else {
+    router.push(`/donate/${route.params.id}`);
+  }
+};
+const handleVote = (e) => {
+  commiteeDecisionsList.value.members.map((item) => {
+    if (
+      item.member_wallet_address?.toLocaleLowerCase() ==
+      account.value?.toLocaleLowerCase()
+    ) {
+      item.has_voted = true;
+      item.feedback = e;
+    }
+  });
+};
 const convertDate = (item) => {
+  console.log(item);
   let date = new Date(item);
 
   let year = date.getFullYear();
@@ -308,25 +352,6 @@ const copyTextToClipboard = async (item) => {
     }, 5000);
   } catch (err) {
     console.error("Failed to copy text: ", err);
-  }
-};
-const donationHandler = async () => {
-  // validation
-
-  if (state.value.status != "APPROVED") {
-    ElNotification({
-      title: "Error",
-      message: h("i", "error: This Event is not approved!"),
-      type: "error",
-    });
-  } else if (state.value.collected_amount >= state.value.target_amount) {
-    ElNotification({
-      title: "Error",
-      message: h("i", "error: Fund raising is over!"),
-      type: "error",
-    });
-  } else {
-    router.push(`/donate/${route.params.id}`);
   }
 };
 

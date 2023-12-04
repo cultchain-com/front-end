@@ -12,6 +12,7 @@ const route = useRoute();
 const { getEventDetailEventCreation, addMilestone } = useCryptoStore();
 const loading = useLoading();
 const eventDetail = ref(null);
+const addMileStoneFlag = ref("false");
 
 //mounted
 
@@ -36,6 +37,7 @@ const addMileStone = async (e) => {
   if (status) {
     e.targetAmount = e.amount * Math.pow(10, 18);
     eventDetail.value.milestones.push(e);
+    addMileStoneFlag.value = "true";
   }
   loading.isLoading = false;
 };
@@ -70,7 +72,12 @@ watch(eventDetail, (newValue) => {
               <template #title>Step 4</template>
             </el-step>
           </el-steps>
-          <Step4 @addMileStone="addMileStone" :state="eventDetail" />
+          <Step4
+            @addMileStone="addMileStone"
+            @@clearFlag="addMileStoneFlag = 'false'"
+            :state="eventDetail"
+            :flag="addMileStoneFlag"
+          />
         </div>
       </main>
     </div>

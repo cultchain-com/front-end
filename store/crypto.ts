@@ -736,6 +736,7 @@ export const useCryptoStore = defineStore("user", () => {
       setLoader(true);
       const { ethereum } = window;
       if (ethereum) {
+        debugger;
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
 
@@ -761,20 +762,23 @@ export const useCryptoStore = defineStore("user", () => {
         const amount = await charityEventsContract.possibleMilestoneAmount(
           eventID
         );
+        console.log(amount.amount.toString());
+        const etherValue = ethers.utils.parseEther(amount.amount.toString());
 
         // call function
 
-        await fundraisingContract.methods.requestWithdraw(eventID, amount, {
+        await fundraisingContract.requestWithdraw(eventID, etherValue, {
           from: ownerAccount,
+          gasLimit: 2000000,
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       ElNotification({
         title: "Error",
         message: h("i", "error: " + error.message),
         type: "error",
       });
-      console.log("WIthdraw rejected:", error.message);
+      console.log("WIthdraw rejected:", error);
     }
     setLoader(false);
   }
@@ -1021,10 +1025,10 @@ export const useCryptoStore = defineStore("user", () => {
         );
         return true;
       }
-    } catch (error) {
+    } catch (error: any) {
       ElNotification({
         title: "Error",
-        message: h("i", "error: " + error),
+        message: h("i", "error: " + error.message),
         type: "error",
       });
       console.error("Error add mile stone:", error);
@@ -1223,7 +1227,9 @@ export const useCryptoStore = defineStore("user", () => {
       const accounts = await ethereum.request({
         method: "eth_accounts",
       });
-      accounts.length > 0 ? (account.value = accounts[0]) : "";
+      accounts.length > 0
+        ? (account.value = ethers.utils.getAddress(accounts[0]))
+        : "";
     }
   }
 
@@ -1303,5 +1309,6 @@ export const useCryptoStore = defineStore("user", () => {
     sendMessage,
     addValidator,
     isAccountConnected,
+    requestWithdraw,
   };
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl">
+  <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl" v-if="isLoaded">
     <ul class="flex flex-col gap-6">
       <h5 class="text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold">
         Commitee Decision
@@ -53,8 +53,10 @@
         <div class="flex items-center gap-2">
           <template
             v-if="
-              props.state?.members[index].member_wallet_address ==
-              account
+              props.state?.members[
+                index
+              ].member_wallet_address?.toLowerCase() ==
+                account?.toLowerCase() && !props.state?.members[index].has_voted
             "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
@@ -104,12 +106,20 @@ import { storeToRefs } from "pinia";
 import { useVote } from "@/store/vote";
 import { useLoading } from "@/store/loading";
 
+//emits
+const emit = defineEmits("handleVote");
+
+//props
+
 const props = defineProps({
   state: null,
   committeeId: {
     default: null,
   },
 });
+
+//state
+
 const { state } = props;
 const dialogVisible = ref(false);
 const voteState = useVote();
@@ -117,24 +127,10 @@ const cryptoStore = useCryptoStore();
 const { getRecordDecision } = useCryptoStore();
 const loading = useLoading();
 const { account } = storeToRefs(cryptoStore);
+const isLoaded = ref(false);
 
 //methods
 
-const copyTextToClipboard = async (item) => {
-  try {
-    await navigator.clipboard.writeText(item.member_wallet_address);
-    props.state.members.map((item) => {
-      item.isCopied = false;
-    });
-    item.isCopied = true;
-    console.log("Copying to clipboard was successful!");
-    setTimeout(() => {
-      item.isCopied = false;
-    }, 5000);
-  } catch (err) {
-    console.error("Failed to copy text: ", err);
-  }
-};
 const checkVoteValidation = () => {
   if (!voteState.state.comment) {
     ElNotification({
@@ -154,7 +150,34 @@ const handleVote = async () => {
     voteState.state.vote,
     voteState.state.comment
   );
+  if (response) {
+    dialogVisible.value = false;
+    emit("handleVote", voteState.state.comment);
+    voteState.state.vote = true;
+  }
   loading.isLoading = false;
-  dialogVisible.value = false;
 };
+const copyTextToClipboard = async (item) => {
+  try {
+    await navigator.clipboard.writeText(item.member_wallet_address);
+    props.state.members.map((item) => {
+      item.isCopied = false;
+    });
+    item.isCopied = true;
+    console.log("Copying to clipboard was successful!");
+    setTimeout(() => {
+      item.isCopied = false;
+    }, 5000);
+  } catch (err) {
+    console.error("Failed to copy text: ", err);
+  }
+};
+
+//mounted
+
+onMounted(() => {
+  if (process.client) {
+    isLoaded.value = true;
+  }
+});
 </script>
