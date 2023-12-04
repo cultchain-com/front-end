@@ -2,7 +2,15 @@
   <div
     class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
   >
-    <h1 class="text-Gray-b5 dark:text-LightGray-b5 text-xl">MileStones</h1>
+    <h1 class="text-Gray-b5 dark:text-LightGray-b5 text-base">
+      <NuxtLink
+        :key="props.state?.eventDetails.name"
+        :to="'/events/' + route.params.id"
+        class="text-Primary underline underline-offset-4 cursor-pointer"
+        >{{ props.state?.eventDetails.name }}</NuxtLink
+      >
+      - MileStones
+    </h1>
     <el-collapse v-if="props.state?.milestones.length">
       <el-collapse-item
         v-for="(item, index) in props.state.milestones"
@@ -10,9 +18,7 @@
       >
         <template #title>
           <div class="flex justify-between items-center w-full">
-            <h6
-              class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
-            >
+            <h6 class="text-Gray-b5 dark:text-LightGray-b5 text-sm">
               #{{ index + 1 }} {{ item.name }} -
               {{
                 new Intl.NumberFormat().format(
@@ -21,7 +27,7 @@
               }}
               ETH
             </h6>
-            <p class="text-Gray-b4 dark:text-LightGray-b4 md:text-sm text-xs">
+            <p class="text-Gray-b4 dark:text-LightGray-b4 text-xs">
               {{ convertDate(item.endDate) }}
             </p>
           </div>
@@ -31,6 +37,7 @@
         </div>
       </el-collapse-item>
     </el-collapse>
+    <template v-else> No MileStones! </template>
     <div class="form-item flex flex-col gap-1">
       <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
         >Target Amount
@@ -85,12 +92,6 @@
       ></textarea>
     </div>
     <div class="flex items-center justify-end gap-6">
-      <NuxtLink
-        class="bg-Primary px-3 py-2 rounded-xl text-Gray-b5"
-        :to="'/events/' + route.params.id"
-      >
-        Visit Event
-      </NuxtLink>
       <button class=" " @click="checkValidation">
         <i class="isax isax-arrow-right-1 text-4xl text-Primary" />
       </button>
