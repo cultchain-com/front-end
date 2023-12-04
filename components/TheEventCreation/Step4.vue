@@ -145,6 +145,19 @@ const checkValidation = () => {
       type: "error",
     });
     return false;
+  } else if (
+    mileStoneValue.value + localState.value.amount * Math.pow(10, 18) >=
+    +props.state.eventDetails.targetAmount.toString()
+  ) {
+    ElNotification({
+      title: "Error",
+      message: h(
+        "i",
+        "MileStone Target Amounts should be Equal or less than Event Target Amount"
+      ),
+      type: "error",
+    });
+    return false;
   } else if (!localState.value.name) {
     ElNotification({
       title: "Error",
@@ -201,6 +214,18 @@ watch(props.flag, (newVal, oldVal) => {
     state.mileStones.push(mileStoneBackup.value);
     clearState();
     emit("clearFlag");
+  }
+});
+
+//computed
+
+const mileStoneValue = computed(() => {
+  if (process.client) {
+    let val = 0;
+    props.state.milestones.map((item) => {
+      val = +item.targetAmount.toString() + val;
+    });
+    return val;
   }
 });
 </script>
