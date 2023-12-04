@@ -255,7 +255,7 @@
     <ClientOnly>
       <el-dialog
         v-model="isShareModalVisible"
-        width="30%"
+        class="w-fit"
         :before-close="handleClose"
       >
         <template #title
@@ -263,7 +263,7 @@
             Share
           </h4></template
         >
-        <div class="flex flex-row gap-2 justify-evenly mt-6 social-share">
+        <div class="flex flex-row gap-8 justify-evenly mt-6 social-share">
           <SocialShare
             v-for="network in ['facebook', 'twitter', 'linkedin', 'email']"
             :key="network"

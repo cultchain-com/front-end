@@ -30,7 +30,7 @@
       <ClientOnly>
         <el-dialog
           v-model="isWalletDisconnectedVisible"
-          width="30%"
+          class="w-fit"
           :before-close="handleClose"
         >
           <template #title
