@@ -37,7 +37,9 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-    <template v-else> No MileStones! </template>
+    <template v-else
+      ><span class="text-Gray-b4 dark:text-LightGray-b4">No MileStones!</span>
+    </template>
     <div class="form-item flex flex-col gap-1">
       <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
         >Target Amount
@@ -145,6 +147,19 @@ const checkValidation = () => {
       type: "error",
     });
     return false;
+  } else if (
+    mileStoneValue.value + localState.value.amount * Math.pow(10, 18) >=
+    +props.state.eventDetails.targetAmount.toString()
+  ) {
+    ElNotification({
+      title: "Error",
+      message: h(
+        "i",
+        "MileStone Target Amounts should be Equal or less than Event Target Amount"
+      ),
+      type: "error",
+    });
+    return false;
   } else if (!localState.value.name) {
     ElNotification({
       title: "Error",
@@ -201,6 +216,18 @@ watch(props.flag, (newVal, oldVal) => {
     state.mileStones.push(mileStoneBackup.value);
     clearState();
     emit("clearFlag");
+  }
+});
+
+//computed
+
+const mileStoneValue = computed(() => {
+  if (process.client) {
+    let val = 0;
+    props.state.milestones.map((item) => {
+      val = +item.targetAmount.toString() + val;
+    });
+    return val;
   }
 });
 </script>

@@ -16,9 +16,10 @@
           <img
             class="w-full object-cover"
             :src="'https://ipfs.io/ipfs/' + state.coverPhoto + '/'"
-            v-if="state.coverPhoto"
+            v-if="status != 'pending' && state.coverPhoto"
           />
-          <span v-if="!image.image">Upload Image</span>
+          <span v-if="status != 'pending' && !image.image">Upload Image</span>
+          <span v-if="status == 'pending'">Uploading</span>
         </div>
         <input
           type="file"
@@ -64,11 +65,12 @@ const { state } = useCreateEvent();
 const createEventStore = useCreateEvent();
 const { image } = storeToRefs(createEventStore);
 const counter = ref(1);
+const status = ref("off");
 
 //methods
 
 const checkValidation = () => {
-  if (!state.coverPhoto) return false;
+  if (status.value == "pending" || !state.coverPhoto) return false;
   emit("nextStep", state);
 };
 
@@ -78,6 +80,7 @@ const chooseImg = () => {
 };
 
 const getImgData = async () => {
+  status.value = "pending";
   const chooseFile = document.getElementById("choose-file");
   const imgPreview = document.getElementById("img-preview");
   const files = chooseFile.files[0];
@@ -94,6 +97,8 @@ const getImgData = async () => {
 
   try {
     const result = await client.add(image.value.image);
+    status.value = "done";
+
     console.log("Image saved to IPFS:", result.path);
     state.coverPhoto = result.path;
   } catch (error) {
