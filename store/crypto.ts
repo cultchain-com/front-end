@@ -762,15 +762,19 @@ export const useCryptoStore = defineStore("user", () => {
         const amount = await charityEventsContract.possibleMilestoneAmount(
           eventID
         );
-        console.log(amount.amount.toString());
-        const etherValue = ethers.utils.parseEther(amount.amount.toString());
+        const etherValue = amount.amount.toString();
+        console.log(etherValue.toString());
 
         // call function
 
-        await fundraisingContract.requestWithdraw(eventID, etherValue, {
-          from: ownerAccount,
-          gasLimit: 2000000,
-        });
+        await fundraisingContract.requestWithdraw(
+          eventID,
+          etherValue.toString(),
+          {
+            from: ownerAccount,
+            gasLimit: 2000000,
+          }
+        );
       }
     } catch (error: any) {
       ElNotification({

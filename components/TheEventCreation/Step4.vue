@@ -37,7 +37,9 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-    <template v-else> No MileStones! </template>
+    <template v-else
+      ><span class="text-Gray-b4 dark:text-LightGray-b4">No MileStones!</span>
+    </template>
     <div class="form-item flex flex-col gap-1">
       <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
         >Target Amount

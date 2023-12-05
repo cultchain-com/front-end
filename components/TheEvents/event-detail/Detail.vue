@@ -75,8 +75,17 @@
             href="javascript:void(0)"
             @click="donationHandler"
             class="py-4 bg-Primary border-Primary w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5 text-center"
+            :class="
+              state.collected_amount > state.target_amount
+                ? 'bg-opacity-40'
+                : ''
+            "
           >
-            Give Now
+            {{
+              state.collected_amount > state.target_amount
+                ? "Fund Raising Over!"
+                : "Give Now"
+            }}
           </a>
           <button
             class="py-4 border-2 border-Gray-b4 dark:border-LightGray-b4 w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5"
@@ -231,9 +240,8 @@
               createEventStore.state.mileStones = state.milestones;
             "
             v-if="
-              account &&
-              account?.toLowerCase() ==
-                state.creator_wallet_address?.toLowerCase()
+              mileStonesValue < state.target_amount &&
+              account == state.creator_wallet_address
             "
             ><button
               class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 justify-center items-center"
@@ -241,6 +249,12 @@
               <i class="isax isax-add-square text-2xl" />Add MileStone
             </button></NuxtLink
           >
+          <div
+            v-else-if="mileStonesValue >= state.target_amount"
+            class="flex items-center justify-between p-5 bg-yellow-700 bg-opacity-70 rounded-xl text-Gray-b5 text-base"
+          >
+            <p>MileStones Target Amount is Over and you can't add more!</p>
+          </div>
         </div>
       </div>
       <div class="flex flex-col gap-3 col-span-1">
@@ -311,6 +325,15 @@ const percentage = computed(() => {
     return (state.value?.collected_amount / state.value?.target_amount) * 100;
   }
 });
+const mileStonesValue = computed(() => {
+  if (process.client) {
+    let val = 0;
+    state.value.milestones?.map((item) => {
+      val = +item.target_amount.toString() + val;
+    });
+    return val;
+  }
+});
 
 // mounted
 
@@ -335,7 +358,7 @@ const donationHandler = async () => {
       message: h("i", "error: This Event is not approved!"),
       type: "error",
     });
-  } else if (state.value.collected_amount >= state.value.target_amount) {
+  } else if (state.value.collected_amount > state.value.target_amount) {
     ElNotification({
       title: "Error",
       message: h("i", "error: Fund raising is over!"),
@@ -347,12 +370,10 @@ const donationHandler = async () => {
 };
 const handleVote = (e) => {
   commiteeDecisionsList.value.members.map((item) => {
-    if (
-      item.member_wallet_address?.toLocaleLowerCase() ==
-      account.value?.toLocaleLowerCase()
-    ) {
+    if (item.member_wallet_address == account.value) {
       item.has_voted = true;
-      item.feedback = e;
+      item.feedback = e.comment;
+      item.decision = e.vote;
     }
   });
 };

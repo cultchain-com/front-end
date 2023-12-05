@@ -53,10 +53,8 @@
         <div class="flex items-center gap-2">
           <template
             v-if="
-              props.state?.members[
-                index
-              ].member_wallet_address?.toLowerCase() ==
-                account?.toLowerCase() && !props.state?.members[index].has_voted
+              props.state?.members[index].member_wallet_address == account &&
+              !props.state?.members[index].has_voted
             "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
@@ -152,7 +150,7 @@ const handleVote = async () => {
   );
   if (response) {
     dialogVisible.value = false;
-    emit("handleVote", voteState.state.comment);
+    emit("handleVote", voteState.state);
     voteState.state.vote = true;
   }
   loading.isLoading = false;
