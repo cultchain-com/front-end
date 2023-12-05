@@ -731,7 +731,7 @@ export const useCryptoStore = defineStore("user", () => {
     setLoader(false);
   }
 
-  async function requestWithdraw(eventID: number) {
+  async function requestWithdraw(eventID: number, amount: string) {
     try {
       setLoader(true);
       const { ethereum } = window;
@@ -759,22 +759,20 @@ export const useCryptoStore = defineStore("user", () => {
           charityEventsABI,
           signer
         );
-        const amount = await charityEventsContract.possibleMilestoneAmount(
-          eventID
-        );
-        const etherValue = amount.amount.toString();
-        console.log(etherValue.toString());
-
         // call function
 
-        await fundraisingContract.requestWithdraw(
-          eventID,
-          etherValue.toString(),
-          {
-            from: ownerAccount,
-            gasLimit: 2000000,
-          }
-        );
+        await fundraisingContract.requestWithdraw(eventID, amount, {
+          from: ownerAccount,
+          gasLimit: 2000000,
+        });
+        ElNotification({
+          title: "Success",
+          message: h(
+            "i",
+            "your request submitted please check your wallet for tracking it! "
+          ),
+          type: "success",
+        });
       }
     } catch (error: any) {
       ElNotification({
@@ -783,6 +781,46 @@ export const useCryptoStore = defineStore("user", () => {
         type: "error",
       });
       console.log("WIthdraw rejected:", error);
+    }
+    setLoader(false);
+  }
+
+  async function getNextPossibleMilestoneAmount(eventID: number) {
+    try {
+      setLoader(true);
+      const { ethereum } = window;
+      if (ethereum) {
+        debugger;
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+
+        //get user from metamask
+
+        const myAccounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const ownerAccount = ethers.utils.getAddress(myAccounts[0]);
+
+        // contract
+
+        const charityEventsContract = new ethers.Contract(
+          charityEventsAddress,
+          charityEventsABI,
+          signer
+        );
+        const amount = await charityEventsContract.possibleMilestoneAmount(
+          eventID
+        );
+        const etherValue = amount.amount.toString();
+        return etherValue;
+      }
+    } catch (error: any) {
+      ElNotification({
+        title: "Error",
+        message: h("i", "error: " + error.message),
+        type: "error",
+      });
+      console.log("get Amount rejected:", error);
     }
     setLoader(false);
   }
@@ -1314,5 +1352,6 @@ export const useCryptoStore = defineStore("user", () => {
     addValidator,
     isAccountConnected,
     requestWithdraw,
+    getNextPossibleMilestoneAmount,
   };
 });
