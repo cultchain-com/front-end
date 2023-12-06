@@ -14,10 +14,12 @@ export const useCreateEvent = defineStore("create-event", () => {
     imageLink: "",
   });
   const activeStepp = ref(1);
+  const isImageUploading = ref(false);
 
   return {
     state,
     activeStepp,
     image,
+    isImageUploading,
   };
 });
