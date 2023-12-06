@@ -83,7 +83,7 @@
           >
         </div>
       </section>
-      <section class="pt-8 flex md:justify-evenly justify-between items-center">
+      <!-- <section class="pt-8 flex md:justify-evenly justify-between items-center">
         <div class="flex flex-col gap-1 items-center">
           <p
             class="md:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold"
@@ -114,7 +114,7 @@
             Participation
           </p>
         </div>
-      </section>
+      </section> -->
       <el-divider />
       <section v-if="!isEditMode">
         <h1
@@ -125,7 +125,7 @@
         <p
           class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm mt-2 px-2"
         >
-          {{ state.bio }}
+          {{ state.bio ? state.bio : "..." }}
         </p>
         <h1
           class="text-Gray-b5 dark:text-LightGray-b5 md:text-2xl text-lg italic mt-12"
@@ -404,7 +404,7 @@
           >
         </div>
       </section>
-      <section class="pt-8 flex md:justify-evenly justify-between items-center">
+      <!-- <section class="pt-8 flex md:justify-evenly justify-between items-center">
         <div class="flex flex-col gap-1 items-center">
           <p
             class="md:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold"
@@ -435,7 +435,7 @@
             Participation
           </p>
         </div>
-      </section>
+      </section> -->
     </div>
   </div>
 </template>
