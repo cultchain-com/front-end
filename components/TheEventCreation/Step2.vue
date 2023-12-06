@@ -13,13 +13,15 @@
           @click="chooseImg"
           id="img-preview"
         >
+          <span v-if="isImageUploading">Uploading...</span>
           <img
             class="w-full object-cover"
             :src="'https://ipfs.io/ipfs/' + state.coverPhoto + '/'"
-            v-if="status != 'pending' && state.coverPhoto"
+            v-else-if="!isImageUploading && state.coverPhoto"
           />
-          <span v-if="status != 'pending' && !image.image">Upload Image</span>
-          <span v-if="status == 'pending'">Uploading</span>
+          <span v-else-if="!isImageUploading && !state.coverPhoto"
+            >Upload Image,click here</span
+          >
         </div>
         <input
           type="file"
@@ -39,6 +41,7 @@
         Prev
       </button>
       <button
+        :disabled="isImageUploading"
         class="bg-Primary border-2 border-Primary w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="checkValidation"
       >
@@ -63,14 +66,13 @@ const emit = defineEmits(["nextStep", "prevStep"]);
 
 const { state } = useCreateEvent();
 const createEventStore = useCreateEvent();
-const { image } = storeToRefs(createEventStore);
+const { image, isImageUploading } = storeToRefs(createEventStore);
 const counter = ref(1);
-const status = ref("off");
 
 //methods
 
 const checkValidation = () => {
-  if (status.value == "pending" || !state.coverPhoto) return false;
+  if (!state.coverPhoto) return false;
   emit("nextStep", state);
 };
 
@@ -80,7 +82,7 @@ const chooseImg = () => {
 };
 
 const getImgData = async () => {
-  status.value = "pending";
+  isImageUploading.value = true;
   const chooseFile = document.getElementById("choose-file");
   const imgPreview = document.getElementById("img-preview");
   const files = chooseFile.files[0];
@@ -97,26 +99,16 @@ const getImgData = async () => {
 
   try {
     const result = await client.add(image.value.image);
-    status.value = "done";
-
     console.log("Image saved to IPFS:", result.path);
     state.coverPhoto = result.path;
+    console.log(isImageUploading.value);
+    isImageUploading.value = false;
   } catch (error) {
     ElNotification({
       title: "Error",
       message: h("i", "Failed to save image to IPFS"),
       type: "error",
     });
-    return false;
   }
 };
-
-// watch
-
-watch(image.value, (newVal, oldVal) => {
-  if (newVal) {
-    image.value = newVal;
-    counter.value++;
-  }
-});
 </script>

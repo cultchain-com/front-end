@@ -116,13 +116,15 @@ const addMileStoneHandler = async () => {
 
 onMounted(() => {
   if (process.client) {
-    if (!account.value) {
-      router.push("/events");
-    }
-    categoryList.value = Object.entries(CategoryList).map(([key, value]) => ({
-      value: key,
-      label: value,
-    }));
+    setTimeout(() => {
+      if (!account.value) {
+        router.push("/events");
+      }
+      categoryList.value = Object.entries(CategoryList).map(([key, value]) => ({
+        value: key,
+        label: value,
+      }));
+    }, 1000);
   }
 });
 </script>
