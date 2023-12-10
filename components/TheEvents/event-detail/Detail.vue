@@ -272,20 +272,21 @@
         class="w-fit"
         :before-close="handleClose"
       >
-        <template #title
+        <template #header
           ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
             Share
           </h4></template
         >
-        <div class="flex flex-row gap-8 justify-evenly mt-6 social-share">
-          <SocialShare
-            v-for="network in ['facebook', 'twitter', 'linkedin', 'email']"
-            :key="network"
-            :network="network"
-            :styled="true"
-            :label="false"
-            class="p-4 rounded-xl"
-          />
+        <div class="flex flex-row gap-8 justify-evenly mt-10 social-share">
+          <a
+            v-for="(item, index) in socialMedia"
+            :key="index"
+            @click="socialMediaHandler(item)"
+            class="bg-Gray-b1 dark:bg-LightGray-b1 rounded-xl p-2 flex flex-col justify-center items-center min-w-[80px] hover:scale-105 cursor-pointer text-Gray-b5 dark:text-LightGray-b4"
+          >
+            <Icon :name="item.icon" />
+            <p>{{ item.label }}</p>
+          </a>
         </div>
       </el-dialog>
     </ClientOnly>
@@ -303,6 +304,7 @@ import { useLoading } from "@/store/loading";
 import { shortenAddress } from "@/utils/shortenAddress";
 import { h } from "vue";
 import { ElNotification } from "element-plus";
+import Icon from "@/components/TheIcon/Icon.vue";
 
 //state
 
@@ -317,6 +319,20 @@ const state = ref({ eventDetails: null });
 const donationsList = ref(null);
 const commiteeDecisionsList = ref(null);
 const isShareModalVisible = ref(false);
+const socialMedia = ref([
+  {
+    label: "Instagram",
+    icon: "instagram",
+  },
+  {
+    label: "X",
+    icon: "twitter",
+  },
+  {
+    label: "Facebook",
+    icon: "facebook",
+  },
+]);
 
 //computed
 
@@ -334,6 +350,29 @@ const mileStonesValue = computed(() => {
     return val;
   }
 });
+const socialMediaHandler = async (item) => {
+  const url = useRequestURL();
+  switch (item.label) {
+    case "Instagram":
+      await navigateTo(`https://www.instagram.com/?url=${url.href}`, {
+        external: true,
+      });
+      break;
+    case "X":
+      await navigateTo(`https://twitter.com/intent/tweet?text=${url.href}`, {
+        external: true,
+      });
+      break;
+    case "Facebook":
+      await navigateTo(
+        `https://www.facebook.com/sharer/sharer.php?u=${url.href}`,
+        {
+          external: true,
+        }
+      );
+      break;
+  }
+};
 
 // mounted
 
@@ -414,12 +453,3 @@ watch(state, (newValue) => {
   });
 });
 </script>
-<style lang="scss">
-.social-share {
-  svg {
-    path {
-      fill: white;
-    }
-  }
-}
-</style>
