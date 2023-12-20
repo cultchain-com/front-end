@@ -16,7 +16,7 @@
       <div class="flex justify-between items-start md:flex-row flex-col gap-6">
         <div class="flex gap-4 items-center md:flex-row flex-col w-full">
           <div
-            class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
+            class="lg:flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
           >
             <h2
               class="text-Gray-b5 dark:text-LightGray-b5 text-lg font-semibold line-clamp-1"
@@ -24,7 +24,7 @@
               {{ post?.title }}
             </h2>
             <p
-              class="text-sm font-semibold text-Gray-b5 dark:text-LightGray-b5"
+              class="text-xs font-medium text-Gray-b4 dark:text-LightGray-b4"
             >
               {{ post?.author_name }}
             </p>

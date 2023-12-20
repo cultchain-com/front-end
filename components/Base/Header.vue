@@ -7,9 +7,13 @@
 
       <div class="flex">
         <NuxtLink to="/" class="icon flex gap-2 items-center"
-          ><img src="/logo.png" class="min-w-[40px] max-w-20 w-20 h-[40px]" alt="cultchain" />
+          ><img
+            src="/logo.png"
+            class="min-w-[40px] max-w-20 w-20 h-[40px]"
+            alt="cultchain"
+          />
           <h1
-            class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
+            class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic md:static hidden"
           >
             CultChain
           </h1>
@@ -190,10 +194,22 @@
                     >
                   </el-sub-menu>
                 </template>
+                <el-menu-item @click="checkWalletConnection">
+                  Profile
+                </el-menu-item>
+                <el-menu-item @click="toggleTheme">
+                  <input
+                    id="toggle"
+                    class="toggle"
+                    v-model="isDarkMode"
+                    type="checkbox"
+                  />
+                  <Icon name="sun" v-if="isDarkMode" />
+                  <Icon name="moon" v-if="!isDarkMode" />
+                </el-menu-item>
               </el-menu>
-            </template>
-          </el-drawer></ClientOnly
-        >
+            </template> </el-drawer
+        ></ClientOnly>
       </section>
     </div>
 

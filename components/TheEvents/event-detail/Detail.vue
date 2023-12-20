@@ -119,7 +119,7 @@
             alt="avatar"
           />
           <div
-            class="flex md:justify-center justify-between md:flex-col flex-row-reverse gap-0 w-full items-center md:items-start"
+            class="flex md:justify-center justify-between md:flex-col flex-col-reverse gap-0 w-full  md:items-start"
           >
             <client-only>
               <p
@@ -150,7 +150,7 @@
                 </el-tooltip></p
             ></client-only>
             <p
-              class="text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5 flex gap-2"
+              class="lg:text-2xl font-semibold text-Gray-b5 dark:text-LightGray-b5 flex gap-2 line-clamp-1 md:justify-start justify-between"
             >
               {{ state.name }}
               <span

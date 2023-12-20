@@ -7,7 +7,7 @@
       Full Roadmap
     </h1>
     <div class="p-5 rounded-xl border-[1px] border-Gray-b3 mt-6">
-      <div class="grid grid-cols-3">
+      <div class="grid lg:grid-cols-3">
         <template v-for="(item, index) in state" :key="index">
           <div
             class="flex flex-col w-full border-r-2 border-transparent px-5"
