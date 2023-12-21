@@ -20,8 +20,8 @@
         class="flex flex-col items-center gap-2 max-w-[250px]"
       >
         <div
+          :style="`background-color:${item.bg}`"
           class="relative h-16 w-16 p-2 rounded-full bg-opacity-30 mb-4"
-          :class="`bg-[${item.color}]`"
         >
           <img
             :src="item.image"
@@ -31,7 +31,7 @@
         </div>
         <h3
           class="font-semibold text-lg"
-          :class="'text-[' + item.color + ']'"
+          :style="`color:${item.color}`"
           :key="index"
         >
           {{ item.label }}
@@ -51,24 +51,28 @@ const propositions = ref([
     description: "How will this help solve the customer's issues in the future",
     image: "/landing/proposition-1.svg",
     color: "#663afa",
+    bg: "#663afa57",
   },
   {
     label: "Strong point",
     description: "How will this help solve the customer's issues in the future",
     image: "/landing/proposition-2.svg",
     color: "#ffc143",
+    bg: "#ffc14338",
   },
   {
     label: "Strong point",
     description: "How will this help solve the customer's issues in the future",
     image: "/landing/proposition-3.svg",
     color: "#7fd65a",
+    bg: "#7fd65a3b",
   },
   {
     label: "Strong point",
     description: "How will this help solve the customer's issues in the future",
     image: "/landing/proposition-4.svg",
     color: "#df4a4c",
+    bg: "#df4a4c4a",
   },
 ]);
 </script>
