@@ -13,11 +13,23 @@
       </div>
       <Icon name="faq" />
     </section>
-    <Accardeons />
+    <Accardeons :list="faqList"/>
   </div>
 </template>
 
 <script setup>
 import Icon from "@/components/TheIcon/Icon.vue";
 import Accardeons from "./Accardeons.vue";
+import { useCryptoStore } from "~/store/crypto";
+
+//state
+
+const { getFaq } = useCryptoStore();
+const faqList = ref([]);
+
+//mounted
+
+onMounted(async () => {
+  faqList.value = await getFaq();
+});
 </script>

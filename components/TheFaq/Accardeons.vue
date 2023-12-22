@@ -1,7 +1,7 @@
 <template>
   <el-collapse v-model="activeNames" class="flex flex-col justify-center gap-2">
     <el-collapse-item
-      v-for="(item, index) in faqList"
+      v-for="(item, index) in props.list"
       :key="index"
       :title="item.question"
       :name="index + 1"
@@ -15,18 +15,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useCryptoStore } from "~/store/crypto";
+//props
 
-//state
-
-const { getFaq } = useCryptoStore();
-const faqList = ref([]);
-const activeNames = ref(["1"]);
-
-//mounted
-
-onMounted(async () => {
-  faqList.value = await getFaq();
+const props = defineProps({
+  list: {
+    default: [],
+  },
 });
 </script>

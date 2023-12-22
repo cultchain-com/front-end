@@ -13,6 +13,8 @@
     </p>
 
     <Carousel
+      dir="ltr"
+      :modelValue="0"
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
@@ -55,7 +57,7 @@ import SkeletonCard from "./SkeletonCard.vue";
 const events = ref([]);
 const { listAllEvents } = useCryptoStore();
 const carouselOptions = {
-  itemsToShow: 3,
+  itemsToShow: 4,
   transition: 300,
   breakpoints: {
     320: {
@@ -68,7 +70,7 @@ const carouselOptions = {
     },
     1440: {
       itemsToShow: 4,
-      snapAlign: "start",
+      snapAlign: "center",
     },
   },
 };
@@ -82,3 +84,15 @@ onMounted(async () => {
   isListLoaded.value = true;
 });
 </script>
+
+<style lang="scss" scoped>
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+}
+</style>
