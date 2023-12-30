@@ -33,7 +33,7 @@ import SkeletonBanner from "./SkeletonBanner.vue";
 
 const eventList = ref([]);
 const carouselOptions = {
-  itemsToShow: "1",
+  itemsToShow: 1,
   transition: 300,
 };
 
