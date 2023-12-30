@@ -115,11 +115,23 @@
             <Icon name="sun" v-if="isDarkMode" />
             <Icon name="moon" v-if="!isDarkMode" />
           </el-button>
-
-          <select v-model="locale">
-            <option value="en">English</option>
-            <option value="fa">فارسی</option>
-          </select>
+          <el-button
+            icon
+            class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+          >
+            <el-dropdown @command="locale = $event" class="focus-visible:outline-none hover:outline-none">
+              <i
+                class="isax isax-global-edit text-2xl text-Gray-b5 dark:text-LightGray-b5"
+              >
+              </i>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="en">English</el-dropdown-item>
+                  <el-dropdown-item command="fa">فارسی</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </el-button>
         </div>
       </div>
 
@@ -231,7 +243,6 @@ import { useI18n } from "vue-i18n";
 
 //state
 
-const switchLocalePath = useSwitchLocalePath();
 const { t } = useI18n();
 const { locale } = useI18n();
 const cryptoStore = useCryptoStore();
