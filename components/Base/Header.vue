@@ -6,10 +6,10 @@
       <!-- logo -->
 
       <div class="flex">
-        <NuxtLink to="/" class="icon flex gap-2 items-center"
+        <NuxtLink to="/" class="icon flex gap-2 items-center min-w-fit"
           ><img
             src="/logo.png"
-            class="min-w-[40px] max-w-20 w-20 h-[40px]"
+            class="h-[40px]"
             alt="cultchain"
           />
           <h1
