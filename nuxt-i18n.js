@@ -1,5 +1,5 @@
-import en from "./locales/en.json";
-import fa from "./locales/fa.json";
+import en from "./locales/en";
+import fa from "./locales/fa";
 
 export default defineI18nConfig(() => {
   return {
@@ -10,11 +10,11 @@ export default defineI18nConfig(() => {
     locales: [
       {
         code: "en",
-        file: "en.json",
+        file: "en.js",
       },
       {
         code: "fa",
-        file: "fa.json",
+        file: "fa.js",
       },
     ],
     messages: {

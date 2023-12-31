@@ -1,7 +1,4 @@
 {
-  "Validaters_Decision": "نظر تایید کنندگان",
-  "Events": "رویداد ها",
-  "Search": " جستجو",
   "Landing_Hero_heading": "بلاک چین برای خیریه ها",
   "Landing_Hero_description": "Cultchain یک موسسه خیریه مبتنی بر بلاک چین است که هدف آن ایجاد شفافیت و اعتماد به خیریه ها و سازمان های غیردولتی است.",
   "Request_Demo": "درخواست پیش نمایش",
@@ -48,19 +45,5 @@
   "Comment_Position": "CEO at HubSmartup",
   "AWARD_WINNING_SUPPORT": "پشتیبانی برنده جایزه",
   "AWARD_WINNING_SUPPORT_Title": "ما برای کمک اینجا هستیم",
-  "AWARD_WINNING_SUPPORT_Description": "در روزهای اولیه بلاک چین، در مقایسه با اینترنت، در سال 1997 بود. اتاق هایی برای نوآوری و بهبود، حل مشکلات سنتی وجود دارد که نمی توان با استفاده از فناوری های سنتی به آنها پرداخت.",
-  "Join_Our_Community":"به انجمن ما بپیوندید",
-  "CultChain_Description": "CultChain MarketPlace ایجاد شده توسط تیم CultChain. به انجمن ما بپیوندید",
-  "Explore": "کاوش کنید",
-  "Become_Donor": "اهدا کننده شوید",
-  "Collections": "مجموعه ها",
-  "Faq": "سوالات متداول",
-  "Blog": "وبلاگ",
-  "Contact_Us": "ارتباط با ما",
-  "Landing_Template": "لندینگ",
-  "Join_Our_Daily_Digest": "به اخبار روزانه ما بپیوندید",
-  "Join_Our_Daily_Digest_Description": "تبلیغات و به‌روزرسانی‌های انحصاری را مستقیماً در صندوق ورودی خود دریافت کنید.",
-  "Subscribe": "مشترک شدن",
-  "Enter_Your_Email_Here":"ایمیل خود را اینجا وارد کنید",
-  "COPYRIGHT": "تمامی حقوق تولید و طراحی متعلق به CultChain می باشد."
+  "AWARD_WINNING_SUPPORT_Description": "در روزهای اولیه بلاک چین، در مقایسه با اینترنت، در سال 1997 بود. اتاق هایی برای نوآوری و بهبود، حل مشکلات سنتی وجود دارد که نمی توان با استفاده از فناوری های سنتی به آنها پرداخت."
 }
