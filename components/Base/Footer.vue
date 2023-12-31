@@ -3,7 +3,7 @@
     <div class="grid lg:grid-cols-3 lg:gap-y-0 gap-y-4">
       <div>
         <div class="flex gap-2 items-center">
-          <img src="/logo.png" class="w-14 h-[40px]" alt="cultchain"/>
+          <img src="/logo.png" class="w-14 h-[40px]" alt="cultchain" />
           <h1
             class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
           >
@@ -11,10 +11,10 @@
           </h1>
         </div>
         <p class="text-sm text-Gray-b4 dark:text-LightGray-b4 mb-2 mt-4">
-          CultChain MarketPlace created by CultChain team.
+          {{ t("CultChain_Description") }}
         </p>
         <p class="text-sm text-Gray-b4 dark:text-LightGray-b4 mb-2">
-          Join Our Community
+          {{ t("Join_Our_Community") }}
         </p>
         <div class="flex gap-2 mb-2">
           <i
@@ -26,7 +26,7 @@
         <h1
           class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
         >
-          Explore
+          {{ t("Explore") }}
         </h1>
         <ul class="flex gap-2 flex-col mt-4">
           <li v-for="(item, index) in navigations" :key="index">
@@ -42,21 +42,21 @@
         <h1
           class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic"
         >
-          Join Our Daily Digest
+          {{ t("Join_Our_Daily_Digest") }}
         </h1>
         <p class="text-sm text-Gray-b4 dark:text-LightGray-b4 mt-4">
-          Get exclusive promotions & updates straight to your inbox.
+          {{ t("Join_Our_Daily_Digest_Description") }}
         </p>
         <div class="relative h-[50px] mt-4">
           <input
-            placeholder="Enter Your Email Here"
+            :placeholder="t('Enter_Your_Email_Here')"
             class="w-full h-full p-3 rounded-xl outline-none"
             autocomplete="off"
           />
           <button
             class="absolute right-0 top-0 h-[50px] px-4 bg-Primary rounded-r-xl text-Gray-b5 dark:text-LightGray-b5"
           >
-            Subscribe
+            {{ t("Subscribe") }}
           </button>
         </div>
       </div>
@@ -64,40 +64,45 @@
 
     <el-divider />
     <p class="text-Gray-b4 dark:text-LightGray-b4 text-sm text-center">
-      © 2022 NFT Marketplace™. All Rights Reserved.
+      {{ t("COPYRIGHT") }}
     </p>
   </div>
 </template>
 
 <script setup>
-const navigations = [
+import { useI18n } from "vue-i18n";
+
+//state
+
+const { t } = useI18n();
+const navigations = computed(() => [
   {
     route: "/become-donor",
-    text: "Become Donor",
+    text: t("Become_Donor"),
   },
   {
     route: "/create-collections",
-    text: "Collections",
+    text: t("Collections"),
   },
   {
     route: "/faq",
-    text: "Faq",
+    text: t("Faq"),
   },
   {
     route: "/blog",
-    text: "Blog",
+    text: t("Blog"),
   },
   {
     route: "/contact-us",
-    text: "Contact Us",
+    text: t("Contact_Us"),
   },
   {
     route: "/request-demo",
-    text: "Request Demo",
+    text: t("Request_Demo"),
   },
   {
     route: "/landing-1",
-    text: "Landing Template",
+    text: t("Landing_Template"),
   },
-];
+]);
 </script>
