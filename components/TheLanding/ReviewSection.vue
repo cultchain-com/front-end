@@ -13,15 +13,14 @@
       <h2
         class="lg:text-2xl leading-7 font-semibold text-xl text-Gray-b5 dark:text-LightGray-b5"
       >
-        Cultchain is a brand new effort to solve conventional charities problems
-        with Cutting Edge Technologies which bring Trust and Transparency.
+        {{ $t("Comment_Description") }}
       </h2>
       <div>
         <p class="lg:text-lg text-base text-Gray-b5 dark:text-LightGray-b5">
-          Shahriar Johari
+          {{ $t("Comment_Author") }}
         </p>
         <p class="lg:text-lg text-base text-Gray-b4 dark:text-LightGray-b4">
-          CEO at HubSmartup
+          {{ $t("Comment_Position") }}
         </p>
       </div>
     </div>
