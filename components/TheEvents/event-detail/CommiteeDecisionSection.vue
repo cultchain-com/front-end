@@ -2,7 +2,7 @@
   <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl" v-if="isLoaded">
     <ul class="flex flex-col gap-6">
       <h5 class="text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold">
-        Commitee Decision
+        {{ $t("Commitee_Decision") }}
       </h5>
       <li
         v-for="(item, index) in props.state?.members"
@@ -27,7 +27,7 @@
                   <span>{{ shortenAddress(item.member_wallet_address) }}</span>
                 </el-tooltip>
                 <el-tooltip
-                  :content="item.isCopied ? 'Copied' : 'Copy'"
+                  :content="item.isCopied ? $t('Copied') : $t('Copy')"
                   placement="top"
                 >
                   <i
@@ -58,7 +58,7 @@
             "
           >
             <button @click="dialogVisible = true" class="text-orange-600">
-              Vote
+              {{ $t("Vote") }}
             </button>
           </template>
           <i
@@ -71,21 +71,21 @@
       </li>
     </ul>
     <client-only>
-      <el-dialog v-model="dialogVisible" title="Vote" width="30%">
+      <el-dialog v-model="dialogVisible" :title="$t('Vote')" width="30%">
         <Vote />
         <template #footer>
           <span class="dialog-footer">
             <el-button
               class="py-2 bg-transparent border-Gray-b5 dark:border-LightGray-b5 font-normal border-2 px-4 rounded-md text-base text-Gray-b5 dark:text-LightGray-b5 text-center"
               @click="dialogVisible = false"
-              >Cancel</el-button
+              >{{ $t("Cancel") }}</el-button
             >
             <el-button
               type="primary"
               class="py-2 bg-Primary border-Primary px-4 border-2 rounded-md text-base text-Gray-b5 dark:text-LightGray-b5 text-center"
               @click="checkVoteValidation"
             >
-              Vote
+              {{ $t("Vote") }}
             </el-button>
           </span>
         </template>

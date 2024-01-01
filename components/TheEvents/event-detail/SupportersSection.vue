@@ -2,7 +2,7 @@
   <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl">
     <ul class="flex flex-col gap-6">
       <h5 class="text-Gray-b5 dark:text-LightGray-b5 text-xl font-semibold">
-        Supporters
+        {{ $t("Supporters") }}
       </h5>
       <li
         v-for="(item, index) in props.state"
@@ -36,8 +36,8 @@
                 <el-tooltip
                   :content="
                     supporterArrayForCheckCopied[index].value
-                      ? 'Copied'
-                      : 'Copy'
+                      ? $t('Copied')
+                      : $t('Copy')
                   "
                   placement="top"
                 >

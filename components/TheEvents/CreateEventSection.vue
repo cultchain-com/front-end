@@ -6,17 +6,16 @@
       <h1
         class="lg:text-3xl text-lg text-Gray-b5 dark:text-LightGray-b5 font-bold"
       >
-        Create Event
+        {{ $t("Create_Event") }}
       </h1>
       <p class="text-Gray-b5 dark:text-LightGray-b5 text-base">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        {{ $t("Lorem") }}
       </p>
       <button
         @click="checkWalletConnection"
         class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl bg-Primary bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
       >
-        Create Event
+        {{ $t("Create_Event") }}
       </button>
     </div>
     <div class="hero-logo">

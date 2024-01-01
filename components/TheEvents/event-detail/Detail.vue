@@ -54,7 +54,7 @@
             ETH
           </h1>
           <p class="text-center text-Gray-b4 dark:text-LightGray-b4">
-            raised of
+            {{ $t("raised_of") }}
             <span class="text-Primary font-semibold"
               >{{
                 new Intl.NumberFormat().format(
@@ -63,10 +63,10 @@
               }}
               ETH</span
             >
-            target<br />
-            by
+            {{ $t("target") }}<br />
+            {{ $t("by") }}
             <span class="text-Gray-b5 dark:text-LightGray-b5 font-semibold"
-              >{{ donationsList?.length }} supporters</span
+              >{{ donationsList?.length }} {{ $t("supporters") }}</span
             >
           </p>
         </div>
@@ -83,15 +83,15 @@
           >
             {{
               state.collected_amount > state.target_amount
-                ? "Fund Raising Over!"
-                : "Give Now"
+                ? $t("Fund_Raising_Over")
+                : $t("Give_Now")
             }}
           </a>
           <button
             class="py-4 border-2 border-Gray-b4 dark:border-LightGray-b4 w-full rounded-xl text-lg text-Gray-b5 dark:text-LightGray-b5"
             @click="isShareModalVisible = true"
           >
-            Share
+            {{ $t("Share") }}
           </button>
         </div>
       </div>
@@ -119,7 +119,7 @@
             alt="avatar"
           />
           <div
-            class="flex md:justify-center justify-between md:flex-col flex-col-reverse gap-0 w-full  md:items-start"
+            class="flex md:justify-center justify-between md:flex-col flex-col-reverse gap-0 w-full md:items-start"
           >
             <client-only>
               <p
@@ -134,7 +134,7 @@
                   }}</span>
                 </el-tooltip>
                 <el-tooltip
-                  :content="state.isCopied ? 'Copied' : 'Copy'"
+                  :content="state.isCopied ? $t('Copied') : $t('Copy')"
                   placement="top"
                 >
                   <i
@@ -193,7 +193,7 @@
         <div class="max-h-[calc(100%-200px)] h-full overflow-y-auto">
           <div class="flex justify-between">
             <h5 class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5">
-              Story
+              {{ $t("Story") }}
             </h5>
           </div>
           <p
@@ -218,7 +218,7 @@
               >
                 <p>{{ item.description }}</p>
                 <p class="text-Gray-b5 dark:text-LightGray-b5 font-semibold">
-                  Tatget Amount :
+                  {{ $t("Tatget_Amount") }} :
                   <span class="text-Gray-b5 dark:text-LightGray-b5 font-bold"
                     >{{
                       new Intl.NumberFormat().format(
@@ -246,14 +246,16 @@
             ><button
               class="py-2 bg-Primary border-Primary w-fit px-4 mx-auto rounded-xl text-sm text-Gray-b5 dark:text-LightGray-b5 flex gap-2 justify-center items-center"
             >
-              <i class="isax isax-add-square text-2xl" />Add MileStone
+              <i class="isax isax-add-square text-2xl" />{{
+                $t("Add_MileStone")
+              }}
             </button></NuxtLink
           >
           <div
             v-else-if="mileStonesValue >= state.target_amount"
             class="flex items-center justify-between p-5 bg-yellow-700 bg-opacity-70 rounded-xl text-Gray-b5 text-base"
           >
-            <p>MileStones Target Amount is Over and you can't add more!</p>
+            <p>{{ $t("MileStones_Over") }}</p>
           </div>
         </div>
       </div>
@@ -274,7 +276,7 @@
       >
         <template #header
           ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
-            Share
+            {{$t("Share")}}
           </h4></template
         >
         <div class="flex flex-row gap-8 justify-evenly mt-10 social-share">

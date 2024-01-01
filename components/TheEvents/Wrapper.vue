@@ -3,7 +3,7 @@
     <h1
       class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
     >
-      Fund Raising
+      {{ $t("Fund_Raising") }}
     </h1>
     <Carousel
       :items-to-show="carouselOptions.itemsToShow"
@@ -31,7 +31,7 @@
         <h2
           class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
         >
-          No Data Found !
+          {{ $t("No_Data_Found") }}
         </h2>
       </div>
     </template>
@@ -41,7 +41,7 @@
     <h1
       class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
     >
-      In Progress
+      {{ $t("In_Progress") }}
     </h1>
     <Carousel
       :items-to-show="carouselOptions.itemsToShow"
@@ -68,7 +68,7 @@
         <h2
           class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
         >
-          No Data Found !
+          {{ $t("No_Data_Found") }}
         </h2>
       </div>
     </template>
