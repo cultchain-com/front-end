@@ -5,6 +5,8 @@ import profile from "./en/profile.json";
 import event from "./en/event.json";
 import become_donor from "./en/become-donor.json";
 import faq from "./en/faq.json";
+import contact_us from "./en/contact-us.json";
+import request_demo from "./en/request-demo.json";
 
 export default {
   ...header,
@@ -14,4 +16,6 @@ export default {
   ...event,
   ...become_donor,
   ...faq,
+  ...contact_us,
+  ...request_demo,
 };
