@@ -3,17 +3,15 @@
     <section class="grid lg:grid-cols-2 gap-8">
       <div class="flex justify-center flex-col">
         <h2 class="text-2xl text-Gray-b5 dark:text-LightGray-b5 font-bold mb-4">
-          FAQ
+          {{ $t("Faq") }}
         </h2>
         <p class="text-base text-Gray-b4 dark:text-LightGray-b4 font-normal">
-          Have a question? You can find the answers to the most common questions
-          we get asked below. If your question is not answered below or you
-          require further clarification, do not hesitate to get in touch!
+          {{ $t("FAQ_Description") }}
         </p>
       </div>
       <Icon name="faq" />
     </section>
-    <Accardeons :list="faqList"/>
+    <Accardeons :list="faqList" />
   </div>
 </template>
 
