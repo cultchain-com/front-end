@@ -1,16 +1,16 @@
 <template>
   <el-steps :active="activeStepp" align-center class="my-6">
     <el-step>
-      <template #title>Step 1</template>
+      <template #title>{{ $t("Step") }} 1</template>
     </el-step>
     <el-step>
-      <template #title>Step 2</template>
+      <template #title>{{ $t("Step") }} 2</template>
     </el-step>
     <el-step>
-      <template #title>Step 3</template>
+      <template #title>{{ $t("Step") }} 3</template>
     </el-step>
     <el-step>
-      <template #title>Step 4</template>
+      <template #title>{{ $t("Step") }} 4</template>
     </el-step>
   </el-steps>
   <div class="p-5">

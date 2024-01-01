@@ -26,5 +26,17 @@
   "Do_you_want_to": "آیا شما می خواهید",
   "Continue": "ادامه هید",
   "Are_you_Sure": "مطمئنی؟",
-  "Prev": "قبلی"
+  "Prev": "قبلی",
+  "Step": "قدم",
+  "Event_Name": "نام رخداد",
+  "Category": "دسته بندی",
+  "End_Date": "تاریخ پایان",
+  "Next": "بعد",
+  "Add_Cover_Photo": "اضافه کردن عکس روی جلد",
+  "Uploading": "Uploading",
+  "Upload_Image_click_here": "آپلود تصویر، اینجا را کلیک کنید",
+  "Describe_Your_Situation": "وضعیت خود را توصیف کنید",
+  "MileStones": "MileStones",
+  "No_MileStones": "موجود نیست MileStones!",
+  "Description": "شرح"
 }
