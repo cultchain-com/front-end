@@ -3,6 +3,7 @@ import footer from "./en/footer.json";
 import landing from "./en/landing.json";
 import profile from "./en/profile.json";
 import event from "./en/event.json";
+import become_donor from "./en/become-donor.json";
 
 export default {
   ...header,
@@ -10,4 +11,5 @@ export default {
   ...landing,
   ...profile,
   ...event,
+  ...become_donor,
 };
