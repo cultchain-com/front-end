@@ -24,7 +24,11 @@
       </div>
     </div>
   </div>
-  <div class="relative" v-show="!isLoading">
+  <div
+    class="relative"
+    :style="locale == 'fa' ? 'direction: rtl;' : ''"
+    v-show="!isLoading"
+  >
     <div>
       <slot />
       <ClientOnly>
@@ -51,9 +55,11 @@
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
+import { useI18n } from "vue-i18n";
 
 //state
 
+const { locale } = useI18n();
 const cryptoStore = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const loading = useLoading();
