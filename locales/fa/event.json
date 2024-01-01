@@ -18,5 +18,13 @@
   "MileStones_Over": "میزان هدف MileStones تمام شده است و شما نمیتوانید MileStones جدید اضافه کنید ",
   "Commitee_Decision": "تصمیم کمیته",
   "Supporters": "حامیان",
-  "Vote": "رای دادن"
+  "Vote": "رای دادن",
+  "WithDraw": "کنار کشیدن",
+  "you_can_withdraw_now": "اکنون می توانید برداشت کنید!",
+  "Confirm": "تایید",
+  "Your_next_Possible_withDraw_Amount_is": "مقدار احتمالی بعدی شما با Draw این است:",
+  "Do_you_want_to": "آیا شما می خواهید",
+  "Continue": "ادامه هید",
+  "Are_you_Sure": "مطمئنی؟",
+  "Prev": "قبلی"
 }
