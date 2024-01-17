@@ -54,7 +54,8 @@
             autocomplete="off"
           />
           <button
-            class="absolute right-0 top-0 h-[50px] px-4 bg-Primary rounded-r-xl text-Gray-b5 dark:text-LightGray-b5"
+            class="absolute top-0 h-[50px] px-4 bg-Primary text-Gray-b5 dark:text-LightGray-b5"
+            :class="locale == 'fa' ? 'left-0 rounded-l-xl' : 'right-0 rounded-r-xl'"
           >
             {{ t("Subscribe") }}
           </button>
@@ -74,7 +75,7 @@ import { useI18n } from "vue-i18n";
 
 //state
 
-const { t } = useI18n();
+const { t,locale } = useI18n();
 const navigations = computed(() => [
   {
     route: "/become-donor",

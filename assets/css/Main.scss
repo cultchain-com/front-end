@@ -1,5 +1,15 @@
+@font-face {
+  font-family: "iransans";
+  src: url("../fonts/iransans/IRANSANS(FANUM)_MEDIUM.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 * {
   transition: 0.3s ease all;
+}
+.direction-rtl {
+  font-family: "iransans" !important;
 }
 
 .navigation-drawer {

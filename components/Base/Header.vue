@@ -67,7 +67,7 @@
               @keyup.enter="searchHandler"
               :placeholder="t('Search')"
               autocomplete="off"
-              class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
+              class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none px-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
             />
           </div>
         </div>
