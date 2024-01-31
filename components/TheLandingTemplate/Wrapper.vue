@@ -5,8 +5,9 @@
       <Proposition />
       <ServiceSection />
       <AboutVideo />
-      <Slider />
       <AboutUs />
+      <Slider />
+      <Faq />
     </div>
   </div>
 </template>
@@ -18,5 +19,6 @@ import ServiceSection from "./ServiceSection.vue";
 import AboutUs from "./AboutUs.vue";
 import Slider from "./Slider.vue";
 import AboutVideo from "./AboutVideo.vue";
+import Faq from "./Faq.vue";
 //state
 </script>

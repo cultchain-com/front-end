@@ -1,17 +1,13 @@
 <template>
-  <div class="sticky top-0 z-50">
+  <div class="sticky top-0 z-50" :key="counter">
     <div
       class="flex justify-between items-center h-[70px] lg:px-0 px-10 bg-Gray-b1 dark:bg-LightGray-b1"
     >
       <!-- logo -->
 
       <div class="flex">
-        <NuxtLink to="/" class="icon flex gap-2 items-center"
-          ><img
-            src="/logo.png"
-            class="min-w-[40px] max-w-20 w-20 h-[40px]"
-            alt="cultchain"
-          />
+        <NuxtLink to="/" class="icon flex gap-2 items-center min-w-fit"
+          ><img src="/logo.png" class="h-[40px]" alt="cultchain" />
           <h1
             class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl italic md:static hidden"
           >
@@ -23,40 +19,26 @@
           class="el-menu-demo bg-transparent xl:min-w-full border-none justify-start relative top-1 lg:flex hidden"
           mode="horizontal"
         >
-          <template v-for="(item, index) in navigations">
-            <el-menu-item
-              v-if="!item.children.length"
-              :index="converToString(index + 1)"
-              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+          <el-menu-item
+            index="1"
+            class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+          >
+            <nuxt-link
+              to="/validater-decisions"
+              class="dark:text-LightGray-b5 text-Gray-b4"
+              >{{ t("Validaters_Decision") }}</nuxt-link
             >
-              <nuxt-link
-                :to="item.route"
-                class="dark:text-LightGray-b5 text-Gray-b4"
-                >{{ item.text }}</nuxt-link
-              >
-            </el-menu-item>
-            <el-sub-menu
-              v-if="item.children.length"
-              class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
-              :index="converToString(index + 1)"
+          </el-menu-item>
+          <el-menu-item
+            index="2"
+            class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+          >
+            <nuxt-link
+              to="/events"
+              class="dark:text-LightGray-b5 text-Gray-b4"
+              >{{ t("Events") }}</nuxt-link
             >
-              <template #title
-                ><span
-                  class="text-Gray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
-                  >{{ item.text }}</span
-                ></template
-              >
-              <el-menu-item
-                v-for="(subMenu, i) in item.children"
-                :key="i"
-                :index="index + 1 + '-' + i + 1"
-              >
-                <nuxt-link :to="subMenu.route">{{
-                  subMenu.text
-                }}</nuxt-link></el-menu-item
-              >
-            </el-sub-menu>
-          </template>
+          </el-menu-item>
         </el-menu>
       </div>
 
@@ -65,6 +47,8 @@
       <div
         class="navigation lg:flex lg:items-center justify-between items-end gap-4 lg:min-w-fit w-full lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
       >
+        <!-- searchbar  -->
+
         <div class="w-full">
           <div class="relative max-w-[400px] mx-auto">
             <button @click="searchHandler">
@@ -81,15 +65,17 @@
             <input
               v-model="search"
               @keyup.enter="searchHandler"
-              placeholder="Search"
+              :placeholder="t('Search')"
               autocomplete="off"
-              class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none pr-2 pl-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
+              class="w-full h-10 placeholder:text-Gray-b5 dark:text-LightGray-b5 text-Gray-b5 rounded-xl outline-none px-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70"
             />
           </div>
         </div>
         <div
           class="lg:flex lg:items-center items-end min-w-fit gap-4 lg:opacity-100 lg:flex-row flex-col lg:static absolute top-0 right-0 lg:bg-transparent bg-Gray-b1 dark:bg-LightGray-b1 bg-opacity-90 pb-2 lg:pt-2 pt-12 px-3 lg:min-h-0 min-h-screen overflow-hidden hidden"
         >
+          <!-- buttons  -->
+
           <el-button
             class="border-2 border-transparent px-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl hover:scale-105"
             v-if="!account"
@@ -129,6 +115,23 @@
             <Icon name="sun" v-if="isDarkMode" />
             <Icon name="moon" v-if="!isDarkMode" />
           </el-button>
+          <el-button
+            icon
+            class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+          >
+            <el-dropdown @command="locale = $event" class="focus-visible:outline-none hover:outline-none">
+              <i
+                class="isax isax-global-edit text-2xl text-Gray-b5 dark:text-LightGray-b5"
+              >
+              </i>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="en">English</el-dropdown-item>
+                  <el-dropdown-item command="fa">فارسی</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </el-button>
         </div>
       </div>
 
@@ -164,36 +167,20 @@
               <el-menu
                 class="el-menu-responsive bg-transparent w-full border-none justify-end"
               >
-                <template v-for="(item, index) in navigations">
-                  <el-menu-item
-                    v-if="!item.children.length"
-                    :index="converToString(index + 1)"
-                    class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
-                  >
-                    <nuxt-link :to="item.route">{{ item.text }}</nuxt-link>
-                  </el-menu-item>
-                  <el-sub-menu
-                    v-if="item.children.length"
-                    class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
-                    :index="converToString(index + 1)"
-                  >
-                    <template #title
-                      ><span
-                        class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
-                        >{{ item.text }}</span
-                      ></template
-                    >
-                    <el-menu-item
-                      v-for="(subMenu, i) in item.children"
-                      :key="i"
-                      :index="index + 1 + '-' + i + 1"
-                    >
-                      <nuxt-link :to="subMenu.route">{{
-                        subMenu.text
-                      }}</nuxt-link></el-menu-item
-                    >
-                  </el-sub-menu>
-                </template>
+                <el-menu-item
+                  index="1"
+                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                >
+                  <nuxt-link to="/validater-decisions">{{
+                    t("Validaters_Decision")
+                  }}</nuxt-link>
+                </el-menu-item>
+                <el-menu-item
+                  index="2"
+                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                >
+                  <nuxt-link to="/events">{{ t("Events") }}</nuxt-link>
+                </el-menu-item>
                 <el-menu-item @click="checkWalletConnection">
                   Profile
                 </el-menu-item>
@@ -207,9 +194,16 @@
                   <Icon name="sun" v-if="isDarkMode" />
                   <Icon name="moon" v-if="!isDarkMode" />
                 </el-menu-item>
+                <el-menu-item>
+                  <select v-model="locale">
+                    <option value="en-US">en</option>
+                    <option value="fr-IR">fr</option>
+                  </select>
+                </el-menu-item>
               </el-menu>
-            </template> </el-drawer
-        ></ClientOnly>
+            </template>
+          </el-drawer></ClientOnly
+        >
       </section>
     </div>
 
@@ -245,9 +239,12 @@ import { storeToRefs } from "pinia";
 import { shortenAddress } from "@/utils/shortenAddress";
 import Icon from "@/components/TheIcon/Icon.vue";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 //state
 
+const { t } = useI18n();
+const { locale } = useI18n();
 const cryptoStore = useCryptoStore();
 const { switchNetwork, connectWallet, isAccountConnected } = useCryptoStore();
 const { account, isNetworkValid } = storeToRefs(cryptoStore);
@@ -256,7 +253,7 @@ const direction = ref("rtl");
 const router = useRouter();
 const counter = ref(1);
 const search = ref("");
-const navigations = [
+const navigations = ref([
   // {
   //   route: "/DAO-validator-requests",
   //   text: "DAO Validator Requests",
@@ -264,7 +261,7 @@ const navigations = [
   // },
   {
     route: "/validater-decisions",
-    text: "Validaters Decision",
+    text: t("Validaters_Decision"),
     children: [],
   },
   {
@@ -272,10 +269,9 @@ const navigations = [
     text: "Events",
     children: [],
   },
-];
+]);
 const isMounted = ref(false);
 const isDarkMode = ref(true);
-const isConnectWalletFocused = ref(false);
 
 //methods
 

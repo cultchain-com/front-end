@@ -49,6 +49,7 @@ export default defineNuxtConfig({
     "nuxt-simple-robots",
     "nuxt-schema-org",
     "@stefanobartoletti/nuxt-social-share",
+    "@nuxtjs/i18n",
   ],
   // optional configuration
   socialShare: {
@@ -88,4 +89,5 @@ export default defineNuxtConfig({
       ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
+  i18n: { vueI18n: "./nuxt-i18n.js" },
 });

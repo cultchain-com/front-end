@@ -4,7 +4,7 @@
   >
     <div class="form-item flex flex-col gap-1">
       <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Target Amount
+        >{{ $t("Tatget_Amount") }}
       </label>
       <div class="relative">
         <i
@@ -13,32 +13,36 @@
         <input
           class="w-full py-2 pl-8 focus:border-Primary border-2 border-transparent rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
-          placeholder="Target Amount"
+          :placeholder="$t(`Tatget_Amount`)"
           v-model="state.amount"
           autocomplete="off"
         />
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Event Name</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("Event_Name")
+      }}</label>
       <div class="relative">
         <input
           class="w-full py-2 px-2 rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="state.name"
-          placeholder="Event Name"
+          :placeholder="$t(`Event_Name`)"
           autocomplete="off"
         />
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Category</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("Category")
+      }}</label>
 
       <div class="w-full">
-        <el-select v-model="state.category" placeholder="Category" class="select w-full">
+        <el-select
+          v-model="state.category"
+          :placeholder="$t(`Category`)"
+          class="select w-full"
+        >
           <el-option
             v-for="item in props.CategoryList"
             :key="item.value"
@@ -49,9 +53,9 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >End Date</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("End_Date")
+      }}</label>
       <div>
         <el-date-picker
           v-model="state.endDate"
@@ -59,7 +63,7 @@
           value-format="x"
           class="w-full focus:border-Primary border-2 border-transparent"
           format="YYYY/MM/DD"
-          placeholder="End Date"
+          :placeholder="$t(`End_Date`)"
         />
       </div>
     </div>
@@ -68,7 +72,7 @@
         class="bg-Primary w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="checkValidation"
       >
-        Next
+        {{ $t("Next") }}
       </button>
     </div>
   </div>

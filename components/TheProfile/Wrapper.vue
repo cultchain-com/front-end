@@ -13,7 +13,7 @@
           <h3
             class="md:text-xl font-semibold text-base text-Gray-b5 dark:text-LightGray-b5"
           >
-            {{ state.name ? state.name : "Unnamed" }}
+            {{ state.name ? state.name : t("Unnamed") }}
           </h3>
           <div class="flex items-center gap-2">
             <i
@@ -25,7 +25,7 @@
               >
                 {{ shortenAddress(account) }}
                 <span class="text-sm text-Gray-b3 dark:text-LightGray-b4"
-                  >Joined {{ convertDate(state.date_joined) }}</span
+                  >{{ t("Joined") }} {{ convertDate(state.date_joined) }}</span
                 >
               </p>
             </div>
@@ -42,7 +42,7 @@
               icon
               class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
             >
-              Leader Board
+              {{ t("Leader_Board") }}
             </el-button></NuxtLink
           >
           <el-button
@@ -51,7 +51,7 @@
             v-if="!account"
             @click="connectWallet"
           >
-            Connect Wallet
+            {{ t("Connect_Wallet") }}
           </el-button>
           <el-button
             @click="addValidatorHandler"
@@ -59,7 +59,11 @@
             class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 ml-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
             :disabled="isAddValidatorLoading"
           >
-            {{ isAddValidatorLoading ? "Loading..." : "Request Validator" }}
+            {{
+              isAddValidatorLoading
+                ? `${t("Loading")}...`
+                : t("Request_Validator")
+            }}
           </el-button>
         </div>
         <div class="md:hidden">
@@ -73,10 +77,14 @@
               <template #dropdown>
                 <el-dropdown-menu>
                   <NuxtLink to="/leader-board"
-                    ><el-dropdown-item>Leader Board</el-dropdown-item></NuxtLink
+                    ><el-dropdown-item>{{
+                      t("Leader_Board")
+                    }}</el-dropdown-item></NuxtLink
                   >
-                  <el-dropdown-item>Connect Wallet</el-dropdown-item>
-                  <el-dropdown-item>Request Validator</el-dropdown-item>
+                  <el-dropdown-item>{{ t("Connect_Wallet") }}</el-dropdown-item>
+                  <el-dropdown-item>{{
+                    t("Request_Validator")
+                  }}</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown></client-only
@@ -120,7 +128,7 @@
         <h1
           class="text-Gray-b5 dark:text-LightGray-b5 md:text-2xl text-lg italic mt-8"
         >
-          Bio
+          {{ t("Bio") }}
         </h1>
         <p
           class="text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm mt-2 px-2"
@@ -130,7 +138,7 @@
         <h1
           class="text-Gray-b5 dark:text-LightGray-b5 md:text-2xl text-lg italic mt-12"
         >
-          Links
+          {{ t("Links") }}
         </h1>
         <div class="flex items-center gap-4 mt-2">
           <NuxtLink
@@ -158,11 +166,11 @@
           <div class="form-item flex flex-col gap-1">
             <label
               class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-              >Name</label
+              >{{ t("Name") }}</label
             >
             <div class="relative">
               <input
-                placeholder="Name ..."
+                :placeholder="t('Name') + '...'"
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.name"
                 autocomplete="off"
@@ -172,11 +180,11 @@
           <div class="form-item flex flex-col gap-1">
             <label
               class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-              >Bio</label
+              >{{ t("Bio") }}</label
             >
             <div class="relative">
               <input
-                placeholder="Bio ..."
+                :placeholder="t('Bio') + '...'"
                 class="w-full py-2 px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
                 v-model="editModeState.bio"
                 autocomplete="off"
@@ -231,14 +239,14 @@
               icon
               class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-2 border-transparent text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
             >
-              {{ isLoading ? "Loading ..." : "Save" }}
+              {{ isLoading ? `${t("Loading")} ...` : t("Save") }}
             </el-button>
             <el-button
               @click="clearEditModeState"
               icon
               class="bg-transparent bg-opacity-95 hover:bg-opacity-100 border-2 border-Primary text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
             >
-              Cancel
+              {{ t("Cancel") }}
             </el-button>
           </div>
         </div>
@@ -246,7 +254,7 @@
       <el-divider />
       <section class="mt-8">
         <el-tabs v-model="activeTab" class="profile-tabs">
-          <el-tab-pane label="Donation History" name="donations-history">
+          <el-tab-pane :label="t('Donation_History')" name="donations-history">
             <div
               class="grid lg:grid-cols-3 md:grid-cols-2 gap-3 place-content-center p-5 pt-10"
             >
@@ -262,7 +270,7 @@
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
-                  No Data Found !
+                  {{ t("No_Data_Found") }}
                 </h2>
               </div>
               <template v-if="!isDonationHistoryLoading">
@@ -276,7 +284,10 @@
               />
             </div>
           </el-tab-pane>
-          <el-tab-pane label="Validations History" name="validations-history">
+          <el-tab-pane
+            :label="t('Validations_History')"
+            name="validations-history"
+          >
             <div
               class="grid lg:grid-cols-3 md:grid-cols-2 gap-3 place-content-center p-5 pt-10"
             >
@@ -292,7 +303,7 @@
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
-                  No Data Found !
+                  {{ t("No_Data_Found") }}
                 </h2>
               </div>
               <template v-if="!isValidationHistoryLoading">
@@ -307,7 +318,7 @@
                 class="col-span-3 h-[395px] items-start"
               /></div
           ></el-tab-pane>
-          <el-tab-pane label="Created Events" name="created-events">
+          <el-tab-pane :label="t('Created_Events')" name="created-events">
             <div
               class="grid lg:grid-cols-3 md:grid-cols-2 gap-3 place-content-center p-5 pt-10"
             >
@@ -323,7 +334,7 @@
                 <h2
                   class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
                 >
-                  No Data Found !
+                  {{ t("No_Data_Found") }}
                 </h2>
               </div>
               <template v-if="!isEventHistoryLoading"
@@ -365,7 +376,7 @@
               icon
               class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 text-Gray-b5 dark:text-LightGray-b5 py-5 rounded-xl"
             >
-              Leader Board
+              {{ t("Leader_Board") }}
             </el-button></NuxtLink
           >
           <el-button
@@ -374,13 +385,13 @@
             v-if="!account"
             @click="connectWallet"
           >
-            Connect Wallet
+            {{ t("Connect_Wallet") }}
           </el-button>
           <NuxtLink
             to="/become-donor"
             class="bg-Primary bg-opacity-95 hover:bg-opacity-100 border-0 ml-0 text-Gray-b5 dark:text-LightGray-b5 px-[15px] max-h-10 h-10 flex items-center rounded-xl"
           >
-            Become Donor
+            {{ t("Become_Donor") }}
           </NuxtLink>
         </div>
         <div class="md:hidden">
@@ -394,10 +405,14 @@
               <template #dropdown>
                 <el-dropdown-menu>
                   <NuxtLink to="/leader-board"
-                    ><el-dropdown-item>Leader Board</el-dropdown-item></NuxtLink
+                    ><el-dropdown-item>{{
+                      t("Leader_Board")
+                    }}</el-dropdown-item></NuxtLink
                   >
-                  <el-dropdown-item>Connect Wallet</el-dropdown-item>
-                  <el-dropdown-item>Request Validator</el-dropdown-item>
+                  <el-dropdown-item>{{ t("Connect_Wallet") }}</el-dropdown-item>
+                  <el-dropdown-item>{{
+                    t("Request_Validator")
+                  }}</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown></client-only
@@ -451,9 +466,11 @@ import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { shortenAddress } from "@/utils/shortenAddress";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 //state
 
+const { t } = useI18n();
 const isDonationHistoryLoading = ref(false);
 const isValidationHistoryLoading = ref(false);
 const isEventHistoryLoading = ref(false);

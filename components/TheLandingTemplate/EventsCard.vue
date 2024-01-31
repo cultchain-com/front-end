@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="'/events/' + state.id"
-    class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl"
+    class="bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl flex flex-col hover:shadow-xl w-full"
   >
     <div
       class="overflow-hidden h-[200px] w-full bg-Gray-b5 dark:bg-LightGray-b5 rounded-t-xl"

@@ -3,7 +3,7 @@
     <h1
       class="lg:text-xl text-base text-Gray-b5 dark:text-LightGray-b5 font-bold text-start"
     >
-      Validaters Decision
+      {{ $t("Validaters_Decision") }}
     </h1>
     <Carousel
       dir="ltr"
@@ -33,7 +33,7 @@
         <h2
           class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
         >
-          No Data Found !
+          {{ $t("No_Data_Found") }}
         </h2>
       </div>
     </template>

@@ -8,18 +8,15 @@
       />
       <div class="flex flex-col justify-between gap-4 p-4">
         <p class="lg:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">
-          AWARD WINNING SUPPORT
+          {{ $t("AWARD_WINNING_SUPPORT") }}
         </p>
         <h2
           class="lg:text-2xl leading-7 font-semibold text-xl text-Gray-b5 dark:text-LightGray-b5"
         >
-          We’re here to help
+          {{ $t("AWARD_WINNING_SUPPORT_Title") }}
         </h2>
         <p class="lg:text-base text-sm text-Gray-b4 dark:text-LightGray-b4">
-          Were at the early days of blockchain, in compare to the Internet, were
-          at 1997. There are rooms for inovation and improvement, solving
-          traditional problems that cant be addressed using traditional
-          Technologies.
+          {{ $t("AWARD_WINNING_SUPPORT_Description") }}
         </p>
         <a
           href="https://whitepaper.cultchain.com"
@@ -27,7 +24,7 @@
           class="text-Gray-b5 dark:text-LightGray-b5 w-fit text-sm font-semibold flex items-center gap-2 rounded-xl border-Primary border-2 bg-opacity-90 hover:bg-opacity-100 hover:scale-95 px-5 py-3"
         >
           <Icon name="rocket-primary" />
-          Visit our WhitePaper
+          {{ $t("Read_Our_Whitepaper") }}
         </a>
       </div>
     </div>

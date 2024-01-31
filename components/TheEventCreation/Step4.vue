@@ -9,7 +9,7 @@
         class="text-Primary underline underline-offset-4 cursor-pointer"
         >{{ props.state?.eventDetails.name }}</NuxtLink
       >
-      - MileStones
+      - {{ $t("MileStones") }}
     </h1>
     <el-collapse v-if="props.state?.milestones.length">
       <el-collapse-item
@@ -38,18 +38,20 @@
       </el-collapse-item>
     </el-collapse>
     <template v-else
-      ><span class="text-Gray-b4 dark:text-LightGray-b4">No MileStones!</span>
+      ><span class="text-Gray-b4 dark:text-LightGray-b4">{{
+        $t("No_MileStones")
+      }}</span>
     </template>
     <div class="form-item flex flex-col gap-1">
       <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Target Amount
+        >{{ $t("Tatget_Amount") }}
       </label>
       <div class="relative">
         <i
           class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
         />
         <input
-          placeholder="Target Amount"
+          :placeholder="$t(`Tatget_Amount`)"
           class="w-full py-2 focus:border-Primary border-2 border-transparent pl-8 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           type="number"
           v-model="localState.amount"
@@ -58,12 +60,12 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Name</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("Name")
+      }}</label>
       <div class="relative">
         <input
-          placeholder="Name"
+          :placeholder="$t(`Name`)"
           class="w-full py-2 focus:border-Primary border-2 border-transparent px-2 rounded-lg outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
           v-model="localState.name"
           autocomplete="off"
@@ -71,24 +73,24 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >End Date</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("End_Date")
+      }}</label>
       <el-date-picker
         v-model="localState.endDate"
         type="date"
         class="w-full"
         format="YYYY/MM/DD"
         value-format="x"
-        placeholder="End Date"
+        :placeholder="$t(`Name`)"
       />
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Description</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("Description")
+      }}</label>
       <textarea
-        placeholder="description"
+        :placeholder="$t(`Description`)"
         v-model="localState.description"
         class="rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1 p-2 h-[200px]"
       ></textarea>

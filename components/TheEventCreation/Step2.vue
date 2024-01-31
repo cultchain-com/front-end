@@ -4,24 +4,24 @@
     :key="counter"
   >
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >Add Cover Photo</label
-      >
+      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
+        $t("Add_Cover_Photo")
+      }}</label>
       <div class="flex flex-col gap-2">
         <div
           class="h-[200px] rounded-xl bg-Gray-b1 dark:bg-LightGray-b1 border-2 border-dashed border-Gray-b4 dark:border-LightGray-b4 cursor-pointer flex items-center justify-center text-Gray-b5 dark:text-LightGray-b5 overflow-hidden"
           @click="chooseImg"
           id="img-preview"
         >
-          <span v-if="isImageUploading">Uploading...</span>
+          <span v-if="isImageUploading">{{ $t("Uploading") }}...</span>
           <img
             class="w-full object-cover"
             :src="'https://ipfs.io/ipfs/' + state.coverPhoto + '/'"
             v-else-if="!isImageUploading && state.coverPhoto"
           />
-          <span v-else-if="!isImageUploading && !state.coverPhoto"
-            >Upload Image,click here</span
-          >
+          <span v-else-if="!isImageUploading && !state.coverPhoto">{{
+            $t("Upload_Image_click_here")
+          }}</span>
         </div>
         <input
           type="file"
@@ -38,14 +38,14 @@
         class="border-Gray-b5 dark:border-LightGray-b5 border-2 w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="emit('prevStep')"
       >
-        Prev
+        {{ $t("Prev") }}
       </button>
       <button
         :disabled="isImageUploading"
         class="bg-Primary border-2 border-Primary w-fit px-8 h-10 rounded-xl text-Gray-b5 dark:text-LightGray-b5 md:text-base text-sm"
         @click="checkValidation"
       >
-        Next
+        {{ $t("Next") }}
       </button>
     </div>
   </div>

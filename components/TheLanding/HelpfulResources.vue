@@ -1,16 +1,17 @@
 <template>
   <main class="flex flex-col gap-8 py-[80px]">
-    <h6 class="lg:text-xl text-base text-Primary text-center">LEARN</h6>
+    <h6 class="lg:text-xl text-base text-Primary text-center">
+      {{ $t("LEARN") }}
+    </h6>
     <h1
       class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center lg:leading-[40px] leading-10"
     >
-      Helpful Resources
+      {{ $t("Helpful_Resources") }}
     </h1>
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center"
     >
-      Feel Free to investigate useful resources provided by our team to learn
-      more about this new market.
+      {{ $t("Helpful_Resources_Description") }}
     </p>
     <ul
       class="grid lg:grid-cols-4 items-center md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-10"
@@ -22,13 +23,13 @@
         <BlogCard :state="item" />
       </template>
     </ul>
-      <template v-if="isLoaded && !postList?.length">
-        <p
-          class="text-Gray-b5 dark:text-LightGray-b5 text-xl leading-8 text-center"
-        >
-          Nothing To Show!
-        </p>
-      </template>
+    <template v-if="isLoaded && !postList?.length">
+      <p
+        class="text-Gray-b5 dark:text-LightGray-b5 text-xl leading-8 text-center"
+      >
+        Nothing To Show!
+      </p>
+    </template>
   </main>
 </template>
 

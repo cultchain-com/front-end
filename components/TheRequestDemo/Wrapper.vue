@@ -5,12 +5,10 @@
     <div class="flex flex-col justify-around gap-6 py-20 h-full px-4">
       <div>
         <h1 class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-xl mb-6">
-          Schedule Your Free Demo
+          {{ $t("Schedule_Your_Free_Demo") }}
         </h1>
         <p class="text-Gray-b4 dark:text-LightGray-b4 text-sm mb-6">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat
-          ducimus perferendis numquam nam in recusandae ad dolor placeat saepe
-          beatae.
+          {{ $t("Lorem_ipsum") }}
         </p>
       </div>
       <div class="grid grid-cols-3">
@@ -19,7 +17,11 @@
           :key="index"
           class="text-center"
         >
-          <img :src="item.image" class="h-20 w-20 object-contain mx-auto" :alt="item.description" />
+          <img
+            :src="item.image"
+            class="h-20 w-20 object-contain mx-auto"
+            :alt="item.description"
+          />
           <p
             class="text-center h-[calc(100%-80px)] mt-4 flex items-center justify-center text-Gray-b4 dark:text-LightGray-b4 text-xs mb-6"
           >
@@ -35,76 +37,76 @@
         <h2
           class="text-Gray-b5 dark:text-LightGray-b5 font-bold text-base px-6 text-center"
         >
-          Complete the Form below to Request free Demo
+          {{ $t("Complete_the_Form_below_to_Request_free_Demo") }}
         </h2>
         <div class="form-item flex flex-col gap-2">
           <label
             class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
             for="name"
-            >Name</label
+            >{{ $t("Name") }}</label
           >
           <input
             v-model="state.name"
             id="name"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b1 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
-            placeholder="Name"
+            :placeholder="$t(`Name`)"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
           <label
             class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
             for="email"
-            >Email</label
+            >{{ $t("Email") }}</label
           >
           <input
             v-model="state.email"
             id="email"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b1 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
-            placeholder="Email"
+            :placeholder="$t(`Email`)"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
           <label
             class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
             for="subject"
-            >Subject</label
+            >{{ $t("Subject") }}</label
           >
           <input
             v-model="state.subject"
             id="name"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b1 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
-            placeholder="Subject"
+            :placeholder="$t(`Subject`)"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
           <label
             class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
             for="phone_number"
-            >Phone Number</label
+            >{{ $t("Phone_Number") }}</label
           >
           <input
             v-model="state.phoneNumber"
             id="phone_number"
             class="lg:w-[calc(100%-20px)] w-full h-10 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b1 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
-            placeholder="Phone Number"
+            :placeholder="$t(`Phone_Number`)"
           />
         </div>
         <div class="form-item flex flex-col gap-2">
           <label
             class="text-sm text-Gray-b4 dark:text-LightGray-b4 font-medium"
             for="message"
-            >Message</label
+            >{{ $t("Message") }}</label
           >
           <textarea
             v-model="state.message"
             id="message"
             class="lg:w-[calc(100%-20px)] w-full h-20 px-3 rounded-xl outline-none bg-Gray-b3 dark:bg-LightGray-b1 bg-opacity-70 border-2 border-transparent focus:border-Primary"
             autocomplete="off"
-            placeholder="Message"
+            :placeholder="$t(`Message`)"
           ></textarea>
         </div>
         <NuxtTurnstile v-model="token" />
@@ -112,7 +114,7 @@
           @click="sendMessagehandler"
           class="lg:w-[calc(100%-20px)] w-full bg-Primary h-10 mt-2 rounded-xl text-Gray-b5 dark:text-LightGray-b5 font-semibold"
         >
-          {{ isLoading ? "Loading..." : "Send Message" }}
+          {{ isLoading ? `${$t('Loading')}...` : $t("Send_Message") }}
         </button>
       </div>
     </div>

@@ -1,10 +1,12 @@
 <template>
   <div class="mb-20">
-    <h6 class="lg:text-xl text-base text-Primary text-center">LEARN</h6>
+    <h6 class="lg:text-xl text-base text-Primary text-center">
+      {{ t("LEARN") }}
+    </h6>
     <h1
       class="lg:text-3xl text-xl mt-4 text-Gray-b5 dark:text-LightGray-b5 font-bold text-center lg:leading-[40px] leading-10"
     >
-      Full Roadmap
+      {{ t("Full_Roadmap") }}
     </h1>
     <div class="p-5 rounded-xl border-[1px] border-Gray-b3 mt-6">
       <div class="grid lg:grid-cols-3">
@@ -16,7 +18,7 @@
             <p
               class="text-Gray-b3 dark:text-LightGray-b3 text-base font-semibold"
             >
-              Phase {{ index + 1 }}
+              {{ t("Phase") }} {{ index + 1 }}
             </p>
             <p
               class="text-Gray-b5 dark:text-LightGray-b5 text-lg font-semibold"
@@ -54,57 +56,61 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import Icon from "@/components/TheIcon/Icon.vue";
+import { useI18n } from "vue-i18n";
 
-const state = ref([
+//state
+
+const { t } = useI18n();
+
+const state = computed(() => [
   {
-    label: "Launch",
+    label: t("Launch"),
     steps: [
       {
-        label: "Launching Time",
+        label: t("Launching_Time"),
         status: true,
       },
       {
-        label: "Social Launch",
+        label: t("Social_Launch"),
         status: true,
       },
       {
-        label: "GiveWays & Promos",
+        label: t("GiveWays_Promos"),
         status: true,
       },
     ],
   },
   {
-    label: "Investment",
+    label: t("Investment"),
     steps: [
       {
-        label: "Publish Whitepaper",
+        label: t("Publish_Whitepaper"),
         status: false,
       },
       {
-        label: "Website Launch",
+        label: t("Website_Launch"),
         status: false,
       },
       {
-        label: "Meda Advertisement",
+        label: t("Meda_Advertisement"),
         status: false,
       },
     ],
   },
   {
-    label: "Growing",
+    label: t("Growing"),
     steps: [
       {
-        label: "Opening Collections",
+        label: t("Opening_Collections"),
         status: false,
       },
       {
-        label: "Influenser Marketing",
+        label: t("Influenser_Marketing"),
         status: false,
       },
       {
-        label: "Publish Release",
+        label: t("Publish_Release"),
         status: false,
       },
     ],

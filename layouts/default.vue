@@ -1,49 +1,54 @@
 <template>
   <div
-    class="relative"
-    v-show="isLoading"
-    @wheel.prevent
-    @touchmove.prevent
-    @scroll.prevent
+    :style="locale == 'fa' ? 'direction: rtl;' : ''"
+    :class="locale == 'fa' ? 'direction-rtl' : 'direction-ltr'"
   >
-    <div>
-      <slot />
-    </div>
     <div
-      v-if="isLoading"
-      class="overlay min-h-screen w-[calc(100vw-10px)] bg-Gray-b2 dark:bg-LightGray-b2 bg-opacity-50 absolute left-0 top-0 overflow-hidden"
+      class="relative"
+      v-show="isLoading"
+      @wheel.prevent
+      @touchmove.prevent
+      @scroll.prevent
     >
-      <div class="loader">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
+      <div>
+        <slot />
+      </div>
+      <div
+        v-if="isLoading"
+        class="overlay min-h-screen w-[calc(100vw-10px)] bg-Gray-b2 dark:bg-LightGray-b2 bg-opacity-50 absolute left-0 top-0 overflow-hidden"
+      >
+        <div class="loader">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="relative" v-show="!isLoading">
-    <div>
-      <slot />
-      <ClientOnly>
-        <el-dialog
-          v-model="isWalletDisconnectedVisible"
-          class="w-fit"
-          :before-close="handleClose"
-        >
-          <template #title
-            ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
-              Sign in your wallet
-            </h4></template
+    <div class="relative" v-show="!isLoading">
+      <div>
+        <slot />
+        <ClientOnly>
+          <el-dialog
+            v-model="isWalletDisconnectedVisible"
+            class="w-fit"
+            :before-close="handleClose"
           >
-          <p class="text-Gray-b5 dark:text-LightGray-b5 text-center mt-10">
-            You will be prompted to sign a message to authenticate, please check
-            your wallet.
-          </p>
-        </el-dialog>
-      </ClientOnly>
+            <template #title
+              ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
+                Sign in your wallet
+              </h4></template
+            >
+            <p class="text-Gray-b5 dark:text-LightGray-b5 text-center mt-10">
+              You will be prompted to sign a message to authenticate, please
+              check your wallet.
+            </p>
+          </el-dialog>
+        </ClientOnly>
+      </div>
     </div>
   </div>
 </template>
@@ -51,9 +56,11 @@
 import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
+import { useI18n } from "vue-i18n";
 
 //state
 
+const { locale } = useI18n();
 const cryptoStore = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const loading = useLoading();

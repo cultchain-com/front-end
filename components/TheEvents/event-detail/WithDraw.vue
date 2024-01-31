@@ -2,12 +2,12 @@
   <div
     class="flex items-center justify-between p-5 bg-Primary bg-opacity-30 rounded-xl text-Gray-b5 text-base dark:text-LightGray-b5"
   >
-    <p>you can withdraw now!</p>
+    <p>{{ $t("you_can_withdraw_now") }}</p>
     <button
       class="bg-Primary px-3 py-2 rounded-xl shadow-xl text-Gray-b5"
       @click="openWithDrawModalHandler"
     >
-      {{ loading ? "Loading ..." : "WithDraw" }}
+      {{ loading ? `${$t("Loading")} ...` : $t("WithDraw") }}
     </button>
   </div>
   <ClientOnly>
@@ -18,27 +18,27 @@
     >
       <template #title
         ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
-          WithDraw
+          {{ $t("WithDraw") }}
         </h4></template
       >
 
       <el-steps :active="activeStep" finish-status="success">
-        <el-step title="Confirm"></el-step>
-        <el-step title="WithDraw"></el-step>
+        <el-step :title="$t('Confirm')"></el-step>
+        <el-step :title="$t('WithDraw')"></el-step>
       </el-steps>
       <div class="p-5 pb-0">
         <template v-if="activeStep == 0">
           <div class="mt-6 social-share text-Gray-b4 dark:text-LightGray-b4">
-            Your next Possible withDraw Amount is:
+            {{ $t("Your_next_Possible_withDraw_Amount_is") }}
             <span class="font-bold text-Gray-b5 dark:text-LightGray-b5"
               >{{ +withDrawAmount / Math.pow(10, 18) }} ETH,
             </span>
-            Do you want to
+            {{ $t("Do_you_want_to") }}
             <button
               @click="activeStep = 1"
               class="ont-bold text-Gray-b5 dark:text-LightGray-b5"
             >
-              Continue</button
+              {{ $t("Continue") }}</button
             >?
           </div>
           <div class="mt-10 grid grid-cols-2 gap-10">
@@ -46,32 +46,32 @@
               @click="handleClose"
               class="border-Primary border-2 text-Gray-b5 py-2 rounded-xl"
             >
-              Cancel
+              {{ $t("Cancel") }}
             </button>
             <button
               class="bg-Primary text-Gray-b5 py-2 rounded-xl"
               @click="activeStep = 1"
             >
-              Continue
+              {{ $t("Continue") }}
             </button>
           </div>
         </template>
         <template v-if="activeStep == 1">
           <div class="mt-6 social-share text-Gray-b4 dark:text-LightGray-b4">
-            Are you Sure?
+            {{ $t("Are_you_Sure") }}
           </div>
           <div class="mt-10 grid grid-cols-2 gap-10">
             <button
               class="border-Primary border-2 text-Gray-b5 py-2 rounded-xl"
               @click="activeStep = 0"
             >
-              Prev
+              {{ $t("Prev") }}
             </button>
             <button
               class="bg-Primary text-Gray-b5 py-2 rounded-xl"
               @click="withdrawHandler"
             >
-              {{ loading ? "Loading..." : "Confirm" }}
+              {{ loading ? `${$t("Loading")} ...` : $t("Confirm") }}
             </button>
           </div>
         </template>

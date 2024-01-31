@@ -23,9 +23,7 @@
             >
               {{ post?.title }}
             </h2>
-            <p
-              class="text-xs font-medium text-Gray-b4 dark:text-LightGray-b4"
-            >
+            <p class="text-xs font-medium text-Gray-b4 dark:text-LightGray-b4">
               {{ post?.author_name }}
             </p>
           </div>
@@ -47,7 +45,7 @@
 
     <div class="bg-Gray-b2 dark:bg-LightGray-b2 p-5 rounded-xl justify-between">
       <h5 class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5">
-        Story
+        {{ $t("Story") }}
       </h5>
       <div
         v-html="post?.body"

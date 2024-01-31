@@ -13,9 +13,11 @@
     </p>
 
     <Carousel
+      dir=""
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
+      :wrap-around="carouselOptions.wrapAround"
       v-if="events.length"
     >
       <Slide v-for="(item, index) in events" :key="index">
@@ -29,7 +31,7 @@
       <div
         class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
       >
-        <SkeletonCard v-for="item in 4" :key="item" />
+        <SkeletonCard v-for="item in 3" :key="item" />
       </div>
     </template>
 
@@ -55,20 +57,21 @@ import SkeletonCard from "./SkeletonCard.vue";
 const events = ref([]);
 const { listAllEvents } = useCryptoStore();
 const carouselOptions = {
-  itemsToShow: 3,
-  transition: 300,
+  itemsToShow: 2.95,
+  transition: 500,
+  wrapAround: true,
   breakpoints: {
     320: {
       itemsToShow: 1,
       snapAlign: "center",
     },
     768: {
-      itemsToShow: 2,
+      itemsToShow: 3,
       snapAlign: "center",
     },
     1440: {
-      itemsToShow: 4,
-      snapAlign: "start",
+      itemsToShow: 3,
+      snapAlign: "center",
     },
   },
 };
@@ -82,3 +85,15 @@ onMounted(async () => {
   isListLoaded.value = true;
 });
 </script>
+
+<style scoped>
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+}
+</style>
