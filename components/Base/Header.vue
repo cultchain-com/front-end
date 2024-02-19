@@ -119,7 +119,10 @@
             icon
             class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-Gray-b3 dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
           >
-            <el-dropdown @command="locale = $event" class="focus-visible:outline-none hover:outline-none">
+            <el-dropdown
+              @command="locale = $event"
+              class="focus-visible:outline-none hover:outline-none"
+            >
               <i
                 class="isax isax-global-edit text-2xl text-Gray-b5 dark:text-LightGray-b5"
               >
@@ -181,24 +184,66 @@
                 >
                   <nuxt-link to="/events">{{ t("Events") }}</nuxt-link>
                 </el-menu-item>
-                <el-menu-item @click="checkWalletConnection">
-                  Profile
+                <el-menu-item
+                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                  @click="checkWalletConnection"
+                  >{{ t("Profile") }}
                 </el-menu-item>
-                <el-menu-item @click="toggleTheme">
-                  <input
+                <el-menu-item
+                  @click="toggleTheme"
+                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                >
+                  <!-- <input
                     id="toggle"
                     class="toggle"
                     v-model="isDarkMode"
                     type="checkbox"
                   />
                   <Icon name="sun" v-if="isDarkMode" />
-                  <Icon name="moon" v-if="!isDarkMode" />
+                  <Icon name="moon" v-if="!isDarkMode" /> -->
+                  <div class="flex justify-between items-center w-full">
+                    <h5>Theme</h5>
+                    <el-switch
+                      size="large"
+                      v-model="isDarkMode"
+                      @change="isDarkMode = !isDarkMode"
+                      :active-action-icon="Sunny"
+                      :inactive-action-icon="Moon"
+                      active-colo="red"
+                    >
+                    </el-switch>
+                  </div>
                 </el-menu-item>
-                <el-menu-item>
-                  <select v-model="locale">
-                    <option value="en-US">en</option>
-                    <option value="fr-IR">fr</option>
-                  </select>
+                <el-menu-item
+                  class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
+                >
+                  <div class="flex w-full justify-between items-center">
+                    <h5>Translation</h5>
+                    <el-button
+                      icon
+                      class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-transparent dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
+                    >
+                      <el-dropdown
+                        @command="locale = $event"
+                        class="focus-visible:outline-none hover:outline-none"
+                      >
+                        <i
+                          class="isax isax-global-edit text-2xl text-Gray-b5 dark:text-LightGray-b5"
+                        >
+                        </i>
+                        <template #dropdown>
+                          <el-dropdown-menu>
+                            <el-dropdown-item command="en"
+                              >English</el-dropdown-item
+                            >
+                            <el-dropdown-item command="fa"
+                              >فارسی</el-dropdown-item
+                            >
+                          </el-dropdown-menu>
+                        </template>
+                      </el-dropdown>
+                    </el-button>
+                  </div>
                 </el-menu-item>
               </el-menu>
             </template>
@@ -240,6 +285,8 @@ import { shortenAddress } from "@/utils/shortenAddress";
 import Icon from "@/components/TheIcon/Icon.vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { Moon, Sunny } from "@element-plus/icons-vue";
+import sun from "@/assets/icons/sun.svg";
 
 //state
 
