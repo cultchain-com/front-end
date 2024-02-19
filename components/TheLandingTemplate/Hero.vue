@@ -30,7 +30,7 @@
     <div class="hero-logo">
       <img
         src="/landing/landing-hero.png"
-        class="max-h-[500px] mx-auto"
+        class="h-[400px] object-cover float-left mr-4 max-w-[400px] rounded-xl"
         alt="cultchain"
       />
     </div>

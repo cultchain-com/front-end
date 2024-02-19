@@ -1,10 +1,14 @@
 <template>
   <div class="">
     <img
-      src="/landing/about-us.svg"
-      class="h-[400px] object-cover float-left mr-4"
+      src="/landing/about-us.png"
+      class="h-[400px] object-cover float-left mr-4 max-w-[400px] rounded-xl"
     />
-    <h2 class="italic text-3xl text-Gray-b5 dark:text-LightGray-b5 font-medium my-8">About Us</h2>
+    <h2
+      class="italic text-3xl text-Gray-b5 dark:text-LightGray-b5 font-medium my-8"
+    >
+      About Us
+    </h2>
     <p
       class="text-base text-Gray-b4 dark:text-LightGray-b4 leading-10 italic text-justify delay-1000 ease-linear"
     >

@@ -9,7 +9,10 @@
           {{ $t("FAQ_Description") }}
         </p>
       </div>
-      <Icon name="faq" />
+      <img
+        src="/landing/faq.png"
+        class="h-[400px] object-cover float-left mr-4 max-w-[400px] rounded-xl"
+      />
     </section>
     <Accardeons :list="faqList" />
   </div>
