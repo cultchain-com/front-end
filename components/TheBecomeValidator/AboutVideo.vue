@@ -1,7 +1,7 @@
 <template>
   <main class="flex flex-col gap-4">
     <h6 class="lg:text-xl text-base text-Primary text-center">
-      NFT MARKETPLACE
+      {{ t("NFT_MARKETPLACE") }}
     </h6>
     <h1
       class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
@@ -11,8 +11,7 @@
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center"
     >
-      Revolutionizing Charity with Blockchain & AI | From Cityscapes to Digital
-      Benevolence
+      {{ t("NFT_MARKETPLACE_description") }}
     </p>
     <iframe
       class="w-full lg:h-[600px] md:h-[400px] h-[300px] rounded-xl"
@@ -25,6 +24,12 @@
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import { useI18n } from "vue-i18n";
+
+//state
+
+const { t } = useI18n();
+</script>
 
 <style lang="scss" scoped></style>

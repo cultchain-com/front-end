@@ -3,13 +3,12 @@
     <h1
       class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
     >
-      Events
+      {{t("Events")}}
     </h1>
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center mb-5"
     >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi natus
-      commodi molestias soluta veniam distinctio
+      {{t("Lorem")}}
     </p>
 
     <Carousel
@@ -40,7 +39,7 @@
         <h2
           class="mx-2xl text-Gray-b5 dark:text-LightGray-b5 font-medium text-center"
         >
-          No Data Found !
+          {{ t("No_Data_Found") }}
         </h2>
       </div>
     </template>
@@ -51,9 +50,11 @@
 import { useCryptoStore } from "~/store/crypto";
 import EventsCard from "./EventsCard.vue";
 import SkeletonCard from "./SkeletonCard.vue";
+import { useI18n } from "vue-i18n";
 
 //state
 
+const { t } = useI18n();
 const events = ref([]);
 const { listAllEvents } = useCryptoStore();
 const carouselOptions = {

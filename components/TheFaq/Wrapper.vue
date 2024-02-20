@@ -11,7 +11,7 @@
       </div>
       <img
         src="/landing/faq.png"
-        class="h-[400px] object-cover float-left mr-4 max-w-[400px] rounded-xl"
+        class="h-[400px] object-cover float-left mr-4 max-w-[400px] rounded-xl w-full"
       />
     </section>
     <Accardeons :list="faqList" />

@@ -7,6 +7,7 @@ import become_donor from "./fa/become-donor.json";
 import faq from "./fa/faq.json";
 import contact_us from "./fa/contact-us.json";
 import request_demo from "./fa/request-demo.json";
+import become_validator from "./fa/become-validator.json";
 // contact-us
 export default {
   ...header,
@@ -18,4 +19,5 @@ export default {
   ...faq,
   ...contact_us,
   ...request_demo,
+  ...become_validator,
 };

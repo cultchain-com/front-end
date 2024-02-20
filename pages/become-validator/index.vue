@@ -1,17 +1,17 @@
 <script setup>
 import Header from "@/components/Base/Header.vue";
-import Wrapper from "@/components/TheLandingTemplate/Wrapper.vue";
+import Wrapper from "@/components/TheBecomeValidator/Wrapper.vue";
 import Footer from "@/components/Base/Footer.vue";
 import { useLoading } from "@/store/loading";
 
 //meta
 
 useHead({
-  title: "landing-1",
+  title: "Become Validator",
   meta: [
     {
-      name: "landing-1",
-      content: "landing-1",
+      name: "Become Validator",
+      content: "Become Validator",
     },
   ],
 });
