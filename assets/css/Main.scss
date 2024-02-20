@@ -496,3 +496,13 @@ th:last-child {
 .el-input__wrapper.is-focus {
   box-shadow: 0 0 0 2px #a259ff inset !important;
 }
+.el-menu-item [class^="el-icon"] {
+  margin-right: 0 !important;
+}
+.el-switch.is-checked .el-switch__core {
+  // @apply bg-Primary border-Primary #{!important};
+}
+.el-switch {
+  --el-switch-on-color: rgb(199, 109, 0) !important;
+  --el-switch-off-color: rgb(164, 163, 163) !important;
+}

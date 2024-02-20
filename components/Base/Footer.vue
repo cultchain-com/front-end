@@ -55,7 +55,9 @@
           />
           <button
             class="absolute top-0 h-[50px] px-4 bg-Primary text-Gray-b5 dark:text-LightGray-b5"
-            :class="locale == 'fa' ? 'left-0 rounded-l-xl' : 'right-0 rounded-r-xl'"
+            :class="
+              locale == 'fa' ? 'left-0 rounded-l-xl' : 'right-0 rounded-r-xl'
+            "
           >
             {{ t("Subscribe") }}
           </button>
@@ -75,8 +77,15 @@ import { useI18n } from "vue-i18n";
 
 //state
 
-const { t,locale } = useI18n();
+const { t, locale } = useI18n();
+
+//computed
+
 const navigations = computed(() => [
+  {
+    route: "/become-validator",
+    text: t("Landing_Template"),
+  },
   {
     route: "/become-donor",
     text: t("Become_Donor"),
@@ -100,10 +109,6 @@ const navigations = computed(() => [
   {
     route: "/request-demo",
     text: t("Request_Demo"),
-  },
-  {
-    route: "/landing-1",
-    text: t("Landing_Template"),
   },
 ]);
 </script>
