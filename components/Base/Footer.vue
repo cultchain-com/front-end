@@ -83,6 +83,10 @@ const { t, locale } = useI18n();
 
 const navigations = computed(() => [
   {
+    route: "/become-validator",
+    text: t("Landing_Template"),
+  },
+  {
     route: "/become-donor",
     text: t("Become_Donor"),
   },
@@ -105,10 +109,6 @@ const navigations = computed(() => [
   {
     route: "/request-demo",
     text: t("Request_Demo"),
-  },
-  {
-    route: "/become-validator",
-    text: t("Landing_Template"),
   },
 ]);
 </script>
