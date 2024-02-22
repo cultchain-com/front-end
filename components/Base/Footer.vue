@@ -56,7 +56,7 @@
           <button
             class="absolute top-0 h-[50px] px-4 bg-Primary text-Gray-b5 dark:text-LightGray-b5"
             :class="
-              locale == 'fa' ? 'left-0 rounded-l-xl' : 'right-0 rounded-r-xl'
+              locale == 'en' ? 'right-0 rounded-r-xl' : 'left-0 rounded-l-xl'
             "
           >
             {{ t("Subscribe") }}

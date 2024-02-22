@@ -1,7 +1,7 @@
 <template>
   <div
-    :style="locale == 'fa' ? 'direction: rtl;' : ''"
-    :class="locale == 'fa' ? 'direction-rtl' : 'direction-ltr'"
+    :style="locale == 'en' ? '' : 'direction: rtl;'"
+    :class="locale == 'en' ? 'direction-ltr' : 'direction-rtl'"
   >
     <div
       class="relative"

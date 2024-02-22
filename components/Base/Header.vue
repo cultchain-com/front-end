@@ -131,6 +131,7 @@
                 <el-dropdown-menu>
                   <el-dropdown-item command="en">English</el-dropdown-item>
                   <el-dropdown-item command="fa">فارسی</el-dropdown-item>
+                  <el-dropdown-item command="ar">عربی</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -238,6 +239,9 @@
                             >
                             <el-dropdown-item command="fa"
                               >فارسی</el-dropdown-item
+                            >
+                            <el-dropdown-item command="ar"
+                              >عربی</el-dropdown-item
                             >
                           </el-dropdown-menu>
                         </template>
