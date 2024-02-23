@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full base-table">
+  <table class="w-full base-table" dir="ltr">
     <thead>
       <tr class="border-b-[1px]">
         <th>*</th>
@@ -21,17 +21,13 @@
         <td data-label="Total Commitees">{{ item.totalCommitees }}</td>
         <td data-label="Earning">{{ item.earning }}$</td>
         <td data-label="Networks">{{ item.networks }}</td>
-        <!-- <el-divider
-          class="block md:none"
-          v-if="index !== dataList.length - 1"
-        /> -->
       </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 //props
 
@@ -41,32 +37,21 @@ const props = defineProps({
   },
 });
 
-const dataList = ref([
+//state
+
+const { t } = useI18n();
+const columns = computed(() => [
   {
-    Address: "a0X....sm",
-    totalCommitees: 5,
-    earning: 10,
-    networks: 200,
+    text: t("Address"),
   },
   {
-    Address: "a2X....12",
-    totalCommitees: 3,
-    earning: 20,
-    networks: 156,
+    text: t("Total_Commitees"),
+  },
+  {
+    text: t("Earning"),
+  },
+  {
+    text: t("Networks"),
   },
 ]);
-const columns = [
-  {
-    text: "Address",
-  },
-  {
-    text: "Total Commitees",
-  },
-  {
-    text: "Earning",
-  },
-  {
-    text: "Networks",
-  },
-];
 </script>

@@ -8,6 +8,7 @@ import faq from "./ar/faq.json";
 import contact_us from "./ar/contact-us.json";
 import request_demo from "./ar/request-demo.json";
 import become_validator from "./ar/become-validator.json";
+import leader_board from "./ar/leader-board.json";
 
 export default {
   ...header,
@@ -20,4 +21,5 @@ export default {
   ...contact_us,
   ...request_demo,
   ...become_validator,
+  ...leader_board,
 };

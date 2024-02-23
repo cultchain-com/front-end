@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full base-table">
+  <table class="w-full base-table" dir="ltr">
     <thead>
       <tr class="border-b-[1px]">
         <th>*</th>
@@ -20,13 +20,14 @@
         <td data-label="Address">
           <client-only>
             <div class="flex gap-2 items-center justify-center">
-              <el-tooltip :content="item.creator__wallet_address" placement="top">
+              <el-tooltip
+                :content="item.creator__wallet_address"
+                placement="top"
+              >
                 <span>{{ shortenAddress(item.creator__wallet_address) }}</span>
               </el-tooltip>
               <el-tooltip
-                :content="
-                  item.value ? 'Copied' : 'Copy'
-                "
+                :content="item.value ? t('Copied') : t('Copy')"
                 placement="top"
               >
                 <i
@@ -43,16 +44,23 @@
           ></client-only>
         </td>
         <td data-label="Raised">
-          {{ new Intl.NumberFormat().format(item.total_money_raised / Math.pow(10, 18)) }} ETH
+          {{
+            new Intl.NumberFormat().format(
+              item.total_money_raised / Math.pow(10, 18)
+            )
+          }}
+          ETH
         </td>
-        <td data-label="Total Created Events">{{ item.number_of_created_events }}</td>
+        <td data-label="Total Created Events">
+          {{ item.number_of_created_events }}
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { shortenAddress } from "@/utils/shortenAddress";
 
 //props
@@ -65,34 +73,18 @@ const props = defineProps({
 
 //state
 
-const dataList = ref([
+const { t } = useI18n();
+const columns = computed(() => [
   {
-    Address: "a0X....sm",
-    totalCreatedEvents: 5,
-    raised: 250000,
-    rewards: 350,
+    text: t("Address"),
   },
   {
-    Address: "a2X....12",
-    totalCreatedEvents: 3,
-    raised: 140000,
-    rewards: 156,
+    text: t("Total_Raised"),
+  },
+  {
+    text: t("Total_Created_Events"),
   },
 ]);
-const columns = [
-  {
-    text: "Address",
-  },
-  {
-    text: "Total Raised",
-  },
-  {
-    text: "Total Created Events",
-  },
-  // {
-  //   text: "Rewards",
-  // },
-];
 
 const copyTextToClipboard = async (item, index) => {
   try {
