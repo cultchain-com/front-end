@@ -1,0 +1,17 @@
+{
+  "Leader_Board": "Leader Board",
+  "Leader_Board_description": "Feel Free to investigate useful resources provided by our team to learn more about this new market.",
+  "Donors": "Donors",
+  "Donors_empty": "donors leaderboard is empty",
+  "Validaters": "Validaters",
+  "Validaters_empty": "validators leaderboard is empty",
+  "Creaters": "Creaters",
+  "Creaters_empty": "creators leaderboard is empty",
+  "Address": "Address",
+  "Total_Raised": "Total Raised",
+  "Total_Created_Events": "Total Created Events",
+  "Total_Donation": "Total Donation",
+  "Total_Commitees": "Total Commitees",
+  "Earning": "Earning",
+  "Networks": "Networks"
+}

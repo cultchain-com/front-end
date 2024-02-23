@@ -20,13 +20,13 @@
           src="/landing/shape-rec.svg"
           class="h-6 w-6 absolute top-8 z-0"
           :class="
-            locale == 'fa' ? 'lg:left-40 left-20' : 'lg:right-40 right-20'
+            locale == 'en' ? 'lg:right-40 right-20' : 'lg:left-40 left-20'
           "
         />
         <img
           src="/landing/shape-close.svg"
           class="h-8 w-8 absolute top-5 z-0"
-          :class="locale == 'fa' ? ' left-10' : 'right-10'"
+          :class="locale == 'en' ? 'right-10' : 'left-10'"
         />
         <h2 class="text-lg text-Gray-b5 font-bold z-10">{{ item.title }}</h2>
         <p class="text-sm text-Gray-b4 z-10">{{ item.label }}</p>

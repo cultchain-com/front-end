@@ -1,0 +1,17 @@
+{
+  "Leader_Board": "مجلس الزعيم",
+  "Leader_Board_description": "لا تتردد في التحقيق في الموارد المفيدة التي يقدمها فريقنا لمعرفة المزيد عن هذا السوق الجديد.",
+  "Donors": "الجهات المانحة",
+  "Donors_empty": "لوحة المتصدرين للمانحين فارغة",
+  "Validaters": "المدققون",
+  "Validaters_empty": "لوحة المتصدرين للمدققين فارغة",
+  "Creaters": "المبدعين",
+  "Creaters_empty": "لوحة صدارة المبدعين فارغة",
+  "Address": "عنوان",
+  "Total_Raised": "إجمالي المرفوع",
+  "Total_Created_Events": "إجمالي الأحداث التي تم إنشاؤها",
+  "Total_Donation": "إجمالي التبرع",
+  "Total_Commitees": "مجموع اللجان",
+  "Earning": "كسب",
+  "Networks": "الشبكات"
+}

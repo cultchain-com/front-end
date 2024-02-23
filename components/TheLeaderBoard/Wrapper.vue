@@ -3,47 +3,87 @@
     <h1
       class="lg:text-2xl text-lg text-Gray-b5 dark:text-LightGray-b5 font-bold text-start lg:leading-[40px] leading-10"
     >
-      Leader Board
+      {{ t("Leader_Board") }}
     </h1>
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-start mb-8"
     >
-      Feel Free to investigate useful resources provided by our team to learn
-      more about this new market.
+      {{ t("Leader_Board_description") }}
     </p>
     <el-tabs v-model="activeTab" class="profile-tabs">
-      <el-tab-pane label="Donors" name="donations-history">
+      <el-tab-pane name="donations-history">
+        <template #label>
+          <span class="custom-tabs-label">
+            <span>{{ t("Donors") }}</span>
+          </span>
+        </template>
         <div class="border-0 mb-6 rounded-xl">
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!donorsLeaderboard?.length">donors leaderboard is empty</h2>
-          <DonorsTable :state="donorsLeaderboard" v-if="donorsLeaderboard?.length" />
+          <h2
+            class="text-Gray-b5 text-center py-10"
+            v-if="!donorsLeaderboard?.length"
+          >
+            {{ t("Donors_empty") }}
+          </h2>
+          <DonorsTable
+            :state="donorsLeaderboard"
+            v-if="donorsLeaderboard?.length"
+          />
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Validaters" name="validations-history">
+      <el-tab-pane name="validations-history">
+        <template #label>
+          <span class="custom-tabs-label">
+            <span>{{ t("Validaters") }}</span>
+          </span>
+        </template>
         <div class="border-0 mb-6 rounded-xl">
-          <ValidatersTable :state="validatorsLeaderboard" v-if="validatorsLeaderboard?.length" />
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!validatorsLeaderboard?.length">validators leaderboard is empty</h2>
+          <ValidatersTable
+            :state="validatorsLeaderboard"
+            v-if="validatorsLeaderboard?.length"
+          />
+          <h2
+            class="text-Gray-b5 text-center py-10"
+            v-if="!validatorsLeaderboard?.length"
+          >
+            {{ t("Validaters_empty") }}
+          </h2>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Creaters" name="created-events">
+      <el-tab-pane name="created-events">
+        <template #label>
+          <span class="custom-tabs-label">
+            <span>{{ t("Creaters") }}</span>
+          </span>
+        </template>
         <div class="border-0 mb-6 rounded-xl">
-          <h2 class="text-Gray-b5 text-center py-10" v-if="!creatorsLeaderboard?.length">creators leaderboard is empty</h2>
-          <CreatersTable :state="creatorsLeaderboard" v-if="creatorsLeaderboard?.length" /></div
-      ></el-tab-pane>
+          <h2
+            class="text-Gray-b5 text-center py-10"
+            v-if="!creatorsLeaderboard?.length"
+          >
+            {{ t("Creaters_empty") }}
+          </h2>
+          <CreatersTable
+            :state="creatorsLeaderboard"
+            v-if="creatorsLeaderboard?.length"
+          ></CreatersTable>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </section>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
 import DonorsTable from "./DonorsTable.vue";
 import ValidatersTable from "./ValidatersTable.vue";
 import CreatersTable from "./CreatersTable.vue";
 import { ref } from "vue";
 import { useCryptoStore } from "~/store/crypto";
-import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
 
-// state
+//state
 
+const { t } = useI18n();
 const activeTab = ref("donations-history");
 const donorsLeaderboard = ref(null);
 const creatorsLeaderboard = ref(null);

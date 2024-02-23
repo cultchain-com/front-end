@@ -93,7 +93,7 @@ const state = computed(() => [
         status: false,
       },
       {
-        label: t("Meda_Advertisement"),
+        label: t("Media_Advertisement"),
         status: false,
       },
     ],

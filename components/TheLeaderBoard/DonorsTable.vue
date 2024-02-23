@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full base-table">
+  <table class="w-full base-table" dir="ltr">
     <thead>
       <tr class="border-b-[1px]">
         <th>*</th>
@@ -24,9 +24,7 @@
                 <span>{{ shortenAddress(item.donor__wallet_address) }}</span>
               </el-tooltip>
               <el-tooltip
-                :content="
-                  item.value ? 'Copied' : 'Copy'
-                "
+                :content="item.value ? t('Copied') : t('Copy')"
                 placement="top"
               >
                 <i
@@ -43,21 +41,20 @@
           ></client-only>
         </td>
         <td data-label="Total Donation">
-          {{ new Intl.NumberFormat().format(item.total_donated / Math.pow(10, 18)) }} ETH
+          {{
+            new Intl.NumberFormat().format(
+              item.total_donated / Math.pow(10, 18)
+            )
+          }}
+          ETH
         </td>
-        <!-- <td data-label="Events">{{ item.events }}</td>
-        <td data-label="Rewards">{{ item.rewards }}$</td> -->
-        <!-- <el-divider
-          class="block md:none"
-          v-if="index !== dataList.length - 1"
-        /> -->
       </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { shortenAddress } from "@/utils/shortenAddress";
 
 //props
@@ -70,20 +67,15 @@ const props = defineProps({
 
 //state
 
-const columns = [
+const { t } = useI18n();
+const columns = computed(() => [
   {
-    text: "Address",
+    text: t("Address"),
   },
   {
-    text: "Total Donation",
+    text: t("Total_Donation"),
   },
-  // {
-  //   text: "Events",
-  // },
-  // {
-  //   text: "Reward",
-  // },
-];
+]);
 
 const copyTextToClipboard = async (item, index) => {
   try {
