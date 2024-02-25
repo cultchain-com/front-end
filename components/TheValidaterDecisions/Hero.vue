@@ -20,14 +20,14 @@
 
     <!-- mobile slides  -->
 
-    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
       <HeroCard
         v-for="(item, index) in props.state"
         :key="index"
         :state="item"
         class="min-w-[90%] w-[90%] min-h-[300px]"
       />
-    </template>
+    </div>
 
     <!-- skeleton cards  -->
 
