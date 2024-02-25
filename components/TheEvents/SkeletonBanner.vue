@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 .skeleton-card {
-  @apply bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl lg:min-w-full md:min-w-[50%] min-w-[300px];
+  @apply bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl lg:min-w-full md:min-w-[50%] min-w-[300px] w-full;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }

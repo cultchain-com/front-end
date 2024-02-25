@@ -1,9 +1,12 @@
 <template>
   <div class="flex flex-col pb-20">
+    <!-- desktop slider  -->
+
     <Carousel
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       v-if="props.state.length"
+      class="hidden md:block"
     >
       <Slide v-for="(item, index) in props.state" :key="index">
         <HeroCard :state="item" />
@@ -14,14 +17,25 @@
         </div>
       </template>
     </Carousel>
+
+    <!-- mobile slides  -->
+
+    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+      <HeroCard
+        v-for="(item, index) in props.state"
+        :key="index"
+        :state="item"
+        class="min-w-[90%] w-[90%] min-h-[300px]"
+      />
+    </template>
+
+    <!-- skeleton cards  -->
+
     <template v-if="!props.state.length">
       <div class="flex gap-4 overflow-x-auto hide-scrollbar">
         <SkeletonBanner />
       </div>
     </template>
-    <!-- <template v-if="!eventListFundRaising?.length">
-      <img src="/empty.png" class="max-h-[400px] h-full w-fit mx-auto" />
-    </template> -->
   </div>
 </template>
 

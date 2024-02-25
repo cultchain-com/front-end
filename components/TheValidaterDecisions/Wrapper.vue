@@ -5,6 +5,9 @@
     >
       {{ $t("Validaters_Decision") }}
     </h1>
+
+    <!-- desktop slider -->
+
     <Carousel
       dir="ltr"
       :modelValue="0"
@@ -12,6 +15,7 @@
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
       v-if="validatersDecisions.length"
+      class="hidden md:block"
     >
       <Slide v-for="(item, index) in validatersDecisions" :key="index">
         <CreationCard :state="item" />
@@ -20,6 +24,20 @@
         <Navigation v-if="slidesCount > 3" />
       </template>
     </Carousel>
+
+    <!-- mobile slides  -->
+
+    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+      <CreationCard
+        v-for="(item, index) in validatersDecisions"
+        :key="index"
+        :state="item"
+        class="min-w-[300px]"
+      />
+    </template>
+
+    <!-- skeleton cards  -->
+
     <template v-if="!validatersDecisions.length && !isListLoaded">
       <div
         class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
@@ -27,6 +45,8 @@
         <SkeletonCard v-for="item in 4" :key="item" />
       </div>
     </template>
+
+    <!-- emplty -->
 
     <template v-if="!validatersDecisions.length && isListLoaded">
       <div class="h-[100px] flex items-center justify-center">

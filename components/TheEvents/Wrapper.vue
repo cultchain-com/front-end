@@ -5,19 +5,37 @@
     >
       {{ $t("Fund_Raising") }}
     </h1>
+
+    <!-- Fund Raising desktop slider -->
+
     <Carousel
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
       v-if="eventListFundRaising.length"
+      class="hidden md:block"
     >
       <Slide v-for="(item, index) in eventListFundRaising" :key="index">
         <EventCardFundRaising :state="item" />
       </Slide>
-      <template #addons="{ slidesCount }">
-        <Navigation v-if="slidesCount > 3" />
+      <template #addons="{ slidesCount }" v-if="slidesCount > 3">
+        <Navigation />
       </template>
     </Carousel>
+
+    <!-- Fund Raising mobile slides  -->
+
+    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+      <EventCardFundRaising
+        v-for="(item, index) in eventListFundRaising"
+        :key="index"
+        :state="item"
+        class="min-w-[300px]"
+      />
+    </template>
+
+    <!-- Fund Raising skeleton cards  -->
+
     <template v-if="!eventListFundRaising.length && !isListLoaded">
       <div
         class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
@@ -25,6 +43,8 @@
         <SkeletonCard v-for="item in 4" :key="item" />
       </div>
     </template>
+
+    <!-- Fund Raising empty  -->
 
     <template v-if="!eventListFundRaising.length && isListLoaded">
       <div class="h-[100px] flex items-center justify-center">
@@ -43,19 +63,37 @@
     >
       {{ $t("In_Progress") }}
     </h1>
+
+    <!-- In Progress desktop slider  -->
+
     <Carousel
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
       v-if="eventListInProgress.length"
+      class="hidden md:block"
     >
       <Slide v-for="(item, index) in eventListInProgress" :key="index">
         <EventCardInProgress :state="item" />
       </Slide>
-      <template #addons="{ slidesCount }">
-        <Navigation v-if="slidesCount > 3" />
+      <template #addons="{ slidesCount }" v-if="slidesCount > 3">
+        <Navigation />
       </template>
     </Carousel>
+
+    <!-- Fund Raising mobile slides  -->
+
+    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+      <EventCardInProgress
+        v-for="(item, index) in eventListInProgress"
+        :key="index"
+        :state="item"
+        class="min-w-[300px]"
+      />
+    </template>
+
+    <!-- In Progress skeleton cards  -->
+
     <template v-if="!eventListInProgress.length && !isListLoaded">
       <div
         class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
@@ -63,6 +101,9 @@
         <SkeletonCard v-for="item in 4" :key="item" />
       </div>
     </template>
+
+    <!-- In Progress empty  -->
+
     <template v-if="!eventListInProgress.length && isListLoaded">
       <div class="h-[100px] flex items-center justify-center">
         <h2

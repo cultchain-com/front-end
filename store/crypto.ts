@@ -313,6 +313,7 @@ export const useCryptoStore = defineStore("user", () => {
   }
 
   async function getAllPastDecisions() {
+    debugger;
     let decisions;
     await axios
       .get(`${baseURL}indexer/committees`)

@@ -3,29 +3,46 @@
     <h1
       class="lg:text-3xl text-xl text-Gray-b5 dark:text-LightGray-b5 font-bold text-center"
     >
-      {{t("Events")}}
+      {{ t("Events") }}
     </h1>
     <p
       class="text-Gray-b5 dark:text-LightGray-b5 text-sm leading-8 text-center mb-5"
     >
-      {{t("Lorem")}}
+      {{ t("Lorem") }}
     </p>
 
+    <!-- desktop slider  -->
+
     <Carousel
-      dir=""
+      dir="ltr"
       :items-to-show="carouselOptions.itemsToShow"
       :transition="carouselOptions.transition"
       :breakpoints="carouselOptions.breakpoints"
       :wrap-around="carouselOptions.wrapAround"
       v-if="events.length"
+      class="hidden md:block"
     >
       <Slide v-for="(item, index) in events" :key="index">
         <EventsCard :state="item" />
       </Slide>
-      <template #addons="{ slidesCount }">
-        <Navigation v-if="slidesCount > 3" />
+      <template #addons="{ slidesCount }" v-if="slidesCount > 3">
+        <Navigation />
       </template>
     </Carousel>
+
+    <!-- Fund Raising mobile slides  -->
+
+    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+      <EventsCard
+        v-for="(item, index) in events"
+        :key="index"
+        :state="item"
+        class="min-w-[300px]"
+      />
+    </template>
+
+    <!-- skeleton cards  -->
+
     <template v-if="!events.length && !isListLoaded">
       <div
         class="lg:grid grid-cols-4 flex gap-4 overflow-x-auto hide-scrollbar"
@@ -33,6 +50,8 @@
         <SkeletonCard v-for="item in 3" :key="item" />
       </div>
     </template>
+
+    <!-- empty -->
 
     <template v-if="!events.length && isListLoaded">
       <div class="h-[100px] flex items-center justify-center">
