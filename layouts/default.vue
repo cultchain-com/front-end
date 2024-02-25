@@ -37,7 +37,7 @@
             class="w-fit"
             :before-close="handleClose"
           >
-            <template #title
+            <template #header
               ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
                 Sign in your wallet
               </h4></template
