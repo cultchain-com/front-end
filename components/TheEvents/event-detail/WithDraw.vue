@@ -16,7 +16,7 @@
       class="w-fit min-w-[320px]"
       :before-close="handleClose"
     >
-      <template #title
+      <template #header
         ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
           {{ $t("WithDraw") }}
         </h4></template

@@ -27,14 +27,14 @@
 
     <!-- mobile slides  -->
 
-    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
       <CreationCard
         v-for="(item, index) in validatersDecisions"
         :key="index"
         :state="item"
         class="min-w-[300px]"
       />
-    </template>
+    </div>
 
     <!-- skeleton cards  -->
 

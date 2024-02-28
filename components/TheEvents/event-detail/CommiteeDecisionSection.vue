@@ -71,7 +71,12 @@
       </li>
     </ul>
     <client-only>
-      <el-dialog v-model="dialogVisible" :title="$t('Vote')" width="30%">
+      <el-dialog v-model="dialogVisible" width="30%">
+        <template>
+          <h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
+            {{ $t("Vote") }}
+          </h4>
+        </template>
         <Vote />
         <template #footer>
           <span class="dialog-footer">

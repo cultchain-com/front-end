@@ -25,14 +25,14 @@
 
     <!-- Fund Raising mobile slides  -->
 
-    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
       <EventCardFundRaising
         v-for="(item, index) in eventListFundRaising"
         :key="index"
         :state="item"
         class="min-w-[300px]"
       />
-    </template>
+    </div>
 
     <!-- Fund Raising skeleton cards  -->
 
@@ -83,14 +83,14 @@
 
     <!-- Fund Raising mobile slides  -->
 
-    <template class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="md:hidden flex gap-4 overflow-x-auto hide-scrollbar">
       <EventCardInProgress
         v-for="(item, index) in eventListInProgress"
         :key="index"
         :state="item"
         class="min-w-[300px]"
       />
-    </template>
+    </div>
 
     <!-- In Progress skeleton cards  -->
 
@@ -161,7 +161,7 @@ const emits = defineEmits(["events"]);
 //mounted
 
 onMounted(async () => {
-  //   loading.isLoading = true;
+  debugger;
   isListLoaded.value = false;
   eventList.value = await listAllEvents();
   emits("events", eventList.value);
@@ -178,7 +178,6 @@ onMounted(async () => {
     );
   });
   isListLoaded.value = true;
-  //   loading.isLoading = false;
 });
 </script>
 <style lang="scss" scoped>
