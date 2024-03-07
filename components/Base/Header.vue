@@ -203,7 +203,7 @@
                   <Icon name="sun" v-if="isDarkMode" />
                   <Icon name="moon" v-if="!isDarkMode" /> -->
                   <div class="flex justify-between items-center w-full">
-                    <h5>Theme</h5>
+                    <h5>{{ t("Theme") }}</h5>
                     <el-switch
                       size="large"
                       v-model="isDarkMode"
@@ -219,7 +219,7 @@
                   class="text-Gray-b4 dark:text-LightGray-b4 hover:bg-transparent hover:text-Gray-b5 dark:text-LightGray-b5"
                 >
                   <div class="flex w-full justify-between items-center">
-                    <h5>Translation</h5>
+                    <h5>{{ t("Translation") }}</h5>
                     <el-button
                       icon
                       class="border-0 px-0 mx-0 glass min-w-[40px] h-10 bg-transparent dark:bg-LightGray-b3 bg-opacity-70 text-Gray-b5 dark:text-LightGray-b5 rounded-xl flex items-center justify-center hover:scale-105"
@@ -290,7 +290,8 @@ import Icon from "@/components/TheIcon/Icon.vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { Moon, Sunny } from "@element-plus/icons-vue";
-import sun from "@/assets/icons/sun.svg";
+import { useDialog } from "@/store/tips-and-tricks";
+const dialogStore = useDialog();
 
 //state
 
@@ -299,6 +300,7 @@ const { locale } = useI18n();
 const cryptoStore = useCryptoStore();
 const { switchNetwork, connectWallet, isAccountConnected } = useCryptoStore();
 const { account, isNetworkValid } = storeToRefs(cryptoStore);
+const { isConnectAccountModalVisible } = storeToRefs(dialogStore);
 const drawer = ref(false);
 const direction = ref("rtl");
 const router = useRouter();
@@ -346,8 +348,9 @@ const searchHandler = () => {
 };
 const checkWalletConnection = async () => {
   if (!account.value) {
-    let status = await connectWallet();
-    status ? router.push("/profile") : "";
+    // let status = await connectWallet();
+    // status ? router.push("/profile") : "";
+    isConnectAccountModalVisible.value = true;
   } else {
     router.push("/profile");
   }
