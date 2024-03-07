@@ -147,3 +147,13 @@ const onMouseLeave = (event) => {
   event.target.classList.remove("is-focused");
 };
 </script>
+<style lang="scss">
+.select {
+  .el-select__wrapper {
+    @apply  bg-Gray-b1 dark:bg-LightGray-b1 border-none shadow-none h-[44px] rounded-lg;
+  }
+  .el-select__placeholder {
+    @apply text-Gray-b5 dark:text-LightGray-b5 text-base;
+  }
+}
+</style>
