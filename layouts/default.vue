@@ -31,23 +31,11 @@
     <div class="relative" v-show="!isLoading">
       <div>
         <slot />
-        <ClientOnly>
-          <el-dialog
-            v-model="isWalletDisconnectedVisible"
-            class="w-fit"
-            :before-close="handleClose"
-          >
-            <template #header
-              ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
-                Sign in your wallet
-              </h4></template
-            >
-            <p class="text-Gray-b5 dark:text-LightGray-b5 text-center mt-10">
-              You will be prompted to sign a message to authenticate, please
-              check your wallet.
-            </p>
-          </el-dialog>
-        </ClientOnly>
+        <WalletDisconnected
+          :visible="isWalletDisconnectedVisible"
+          @handleClose="isWalletDisconnectedVisible = false"
+        />
+        <ConnectAccount />
       </div>
     </div>
   </div>
@@ -57,6 +45,8 @@ import { useCryptoStore } from "~/store/crypto";
 import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
 import { useI18n } from "vue-i18n";
+import ConnectAccount from "~/components/TheTipsAndTricks/ConnectAccount.vue";
+import WalletDisconnected from "~/components/TheTipsAndTricks/WalletDisconnected.vue";
 
 //state
 
@@ -66,12 +56,6 @@ const { account } = storeToRefs(cryptoStore);
 const loading = useLoading();
 const isLoading = ref(false);
 const isWalletDisconnectedVisible = ref(false);
-
-//methods
-
-const handleClose = () => {
-  isWalletDisconnectedVisible.value = false;
-};
 
 //watcher
 
