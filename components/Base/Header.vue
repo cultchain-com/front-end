@@ -328,11 +328,6 @@ const isDarkMode = ref(true);
 
 //methods
 
-const converToString = (e) => {
-  if (process.client) {
-    return typeof String(e);
-  }
-};
 const toggleTheme = () => {
   const htmlTags = [...document.getElementsByTagName("html")];
   console.log(htmlTags);
