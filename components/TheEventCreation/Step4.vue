@@ -43,9 +43,28 @@
       }}</span>
     </template>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >{{ $t("Tatget_Amount") }}
-      </label>
+      <div class="flex justify-between items-center">
+        <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Tatget_Amount") }}
+          <span class="text-Gray-b4 dark:text-LightGray-b4 text-sm">(ETH)</span>
+        </label>
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Tatget_Amount") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("MileStone_Tatget_Amount_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="relative">
         <i
           class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
@@ -60,9 +79,28 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("Name")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Name") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Name") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("MileStone_Name_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="relative">
         <input
           :placeholder="$t(`Name`)"
@@ -73,9 +111,28 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("End_Date")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("End_Date") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("End_Date") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("End_Date_MileStone_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <el-date-picker
         v-model="localState.endDate"
         type="date"
@@ -86,9 +143,28 @@
       />
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("Description")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Description") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Description") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("MileStone_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <textarea
         :placeholder="$t(`Description`)"
         v-model="localState.description"
