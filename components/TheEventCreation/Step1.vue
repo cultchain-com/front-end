@@ -3,9 +3,28 @@
     class="max-w-[491px] w-full bg-Gray-b2 dark:bg-LightGray-b2 rounded-xl p-5 mx-auto flex flex-col gap-4"
   >
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
-        >{{ $t("Tatget_Amount") }}
-      </label>
+      <div class="flex justify-between items-center">
+        <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Tatget_Amount") }}
+          <span class="text-Gray-b4 dark:text-LightGray-b4 text-sm">(ETH)</span>
+        </label>
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Tatget_Amount") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("Tatget_Amount_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="relative">
         <i
           class="isax isax-money-add text-xl absolute top-[6px] left-2 text-Gray-b5 dark:text-LightGray-b5"
@@ -20,9 +39,28 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("Event_Name")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Event_Name") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Event_Name") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("Event_Name_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="relative">
         <input
           class="w-full py-2 px-2 rounded-lg focus:border-Primary border-2 border-transparent outline-none text-Gray-b5 dark:text-LightGray-b5 bg-Gray-b1 dark:bg-LightGray-b1"
@@ -33,10 +71,28 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("Category")
-      }}</label>
-
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Category") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Category") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("Category_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="w-full">
         <el-select
           v-model="state.category"
@@ -53,9 +109,28 @@
       </div>
     </div>
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("End_Date")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("End_Date") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("End_Date") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("End_Date_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div>
         <el-date-picker
           v-model="state.endDate"
@@ -150,7 +225,7 @@ const onMouseLeave = (event) => {
 <style lang="scss">
 .select {
   .el-select__wrapper {
-    @apply  bg-Gray-b1 dark:bg-LightGray-b1 border-none shadow-none h-[44px] rounded-lg;
+    @apply bg-Gray-b1 dark:bg-LightGray-b1 border-none shadow-none h-[44px] rounded-lg;
   }
   .el-select__placeholder {
     @apply text-Gray-b5 dark:text-LightGray-b5 text-base;
