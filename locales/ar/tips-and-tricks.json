@@ -1,0 +1,23 @@
+{
+  "Connect_Account": "ربط الحساب",
+  "Connect_Account_description": "لزيارة ملفك الشخصي، يجب عليك ربط محفظتك بالموقع الإلكتروني أولاً",
+  "Connect_Account_Create_Event_description": "لإنشاء حدث، يجب عليك ربط محفظتك بموقع الويب أولاً",
+  "Sign_in_your_wallet": "قم بتسجيل الدخول إلى محفظتك",
+  "Sign_in_your_wallet_description": "سيُطلب منك التوقيع على رسالة للمصادقة، يرجى التحقق من محفظتك.",
+  "Close": "يغلق",
+  "Tatget_Amount_Description": "أدخل المبلغ المستهدف للحدث الخاص بك في ETH",
+  "Event_Name_Description": "أدخل اسم الحدث المطلوب",
+  "Category_Description": "حدد فئة الحدث الخاص بك",
+  "End_Date_Description": "اختر وقت انتهاء الحدث الخاص بك",
+  "Add_Cover_Photo_Description": "إضافة صورة الغلاف للحدث",
+  "Describe_Your_Situation_Description": "قم بالوصف الكامل للحدث الخاص بك",
+  "MileStone_Tatget_Amount_Description": "أدخل المبلغ المستهدف لـ MileStone الخاص بك في ETH",
+  "MileStone_Name_Description": "أدخل اسم MileStone المطلوب",
+  "End_Date_MileStone_Description": "اختر وقت انتهاء الحدث الرئيسي الخاص بك",
+  "MileStone_Description": "صِف بشكل كامل عن معلمك الرئيسي",
+  "Donating_to": "التبرع ل",
+  "Amount": "كمية",
+  "Amount_Description": "أدخل مبلغ التبرع الخاص بك في ETH",
+  "Donate_Message_Description": "اكتب بعض الرسائل التوضيحية لتبرعك",
+  "Transfer": "تحويل"
+}
