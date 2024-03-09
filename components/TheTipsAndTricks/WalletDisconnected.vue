@@ -1,4 +1,3 @@
-import type { tagEmits } from 'element-plus';
 <template>
   <div>
     <ClientOnly>
@@ -9,12 +8,11 @@ import type { tagEmits } from 'element-plus';
       >
         <template #header
           ><h4 class="text-Gray-b5 dark:text-LightGray-b5 text-center">
-            Sign in your wallet
+            {{ $t("Sign_in_your_wallet") }}
           </h4></template
         >
         <p class="text-Gray-b5 dark:text-LightGray-b5 text-center mt-10">
-          You will be prompted to sign a message to authenticate, please check
-          your wallet.
+          {{ $t("Sign_in_your_wallet_description") }}
         </p>
       </el-dialog>
     </ClientOnly>

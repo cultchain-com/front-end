@@ -10,7 +10,7 @@
 }
 .direction-rtl {
   font-family: "iransans" !important;
-  .el-collapse-item__arrow{
+  .el-collapse-item__arrow {
     margin: 0 auto 0 8px !important;
   }
 }
@@ -508,4 +508,10 @@ th:last-child {
 .el-switch {
   --el-switch-on-color: rgb(199, 109, 0) !important;
   --el-switch-off-color: rgb(164, 163, 163) !important;
+}
+.el-popover.el-popper {
+  @apply bg-Gray-b2 dark:bg-LightGray-b2 text-Gray-b5 #{!important};
+}
+.el-popper.is-light .el-popper__arrow::before {
+  @apply bg-Gray-b2 dark:bg-LightGray-b2 bg-opacity-55 #{!important};
 }

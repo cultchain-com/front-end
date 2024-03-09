@@ -348,8 +348,6 @@ const searchHandler = () => {
 };
 const checkWalletConnection = async () => {
   if (!account.value) {
-    // let status = await connectWallet();
-    // status ? router.push("/profile") : "";
     isConnectAccountModalVisible.value = true;
   } else {
     router.push("/profile");
