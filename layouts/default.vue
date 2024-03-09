@@ -36,6 +36,7 @@
           @handleClose="isWalletDisconnectedVisible = false"
         />
         <ConnectAccount />
+        <ConnectAccountCreateEvent />
       </div>
     </div>
   </div>
@@ -46,6 +47,7 @@ import { storeToRefs } from "pinia";
 import { useLoading } from "@/store/loading";
 import { useI18n } from "vue-i18n";
 import ConnectAccount from "~/components/TheTipsAndTricks/ConnectAccount.vue";
+import ConnectAccountCreateEvent from "~/components/TheTipsAndTricks/ConnectAccountCreateEvent.vue";
 import WalletDisconnected from "~/components/TheTipsAndTricks/WalletDisconnected.vue";
 
 //state
