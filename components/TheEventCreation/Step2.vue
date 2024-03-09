@@ -4,9 +4,28 @@
     :key="counter"
   >
     <div class="form-item flex flex-col gap-1">
-      <label class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5">{{
-        $t("Add_Cover_Photo")
-      }}</label>
+      <div class="flex justify-between items-center">
+        <label
+          class="md:text-base text-sm text-Gray-b5 dark:text-LightGray-b5"
+          >{{ $t("Add_Cover_Photo") }}</label
+        >
+        <el-popover placement="bottom" trigger="click">
+          <h6
+            class="text-sm text-Gray-b5 dark:text-LightGray-b5 flex items-center gap-1"
+          >
+            <span class="text-red-600 text-xl relative top-[2px]">*</span
+            >{{ $t("Add_Cover_Photo") }}
+          </h6>
+          <p class="text-xs text-Gray-b4 dark:text-LightGray-b4 mt-2">
+            {{ $t("Add_Cover_Photo_Description") }}
+          </p>
+          <template #reference
+            ><i
+              class="isax isax-info-circle text-Gray-b5 dark:text-LightGray-b5 font-bold text-lg"
+            />
+          </template>
+        </el-popover>
+      </div>
       <div class="flex flex-col gap-2">
         <div
           class="h-[200px] rounded-xl bg-Gray-b1 dark:bg-LightGray-b1 border-2 border-dashed border-Gray-b4 dark:border-LightGray-b4 cursor-pointer flex items-center justify-center text-Gray-b5 dark:text-LightGray-b5 overflow-hidden"
