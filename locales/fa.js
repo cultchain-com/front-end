@@ -9,6 +9,7 @@ import contact_us from "./fa/contact-us.json";
 import request_demo from "./fa/request-demo.json";
 import become_validator from "./fa/become-validator.json";
 import leader_board from "./fa/leader-board.json";
+import tips_and_tricks from "./fa/tips-and-tricks.json";
 
 export default {
   ...header,
@@ -22,4 +23,5 @@ export default {
   ...request_demo,
   ...become_validator,
   ...leader_board,
+  ...tips_and_tricks,
 };
