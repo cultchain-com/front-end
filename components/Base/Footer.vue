@@ -110,5 +110,9 @@ const navigations = computed(() => [
     route: "/request-demo",
     text: t("Request_Demo"),
   },
+  // {
+  //   route: "/how-it-work",
+  //   text: t("How_it_work"),
+  // },
 ]);
 </script>

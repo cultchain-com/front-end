@@ -1,0 +1,23 @@
+{
+  "Connect_Account": "اتصال حساب",
+  "Connect_Account_description": "برای بازدید از نمایه خود، ابتدا باید کیف پول خود را به وب سایت متصل کنید",
+  "Connect_Account_Create_Event_description": "برای ایجاد رویداد، ابتدا باید کیف پول خود را به وب سایت متصل کنید",
+  "Sign_in_your_wallet": "کیف پول خود را وارد کنید",
+  "Sign_in_your_wallet_description": "از شما خواسته می شود برای احراز هویت پیامی را امضا کنید، لطفا کیف پول خود را بررسی کنید.",
+  "Close": "بستن",
+  "Tatget_Amount_Description": "مقدار هدف رویداد خود را در ETH درج کنید",
+  "Event_Name_Description": "نام رویداد مورد نظر خود را وارد کنید",
+  "Category_Description": "دسته رویداد خود را انتخاب کنید",
+  "End_Date_Description": "زمان پایان رویداد خود را انتخاب کنید",
+  "Add_Cover_Photo_Description": "عکس روی جلد را برای رویداد اضافه کنید",
+  "Describe_Your_Situation_Description": "به طور کامل درباره رویداد خود توضیح دهید",
+  "MileStone_Tatget_Amount_Description": "مقدار هدف MileStone خود را در ETH درج کنید",
+  "MileStone_Name_Description": "نام MileStone مورد نظر خود را وارد کنید",
+  "End_Date_MileStone_Description": "زمان پایان MileStone خود را انتخاب کنید",
+  "MileStone_Description": "درباره MileStone خود به طور کامل توضیح دهید",
+  "Donating_to": "اهداء به",
+  "Amount": "میزان",
+  "Amount_Description": "مبلغ کمک مالی خود را برحسب ETH درج کنید",
+  "Donate_Message_Description": "برای کمک مالی خود پیام بنویسید",
+  "Transfer": "انتقال"
+}

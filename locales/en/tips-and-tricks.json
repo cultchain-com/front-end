@@ -1,0 +1,23 @@
+{
+  "Connect_Account": "Connect Account",
+  "Connect_Account_description": "For Visiting Your Profile You have to connect your wallet to website first",
+  "Connect_Account_Create_Event_description": "For Create Event You have to connect your wallet to website first",
+  "Sign_in_your_wallet": "Sign in your wallet",
+  "Sign_in_your_wallet_description": "You will be prompted to sign a message to authenticate, please check your wallet.",
+  "Close": "Close",
+  "Tatget_Amount_Description": "Insert Your Event Target Amount in ETH",
+  "Event_Name_Description": "Insert Your Desired Event Name",
+  "Category_Description": "Select Your Event Category",
+  "End_Date_Description": "Choose End Time of Your Event",
+  "Add_Cover_Photo_Description": "Add Cover Photo for Event",
+  "Describe_Your_Situation_Description": "Describe Completely About Your Event",
+  "MileStone_Tatget_Amount_Description": "Insert Your MileStone Target Amount in ETH",
+  "MileStone_Name_Description": "Insert Your Desired MileStone Name",
+  "End_Date_MileStone_Description": "Choose End Time of Your MileStone",
+  "MileStone_Description": "Describe Completely About Your MileStone",
+  "Donating_to": "Donating to",
+  "Amount": "Amount",
+  "Amount_Description": "Insert Your Donate Amount in ETH",
+  "Donate_Message_Description": "Write Some caption Message For Your Donation",
+  "Transfer": "Transfer"
+}

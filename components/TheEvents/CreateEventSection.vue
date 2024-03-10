@@ -29,34 +29,26 @@
 </template>
 
 <script setup>
-import Icon from "@/components/TheIcon/Icon.vue";
 import { useCryptoStore } from "~/store/crypto";
 import { useCreateEvent } from "@/store/create-event";
 import { storeToRefs } from "pinia";
-import { ElNotification } from "element-plus";
-import { h } from "vue";
 import { useRouter } from "vue-router";
+import { useDialog } from "@/store/tips-and-tricks";
 
 //state
 
+const dialogStore = useDialog();
 const cryptoStore = useCryptoStore();
 const createEventStore = useCreateEvent();
-const { connectWallet } = useCryptoStore();
 const { account } = storeToRefs(cryptoStore);
 const router = useRouter();
+const { isConnectAccountCreateAccountModalVisible } = storeToRefs(dialogStore);
 
 //methods
 
-const checkWalletConnection = async () => {
+const checkWalletConnection = () => {
   if (!account.value) {
-    let status = await connectWallet();
-    status
-      ? (router.push("/event-creation"), (createEventStore.activeStepp = 1))
-      : ElNotification({
-          title: "Error",
-          message: h("i", "You Don't have connected wallet!"),
-          type: "error",
-        });
+    isConnectAccountCreateAccountModalVisible.value = true;
   } else {
     router.push("/event-creation");
     createEventStore.activeStepp = 1;
